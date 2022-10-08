@@ -1,26 +1,26 @@
 import mongoose from "mongoose";
-import Class from '../Interfaces/Class'
+import Post from '../Interfaces/Post'
 
 const Schema = mongoose.Schema
 
 
-const ClassSchema = new Schema<Class>({
+const PostSchema = new Schema<Post>({
   id:{ type: String, required:true},
   studioName:{type: String, required:true},
   exerciseName:{type: String, required:true },
-  desc:{type: String, required:false},
-  duration:{type:String, required:false},
-  location:{type:String, required:false},
-  longitude:{type:Number, required: false},
-  latitude:{type:Number, required:false},
-  classDate:{type:Date, required:false},
-  exerciseType:{type:String, required:false},
-  price:{type:String, required: false},
-  postPic:{type:String, required:false}
+  desc:{type: String, required:true},
+  duration:{type:Number, required:true},
+  location:{type:String, required:true},
+  longitude:{type:Number, required: true},
+  latitude:{type:Number, required:true},
+  classDate:{type:Date, required:true},
+  exerciseType:{type:String, required:true},
+  price:{type:String, required: true},
+  postPic:{type:String, required:true}
 
 })
 
-const Classes = mongoose.model<Class>('Class', ClassSchema)
+const Post = mongoose.model<Post>('Post', PostSchema)
 
-export default Classes
+export default Post
 

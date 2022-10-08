@@ -1,12 +1,12 @@
 
-import Classes from '../Model/classModel'
+import Post from '../Model/classModel'
 import {Request, Response} from 'express'
 
-export const getClasses= async(req: Request, res: Response) =>{
+export const getGymClass= async(req: Request, res: Response) =>{
 
   try{
 
-    const classes = await Classes.find();
+    const classes = await Post.find();
     res.send(classes);
     res.status(201)
 
@@ -18,11 +18,11 @@ export const getClasses= async(req: Request, res: Response) =>{
 
 }
 
-export const postClasses = async( req: Request, res: Response)=>{
+export const postGymClass= async( req: Request, res: Response)=>{
   try{
 
     console.log(req.body)
-    const classes = await Classes.create(req.body)
+    const classes = await Post.create(req.body)
     res.send(classes)
     res.status(201)
 

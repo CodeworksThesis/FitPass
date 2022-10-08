@@ -1,8 +1,9 @@
+import Post from './Post'
 
 export default interface User {
   id: string,
-  favorites: string[],
-  booked: string [],
+  favorites: Post[],
+  booked: Post[],
   profilePic: string
 
 }

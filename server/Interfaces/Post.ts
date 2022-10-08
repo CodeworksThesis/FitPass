@@ -1,13 +1,13 @@
 
-export default interface Class {
+export default interface IPost {
   id:string,
   studioName: string,
   exerciseName:string,
   desc: string,
-  duration:string,
+  duration: number,
   location: string,
-  longitude: Number,
-  latitude: Number,
+  longitude: number,
+  latitude: number,
   classDate: Date,
   exerciseType: string,
   price: string,
