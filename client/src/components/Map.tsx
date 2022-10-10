@@ -41,7 +41,7 @@ export default function Map() {
   const [location, setLocation] = useState<locationProps>(defaultLocation)
   const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyC-CgOFFWvE1kVWvRkrcHO3bRbqaUEP5I4"
+    googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
 
   useEffect(() => {
