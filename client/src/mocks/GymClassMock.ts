@@ -7,7 +7,7 @@ export const GymClass = [
         duration: 42, // minutes
         longitude: 2.15,
         latitude: 41.4,
-        classDate: new Date(1665227096),
+        classDate: new Date(1665227096000),
         exerciseType: "Other",
         price: "€5",
         postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg"
@@ -20,7 +20,7 @@ export const GymClass = [
         duration: 41, // minutes
         longitude: 2.18,
         latitude: 41.4,
-        classDate: new Date(1665227096),
+        classDate: new Date(1665227096000),
         exerciseType: "Cycling",
         price: "€8",
         postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"

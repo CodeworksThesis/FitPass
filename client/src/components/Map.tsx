@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-maps/api';
 import { GymClass } from '../mocks/GymClassMock';
 import { Post } from '../../../globalTypes/Post.d';
+import { formatDate, formatTime} from '../utils/time'
 
 interface locationProps {
   longitude:number,
@@ -11,21 +12,6 @@ interface locationProps {
   postcode:string,
   city:string
 }
-
-const initialMarker = {
-    id: '',
-    studioName: '',
-    exerciseName: '',
-    desc: '',
-    duration: 0, // minutes
-    longitude:0,
-    latitude:0,
-    classDate: new Date(Date.now()),
-    exerciseType: '',
-    price: '',
-    postPic:''
-}
-
 const defaultLocation = {
   longitude: 2.2,
   latitude: 41.4,
@@ -34,6 +20,22 @@ const defaultLocation = {
   postcode: '',
   city: ''
 }
+
+const initialMarker = {
+    id: '',
+    studioName: '',
+    exerciseName: '',
+    desc: '',
+    duration: 0, // minutes
+    longitude:defaultLocation.longitude,
+    latitude:defaultLocation.latitude,
+    classDate: new Date(Date.now()),
+    exerciseType: '',
+    price: '',
+    postPic:''
+}
+
+
 
 export default function Map() {
   const [location, setLocation] = useState<locationProps>(defaultLocation)
@@ -92,10 +94,18 @@ export default function Map() {
       />))}
       {
         selectedMarker && (
-          <InfoWindow position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}>
-            <div className="flex flex-col w-24 h-24 rounded-md">
-              <h2 className="text-bold">{selectedMarker.exerciseName}</h2>
-              <p>{selectedMarker.studioName}</p>
+          <InfoWindow 
+            position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
+            onCloseClick={() => setSelectedMarker(initialMarker)}
+          >
+            <div className="flex flex-col w-48 h-48 rounded-md">
+              <div className="w-full h-[50%] overflow-hidden rounded-lg">
+                <img src={selectedMarker.postPic} alt={selectedMarker.exerciseName} className="w-full h-full object-cover" />
+              </div>
+              <h2 className="font-bold text-xl">{selectedMarker.exerciseName}</h2>
+              <p className="text-sm">{selectedMarker.studioName}</p>
+              <p className="text-sm">{formatDate(selectedMarker.classDate)}</p>
+              <p className="text-sm">{formatTime(selectedMarker.classDate)}</p>
             </div>
           </InfoWindow>
         )
