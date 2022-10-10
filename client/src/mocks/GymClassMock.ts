@@ -4,8 +4,8 @@ export const GymClass = [
         studioName: "PureGym",
         exerciseName: "Abs and Legs",
         desc: "",
-        duration: 40, // minutes
-        longitude: 2.21,
+        duration: 42, // minutes
+        longitude: 2.15,
         latitude: 41.4,
         classDate: new Date(1665227096),
         exerciseType: "Other",
@@ -17,9 +17,9 @@ export const GymClass = [
         studioName: "Vivagym",
         exerciseName: "Spin Class",
         desc: "",
-        duration: 40, // minutes
-        longitude: 2.21,
-        latitude: 42.0,
+        duration: 41, // minutes
+        longitude: 2.18,
+        latitude: 41.4,
         classDate: new Date(1665227096),
         exerciseType: "Cycling",
         price: "€8",

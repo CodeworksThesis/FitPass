@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
-import Landing from './pages/Landing';
+import GMapLanding from './pages/GMapLanding';
+import OpenLanding from './pages/OpenLanding';
 
 function App() {
 
   return (
     <div className="flex justify-center w-screen">
-      <Landing />
+      <GMapLanding />
+      <OpenLanding/>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from './Button'
 interface GymClassItemProps {
     exerciseName: string,
     studioName:string,

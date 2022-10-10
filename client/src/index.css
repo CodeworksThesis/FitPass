@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 html, body {
   margin: 0;
   width: 100vw;
