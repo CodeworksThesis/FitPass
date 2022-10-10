@@ -6,7 +6,7 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const NavBar = () => {
   const menus = [
@@ -43,7 +43,6 @@ const NavBar = () => {
               {menus?.map((menu, i) => (
                 <>
                   {/* Recuerda agregar el Link para las rutas aquí!!! */}
-
                   <div
                     key={i}
                     className="cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
