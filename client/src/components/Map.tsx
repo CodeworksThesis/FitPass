@@ -81,7 +81,7 @@ export default function Map() {
       <GoogleMap 
       zoom={13} 
       center={{lat: location.latitude, lng: location.longitude }}
-      mapContainerClassName="w-full h-[50%]"
+      mapContainerClassName="w-full h-[50%] mt-[10%]"
     >
       {GymClass.map((post, index) => (
         // note for react18 use MarkerF instead of Marker

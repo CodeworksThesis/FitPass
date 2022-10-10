@@ -4,7 +4,7 @@ import Map from '../components/Map';
 
 export default function Landing(){
   return (
-    <div>
+    <div className="w-[90%]">
         <Map />
         <GymClassList />
     </div>
