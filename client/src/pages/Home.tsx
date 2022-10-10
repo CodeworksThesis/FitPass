@@ -1,8 +1,12 @@
 import React from 'react'
+import GymClassList from '../components/GymClassList';
+import Map from '../components/Map';
 
-
-export default function Home() {
+export default function Landing(){
   return (
-    <div>Home</div>
+    <div className="w-[90%] mx-auto">
+        <Map />
+        <GymClassList />
+    </div>
   )
 }

@@ -72,7 +72,6 @@ export default function Map() {
   const handleClick= (post:Post) => {
     setSelectedMarker(post)  
   }
-
   if(!isLoaded) return <div>Loading...</div>
   
   return (
