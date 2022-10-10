@@ -16,6 +16,7 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "themify-icons": "^1.0.0",
     "web-vitals": "^2.1.4"
   },
@@ -56,10 +57,7 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.17",
-<<<<<<< Updated upstream
-=======
     "tailwind": "^4.0.0",
->>>>>>> Stashed changes
     "tailwindcss": "^3.1.8",
     "typescript": "^4.8.4"
   }
