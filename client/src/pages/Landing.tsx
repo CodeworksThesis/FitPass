@@ -1,12 +1,11 @@
 import React from 'react'
 import GymClassList from '../components/GymClassList';
-import OpenMap from '../components/OpenMap';
-import GMap from '../components/GMap';
+import Map from '../components/Map';
 
-export default function OpenLanding(){
+export default function Landing(){
   return (
     <div>
-        <OpenMap />
+        <Map />
         <GymClassList />
     </div>
   )
