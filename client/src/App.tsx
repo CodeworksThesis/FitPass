@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+
 import { LoginPage } from './components/LoginPage';
 import { UserMock } from './mocks/UserMock';
 import Home from './pages/Home';
@@ -12,6 +13,7 @@ import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 
 function App() {
+
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
