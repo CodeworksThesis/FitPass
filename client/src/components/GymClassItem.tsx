@@ -15,7 +15,7 @@ export default function GymClassItem ({exerciseName, studioName, classDate, post
     }
   
     return (
-        <div className="rounded-2xl flex w-full overflow-hidden mt-[3%] h-[15rem] shadow-[0_0_15px_7px_rgba(0,0,0,0.4)]">
+        <div className="rounded-2xl flex w-full overflow-hidden mt-[3%] h-[15rem] shadow-[0_0_15px_7px_rgba(0,0,0,0.4)] cursor-pointer hover:scale-105">
         <div className="w-[50%] overflow-hidden">
             <img src={postPic} alt={exerciseName} className="w-full h-full object-cover"/>
         </div>

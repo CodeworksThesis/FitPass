@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-maps/api';
 import { GymClass } from '../mocks/GymClassMock';
 import { Post } from '../../../globalTypes/Post.d';
-import { formatDate, formatTime} from '../utils/time'
+import { formatDate, formatTime} from '../utils/time';
 
 interface locationProps {
   longitude:number,
@@ -41,7 +41,7 @@ export default function Map() {
   const [location, setLocation] = useState<locationProps>(defaultLocation)
   const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAAQdJfud-NUJMImn5ldx-qqPfLufk4RwI"
+    googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Map() {
 
       try {
         const response = await fetch(locationUrl)
-        const {countryName, countryCode, postcode, city}  = await response.json();
+        const { countryName, countryCode, postcode, city }  = await response.json();
           setLocation({
               longitude,
               latitude,
@@ -82,14 +82,13 @@ export default function Map() {
       zoom={13} 
       center={{lat: location.latitude, lng: location.longitude }}
       mapContainerClassName="w-full h-[50%] mt-[10%]"
+      onClick={() => setSelectedMarker(initialMarker)}
     >
       {GymClass.map((post, index) => (
         // note for react18 use MarkerF instead of Marker
       <MarkerF 
         key = {index}
         position={{ lat: post.latitude, lng: post.longitude}}
-        visible
-        draggable
         onClick={() => handleClick(post)}
       />))}
       {
@@ -98,7 +97,7 @@ export default function Map() {
             position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
             onCloseClick={() => setSelectedMarker(initialMarker)}
           >
-            <div className="flex flex-col w-48 h-48 rounded-md">
+            <div className="flex flex-col w-48 h-48 rounded-md cursor-pointer">
               <div className="w-full h-[50%] overflow-hidden rounded-lg">
                 <img src={selectedMarker.postPic} alt={selectedMarker.exerciseName} className="w-full h-full object-cover" />
               </div>
