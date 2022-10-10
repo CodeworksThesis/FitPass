@@ -41,7 +41,7 @@ export default function Map() {
   const [location, setLocation] = useState<locationProps>(defaultLocation)
   const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
+    googleMapsApiKey: "AIzaSyC-CgOFFWvE1kVWvRkrcHO3bRbqaUEP5I4"
   })
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Map() {
       const latitude = position.coords.latitude
       const longitude = position.coords.longitude
       const locationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-
+      
       try {
         const response = await fetch(locationUrl)
         const { countryName, countryCode, postcode, city }  = await response.json();
@@ -61,19 +61,18 @@ export default function Map() {
               postcode,
               city
           })
+        
       } catch (error) {
           console.log(error)
       }
     })
   },[])
 
-  
-
   const handleClick= (post:Post) => {
     setSelectedMarker(post)  
   }
   if(!isLoaded) return <div>Loading...</div>
-  
+
   return (
     <>
     { isLoaded &&

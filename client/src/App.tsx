@@ -21,16 +21,17 @@ function App() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          {/* <Link to="/login">Login</Link> */}
+          <Link to="/login">Login</Link>
         </li>
         <li>
           <Link to="/profile">Profile</Link>
         </li>
       </ul>
     </nav>
+
     <Routes>
       <Route path="/" element={<Home/>} />
-      {/* <Route path="/login" element={<LoginPage />}/> */}
+      <Route path="/login" element={<LoginPage />}/>
       <Route path="/profile" element={<Profile id={UserMock.id} favourites={[]} booked={[]} profilePic={UserMock.profilePic} />}/>
       <Route path="/search" element={<Search/>}/>
       <Route path="/bookings" element={<Bookings/>}/>
