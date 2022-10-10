@@ -7,8 +7,8 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema<User>({
   id:{type:String, required:true},
-  favorites:{type:[], required:true},
-  booked:{type: [], required:true},
+  favorites:{type:[], required:false},
+  booked:{type: [], required:false},
   profilePic:{type:String, required:true}
 })
 
