@@ -20,10 +20,10 @@ const Profile = () =>{
             </div>
             <p className='text-lg text-center font-bold pt-4 pb-4'>{user?.name}</p>
             <div className='flex flex-col items-center h-72 justify-between'>
-            <Button buttonText='Favourites' />
-            <Button buttonText='Booking' />
-            <Button buttonText='Stats' />
-            <Button buttonText='Settings' />
+            <Button buttonClick={() => {navigate('/favourites')}} buttonText='Favourites' />
+            <Button buttonClick={() => {navigate('/bookings')}} buttonText='Bookings' />
+            <Button buttonClick={() => {navigate('/stats')}} buttonText='Stats' />
+            <Button buttonClick={() => {navigate('/settings')}} buttonText='Settings' />
             </div>
             </div>
             </>
