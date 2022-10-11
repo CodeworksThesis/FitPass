@@ -3,7 +3,7 @@ import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-map
 import { GymClass } from '../mocks/GymClassMock';
 import { Post } from '../../../globalTypes/Post.d';
 import { formatDate, formatTime} from '../utils/time';
-
+import { isDisplayInfoWindow } from '../utils/location';
 interface locationProps {
   longitude:number,
   latitude:number,
@@ -13,8 +13,8 @@ interface locationProps {
   city:string
 }
 const defaultLocation = {
-  longitude: 2.2,
-  latitude: 41.4,
+  longitude: 41.4,
+  latitude: 2.2,
   countryName: '',
   countryCode: '',
   postcode: '',
@@ -74,15 +74,15 @@ export default function Map() {
   if(!isLoaded) return <div>Loading...</div>
 
   return (
-    <>
-    { isLoaded &&
-      <GoogleMap 
-      zoom={13} 
+    <div className="rounded-lg overflow-hidden map-shadow">
+    { isLoaded && 
+    <GoogleMap 
+      zoom={13}
       center={{lat: location.latitude, lng: location.longitude }}
-      mapContainerClassName="w-full h-[50%] mt-[10%]"
+      mapContainerClassName="w-full h-[30rem] mt-[10%] overflow-hidden"
       onClick={() => setSelectedMarker(initialMarker)}
     >
-      {GymClass.map((post, index) => (
+      {GymClass && GymClass.map((post, index) => (
         // note for react18 use MarkerF instead of Marker
       <MarkerF 
         key = {index}
@@ -90,7 +90,7 @@ export default function Map() {
         onClick={() => handleClick(post)}
       />))}
       {
-        selectedMarker && (
+        isDisplayInfoWindow(selectedMarker) && (
           <InfoWindow 
             position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
             onCloseClick={() => setSelectedMarker(initialMarker)}
@@ -108,6 +108,6 @@ export default function Map() {
         )
         }
     </GoogleMap>}
-  </>
+  </div>
   )
 }
