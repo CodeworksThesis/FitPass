@@ -17,3 +17,6 @@ app.listen(PORT, ()=>{
 
   console.log(`server started at http://localhost:${PORT}`)
 })
+
+
+export default app

@@ -6,10 +6,10 @@ import Post from './classModel'
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema<User>({
-  id:{type:String, required:true},
-  favorites:{type:[], required:false},
-  booked:{type: [], required:false},
-  profilePic:{type:String, required:true}
+  id:{type:String, required:false},
+  favorites:{type:[], required:true},
+  booked:{type: [], required:true},
+  profilePic:{type:String, required:false}
 })
 
 const User = mongoose.model<User>('User', UserSchema)
