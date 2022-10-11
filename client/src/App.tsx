@@ -11,6 +11,7 @@ import Favourites from './pages/Favourites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 import { useAuth0 } from '@auth0/auth0-react';
+import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/stats" element={<UserStats />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

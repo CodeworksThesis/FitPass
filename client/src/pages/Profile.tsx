@@ -1,11 +1,14 @@
 import React from 'react';
 import Button from '../components/Button'
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = () =>{
 
     const { user, isAuthenticated } = useAuth0();
+
+    const navigate = useNavigate();
 
     return(
         <>
@@ -24,7 +27,7 @@ const Profile = () =>{
             </div>
             </div>
             </>
-        : ''}
+        : navigate('/')}
         </>
     )
 }
