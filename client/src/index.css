@@ -9,3 +9,6 @@ html, body {
   overflow-x:hidden;
 }
 
+.title-shadow {
+  text-shadow: 2px 4px 8px #6F87F5
+}
