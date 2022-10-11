@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+
+html, body {
   margin: 0;
+  width: 100vw;
+  overflow-x:hidden;
+}
+
+.map-shadow {
+  box-shadow: inset 0px 0px 10px 20px white;
 }

@@ -8,11 +8,12 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(router)
+require('dotenv').config();
 
 
 // mongoose.connect('mongodb+srv://siclari98:block@cluster0.ggbkn4d.mongodb.net/?retryWrites=true&w=majority')
 
-const atlasUri = 'mongodb+srv://fitpass:fitpass@cluster0.em7odiu.mongodb.net/?retryWrites=true&w=majority'
+const atlasUri = process.env.ATLAS_URI || ''
 
 mongoose.connect(atlasUri);
 
