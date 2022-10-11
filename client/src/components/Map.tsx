@@ -43,6 +43,7 @@ export default function Map() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
+  // useMemo to prevent the map from re-centering on every re-render
   const center = useMemo(() => ({lat:location.latitude, lng:location.longitude}),[location]);
 
   useEffect(() => {
