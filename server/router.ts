@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     res.send('hello from home')
 })
 
-router.get('/profile', jwtCheck, async ( req, res) => { 
+router.get('/profile', jwtCheck, async (req, res) => { 
     //get user info from jwt 
     try {
         const accessToken = req.headers.authorization?.split(' ')[1]

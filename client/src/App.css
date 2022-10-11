@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App-logo {
@@ -12,6 +13,12 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,800&display=swap');
+
+/* .FitPassLogin{
+  font-weight: bold;
+} */
 
 .App-header {
   background-color: #282c34;
