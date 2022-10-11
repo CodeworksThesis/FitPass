@@ -42,7 +42,7 @@ const NavBar = () => {
         >
           <div
             className={`py-4 px-4 flex justify-start ${
-              open && "opacity-0 translate-x-28 overflow-hidden"
+              open && "opacity-0 translate-x-28 hidden"
             }`}
           >
             <AiOutlineMenu
@@ -51,7 +51,9 @@ const NavBar = () => {
               onClick={() => setOpen(!open)}
             />
           </div>
-          <div className="flex flex-col w-full h-screen">
+          <div className={`flex flex-col w-full h-screen ${
+                        open && "opacity-0 translate-x-28 hidden"
+                      }`}>
             <div className="mt-4 flex flex-col gap-4 relative flex-1">
               {menus?.map((menu, i) => (
                 <>
@@ -61,9 +63,7 @@ const NavBar = () => {
                     className=" px-4 cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
                   >
                     <div
-                      className={`flex gap-4 whitespace-pre duration-500 ${
-                        open && "opacity-0 translate-x-28 overflow-hidden"
-                      }`}
+                      className="flex gap-4 whitespace-pre duration-500"
                     >
                       {/* icon */}
                       <div>
