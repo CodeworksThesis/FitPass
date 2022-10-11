@@ -5,7 +5,7 @@ import { Post } from '../../../globalTypes/Post';
 
 export default function GymClassList() {
   return (
-    <div className="flex flex-col w-[100%] h-screen gap-[1%]">
+    <div className="flex flex-col w-[100%] h-screen gap-[1%] mt-[1%] md:mt-4">
         {GymClass.map((post:Post) => {
         return (
         <GymClassItem 

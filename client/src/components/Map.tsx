@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-map
 import { Post } from '../../../globalTypes/Post.d';
 import { formatDate, formatTime} from '../utils/time';
 import { isDisplayInfoWindow } from '../utils/location';
+import { useNavigate } from 'react-router-dom';
 interface locationProps {
   longitude:number,
   latitude:number,
@@ -46,6 +47,8 @@ export default function Map({ gymClassList, isHome }:IMapProps) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
+  const navigate = useNavigate()
+
   // useMemo to prevent the map from re-centering on every re-render
   
   useEffect(() => {
@@ -103,7 +106,10 @@ export default function Map({ gymClassList, isHome }:IMapProps) {
             position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
             onCloseClick={() => setSelectedMarker(initialMarker)}
           >
-            <div className="flex flex-col w-48 h-48 rounded-md cursor-pointer">
+            <div 
+              className="flex flex-col w-48 h-48 rounded-md cursor-pointer"
+              onClick={() => navigate(`/gymclass/${selectedMarker.id}`)}
+            >
               <div className="w-full h-[50%] overflow-hidden rounded-lg">
                 <img src={selectedMarker.postPic} alt={selectedMarker.exerciseName} className="w-full h-full object-cover" />
               </div>
