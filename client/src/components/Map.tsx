@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-maps/api';
 import { GymClass } from '../mocks/GymClassMock';
 import { Post } from '../../../globalTypes/Post.d';
@@ -43,6 +43,7 @@ export default function Map() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
+  const center = useMemo(() => ({lat:location.latitude, lng:location.longitude}),[location]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -78,7 +79,7 @@ export default function Map() {
     { isLoaded && 
     <GoogleMap 
       zoom={13}
-      center={{lat: location.latitude, lng: location.longitude }}
+      center={center}
       mapContainerClassName="w-full h-[30rem] mt-[10%] overflow-hidden"
       onClick={() => setSelectedMarker(initialMarker)}
     >
@@ -87,7 +88,7 @@ export default function Map() {
       <MarkerF 
         key = {index}
         position={{ lat: post.latitude, lng: post.longitude}}
-        onClick={() => handleClick(post)}
+        onMouseOver={() => handleClick(post)}
       />))}
       {
         isDisplayInfoWindow(selectedMarker) && (
