@@ -26,7 +26,7 @@ const NavBar = () => {
           <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl ">
             FitPass
           </div>
-          <div className="">
+          <div className="flex justify-end px-4 py-4 text-fitpassGreen">
             <AiOutlineMenu
               size={26}
               className="cursor-pointer"
@@ -38,10 +38,10 @@ const NavBar = () => {
         <div
           className={`absolute top-0 right-0 bg-[#269FAE] h-screen ${
             open ? "w-0" : "w-72"
-          } duration-300 text-white px-4 divide-y-2`}
+          } duration-300 text-white divide-y-2`}
         >
           <div
-            className={`py-3 flex justify-start ${
+            className={`py-4 px-4 flex justify-start ${
               open && "opacity-0 translate-x-28 overflow-hidden"
             }`}
           >
@@ -58,7 +58,7 @@ const NavBar = () => {
                   {/* Recuerda agregar el Link para las rutas aquí!!! */}
                   <div
                     key={i}
-                    className="cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
+                    className=" px-4 cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
                   >
                     <div
                       className={`flex gap-4 whitespace-pre duration-500 ${
