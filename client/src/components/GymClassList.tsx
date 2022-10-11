@@ -5,7 +5,17 @@ import GymClassItem from './GymClassItem';
 export default function GymClassList() {
   return (
     <div className="flex flex-col w-[100%] h-screen gap-[1%]">
-        {GymClass.map((post,index) => <GymClassItem key={index} exerciseName={post.exerciseName} studioName={post.studioName} classDate={post.classDate} postPic={post.postPic} exerciseType={post.exerciseType}/>)}
+        {GymClass.map((post) => {
+        return (
+        <GymClassItem 
+          key={post.id} 
+          exerciseName={post.exerciseName} 
+          studioName={post.studioName} 
+          classDate={post.classDate} 
+          postPic={post.postPic} 
+          exerciseType={post.exerciseType}
+        />
+      )})}
     </div>
   )
 }

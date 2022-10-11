@@ -1,6 +1,6 @@
 export const GymClass = [
     {
-        id: "1111",
+        id: "1111a",
         studioName: "PureGym",
         exerciseName: "Abs and Legs",
         desc: "",
@@ -13,7 +13,7 @@ export const GymClass = [
         postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg"
     },
     {
-        id: "1111",
+        id: "1111b",
         studioName: "Vivagym",
         exerciseName: "Spin Class",
         desc: "",
