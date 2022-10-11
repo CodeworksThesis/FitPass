@@ -6,9 +6,10 @@ interface ReserveButtonProps {
     textColor: string;
     hoverBackgroundColor: string;
     hoverTextColor:string;
+    nav: () => void;
 }
 
-export default function ReserveButton({buttonText, backgroundColor, textColor, hoverBackgroundColor, hoverTextColor}: ReserveButtonProps) {
+export default function ReserveButton({buttonText, backgroundColor, textColor, hoverBackgroundColor, hoverTextColor, nav}: ReserveButtonProps) {
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseEnter = () => {
@@ -29,6 +30,7 @@ export default function ReserveButton({buttonText, backgroundColor, textColor, h
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={nav}
         >
             <p>{buttonText}</p> 
         </button>
