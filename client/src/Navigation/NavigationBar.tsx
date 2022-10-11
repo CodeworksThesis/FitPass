@@ -22,19 +22,32 @@ const NavBar = () => {
     <section className="w-full h-screen scrollbar-hide">
       {/* El header va aquí */}
       <div className="bg-white shadow-lg shadow-black-500/40 w-full ">
-        <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl ">
-          FitPass
+        <div className="grid grid-cols-2 w-full">
+          <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl ">
+            FitPass
+          </div>
+          <div className="">
+            <AiOutlineMenu
+              size={26}
+              className="cursor-pointer"
+              onClick={() => setOpen(!open)}
+            />
+          </div>
         </div>
 
         <div
           className={`absolute top-0 right-0 bg-[#269FAE] h-screen ${
-            open ? "w-16" : "w-72"
+            open ? "w-0" : "w-72"
           } duration-300 text-white px-4 divide-y-2`}
         >
-          <div className="py-3 flex justify-center">
+          <div
+            className={`py-3 flex justify-start ${
+              open && "opacity-0 translate-x-28 overflow-hidden"
+            }`}
+          >
             <AiOutlineMenu
               size={26}
-              className="cursor-pointer"
+              className="cursor-pointer "
               onClick={() => setOpen(!open)}
             />
           </div>
@@ -47,13 +60,18 @@ const NavBar = () => {
                     key={i}
                     className="cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
                   >
-                    <div>{React.createElement(menu?.icon, { size: "20" })}</div>
                     <div
-                      className={`whitespace-pre duration-500 ${
+                      className={`flex gap-4 whitespace-pre duration-500 ${
                         open && "opacity-0 translate-x-28 overflow-hidden"
                       }`}
                     >
-                      {menu?.name}
+                      {/* icon */}
+                      <div>
+                        {React.createElement(menu?.icon, { size: "20" })}
+                      </div>
+
+                      {/* navbar element */}
+                      <div>{menu?.name}</div>
                     </div>
                   </div>
                 </>
@@ -80,8 +98,6 @@ const NavBar = () => {
           SCREEN OVERLAYED TEST
           <img></img>
         </div>
-
-        
       </div>
     </section>
   );
