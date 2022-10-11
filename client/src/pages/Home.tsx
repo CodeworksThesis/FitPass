@@ -8,7 +8,9 @@ export default function Landing(){
   return (
     <div className="w-[90%] mx-auto">
         <PageTitle title={"FIND YOUR NEAREST CLASS"}/>
-        <Map gymClassList={GymClass} isHome={true}/>
+        <div className="h-[20rem]">
+          <Map gymClassList={GymClass} isHome={true}/>
+        </div>
         <GymClassList />
     </div>
   )
