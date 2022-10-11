@@ -1,14 +1,12 @@
 import React from 'react';
 import Button from '../components/Button'
 
-
 interface User {
     id: string,
     favourites: [],
     booked: [],
     profilePic:string,
 }
-
 
 function Profile(user: User){
     return(
