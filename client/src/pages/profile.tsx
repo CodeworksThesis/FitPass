@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '../components/Button';
-import Stats from './stats';
+import UserStats from './stats';
 import { UserMock } from '../mocks/UserMock';
+import { Route, Routes, Link } from 'react-router-dom';
 
 
 interface User {
@@ -20,14 +21,14 @@ function Profile(user: User){
             </div>
             <p className='text-lg text-center font-bold pt-4 pb-4'>{user.id}</p>
             <div className='flex flex-col items-center h-72 justify-between'>
-                <Button buttonText='Favourites' />
-                <Button buttonText='Booking' />
-                <Button buttonText='Stats' />
-                <Button buttonText='Settings' />
+                <Link to="" className='w-full flex justify-center'><Button buttonText='Favourites' /></Link>
+                <Link to="" className='w-full flex justify-center'><Button buttonText='Booking' /></Link>
+                <Link to="/stats" className='w-full flex justify-center'><Button buttonText='Stats' /></Link>
+                <Link to="" className='w-full flex justify-center'><Button buttonText='Settings' /></Link>
             </div>
-            <div className='mt-40'>
-                <Stats id={UserMock.id} favourites={UserMock.favourites} booked={UserMock.booked} profilePic={UserMock.profilePic} />
-            </div>
+            {/* <div className='mt-40'>
+                <UserStats id={UserMock.id} favourites={UserMock.favourites} booked={UserMock.booked} profilePic={UserMock.profilePic} />
+            </div> */}
         </div>
     )
 }

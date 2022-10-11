@@ -5,7 +5,7 @@ export const UserMock = {
             id: "1111",
             studioName: "PureGym2",
             exerciseName: "Abs and Legs",
-            desc: "",
+            desc: "This is a short description.",
             duration: 40, // minutes
             longitude: 2.21,
             latitude: 41.4,
@@ -18,7 +18,7 @@ export const UserMock = {
             id: "1111",
             studioName: "Vivagym",
             exerciseName: "Spin Class",
-            desc: "",
+            desc: "This is a short description.",
             duration: 40, // minutes
             longitude: 2.21,
             latitude: 42.0,
@@ -33,7 +33,7 @@ export const UserMock = {
             id: "1111",
             studioName: "PureGym",
             exerciseName: "Abs and Legs",
-            desc: "",
+            desc: "This is a short description.",
             duration: 40, // minutes
             longitude: 2.21,
             latitude: 41.4,
@@ -46,7 +46,7 @@ export const UserMock = {
             id: "1111",
             studioName: "Vivagym",
             exerciseName: "Spin Class",
-            desc: "",
+            desc: "This is a short description.",
             duration: 40, // minutes
             longitude: 2.21,
             latitude: 42.0,

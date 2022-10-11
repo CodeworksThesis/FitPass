@@ -10,7 +10,7 @@ export const GymClass = [
         classDate: new Date(1665227096),
         exerciseType: "Other",
         price: "€5",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg"
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg",
     },
     {
         id: "1111",
