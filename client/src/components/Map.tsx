@@ -81,7 +81,7 @@ export default function Map() {
     <GoogleMap 
       zoom={13}
       center={center}
-      mapContainerClassName="w-full h-[30rem] mt-[10%] overflow-hidden"
+      mapContainerClassName="w-full h-[30rem] overflow-hidden"
       onClick={() => setSelectedMarker(initialMarker)}
     >
       {GymClass && GymClass.map((post, index) => (
