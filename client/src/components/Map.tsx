@@ -74,7 +74,7 @@ export default function Map() {
   if(!isLoaded) return <div>Loading...</div>
 
   return (
-    <div className="rounded-lg overflow-hidden map-shadow">
+    <div className="rounded-lg overflow-hidden">
     { isLoaded && 
     <GoogleMap 
       zoom={13}
