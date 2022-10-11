@@ -3,7 +3,7 @@ export const GymClass = [
         id: "1111a",
         studioName: "PureGym",
         exerciseName: "Abs and Legs",
-        desc: "",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         duration: 42, // minutes
         longitude: 2.15,
         latitude: 41.4,
@@ -16,7 +16,7 @@ export const GymClass = [
         id: "1111b",
         studioName: "Vivagym",
         exerciseName: "Spin Class",
-        desc: "",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         duration: 41, // minutes
         longitude: 2.18,
         latitude: 41.4,
