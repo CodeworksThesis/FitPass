@@ -27,7 +27,7 @@ export default function GymClassItem ({exerciseName, studioName, classDate, post
                 <p className="text-md">{formatTime(classDate)}</p>
             </div>
             {/* based on User Data */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-[5%]">
                 <div></div>
                 <button className="flex w-10 h-10 mr-[2%]" onClick={handleClick}>
                     <img src={toggle ? "heart-red.svg": "heart-white.svg"} alt="heart"/>
