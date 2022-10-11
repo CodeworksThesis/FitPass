@@ -32,7 +32,7 @@ export default function ReserveButton({buttonText, backgroundColor, textColor, h
             onMouseLeave={handleMouseLeave}
             onClick={nav}
         >
-            <p>{buttonText}</p> 
+            <p className="text-lg">{buttonText}</p> 
         </button>
     )
 }
