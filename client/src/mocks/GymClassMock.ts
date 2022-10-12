@@ -25,4 +25,95 @@ export const GymClass = [
         price: "€8",
         postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
     },
+    {
+        id: "1111c",
+        studioName: "Sole Train",
+        exerciseName: "Strenght Training",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 10.767559,
+        latitude: 59.914963,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€40",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111d",
+        studioName: "Barry's",
+        exerciseName: "Pilates",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 10.824497,
+        latitude: 59.857887,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€15",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111e",
+        studioName: "Y7 Studio",
+        exerciseName: "Yoga",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 10.208468,
+        latitude: 59.730430,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€25",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111f",
+        studioName: "Bodyrok",
+        exerciseName: "Kickboxing",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 10.209210,
+        latitude: 59.736536,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€35",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111g",
+        studioName: "305 Fitness",
+        exerciseName: "Dance",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 12.570341,
+        latitude: 55.682821,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€20",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111h",
+        studioName: "Racked Strech",
+        exerciseName: "Streching",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: -0.092956,
+        latitude: 51.480695,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€18",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
+    {
+        id: "1111i",
+        studioName: "Rumble Training",
+        exerciseName: "Cycling",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        duration: 41, // minutes
+        longitude: 13.432498,
+        latitude: 52.498782,
+        classDate: new Date(1665227096000),
+        exerciseType: "Cycling",
+        price: "€15",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+    },
 ]

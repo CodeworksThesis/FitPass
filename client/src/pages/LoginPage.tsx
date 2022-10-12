@@ -9,8 +9,8 @@ export const LoginPage = () => {
 
             <h1 className='text-white font-extrabold italic text-7xl text-center'>FitPass</h1>
             <section className='flex flex-col items-center space-y-6'>
-            <LoginButton />
-            <SignUpButton />
+                <LoginButton />
+                <SignUpButton />
             </section>
 
         </main>

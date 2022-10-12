@@ -16,11 +16,7 @@ export const ErrorPage = () => {
             <h1 className='text-7xl text-center font-bold pt-4 pb-4'>Oops!</h1>
             <h2 className='text-lg text-center font-bold pt-4 pb-4 text-gray-600'>We can not seem to find the page you are looking for.</h2>
             {View}
-            <h1 className='text-lg text-center font-bold pt-4 pb-4 text-gray-600'>Error code: 404</h1>
-
-
-
-
+            <h2 className='text-lg text-center font-bold pt-4 pb-4 text-gray-600'>Error code: 404</h2>
         </div>
     )
 }
