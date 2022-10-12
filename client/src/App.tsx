@@ -10,14 +10,16 @@ import Bookings from './pages/Bookings';
 import Favourites from './pages/Favourites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
+import NavBar from './Navigation/NavigationBar';
 
 function App() {
 
   return (
     <>
-    <nav>
-      <ul>
-        <li>
+    <nav className='fixed top-0 right-0 z-50'>
+          <NavBar/>
+      
+        {/* <li>
           <Link to="/">Home</Link>
         </li>
         <li>
@@ -25,8 +27,7 @@ function App() {
         </li>
         <li>
           <Link to="/profile">Profile</Link>
-        </li>
-      </ul>
+        </li> */}
     </nav>
 
     <Routes>
@@ -38,6 +39,7 @@ function App() {
       <Route path="/favourites" element={<Favourites/>}/>
       <Route path="/searchresults" element={<SearchResults/>}/>
       <Route path="/stats" element={<UserStats/>}/>
+      <Route path='/navbar' element={<NavBar/>}/>
     </Routes>
     </>
   );

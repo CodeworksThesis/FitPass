@@ -10,7 +10,7 @@ interface User {
 
 function Profile(user: User){
     return(
-        <div>
+        <div className='mt-20'>
             <div className="relative block flex flex-col w-full items-center mt-6">
                 <img src={user.profilePic} className="object-cover w-36 h-36 rounded-full custom-position object-cover border-4 border-[#6F87F5]"></img>
             </div>
