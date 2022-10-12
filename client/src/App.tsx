@@ -39,7 +39,6 @@ function App() {
       <Route path="/favourites" element={<Favourites/>}/>
       <Route path="/searchresults" element={<SearchResults/>}/>
       <Route path="/stats" element={<UserStats/>}/>
-      <Route path='/navbar' element={<NavBar/>}/>
     </Routes>
     </>
   );
