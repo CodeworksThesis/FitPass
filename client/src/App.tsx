@@ -24,19 +24,21 @@ function App() {
 
   return (
     <>
+    {isAuthenticated ? 
     <nav className='fixed top-0 right-0 z-50'>
           <NavBar/>
       
         {/* <li>
           <Link to="/">Home</Link>
-        </li>
-        <li>
+          </li>
+          <li>
           <Link to="/login">Login</Link>
-        </li>
-        <li>
+          </li>
+          <li>
           <Link to="/profile">Profile</Link>
         </li> */}
     </nav>
+      : ''}
 
       <Routes>
         <Route path="/" element={<Home />} />

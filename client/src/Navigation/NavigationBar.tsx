@@ -7,6 +7,7 @@ import {
   AiOutlineHeart,
 } from "react-icons/ai";
 import { Link, BrowserRouter } from "react-router-dom";
+import { LogoutButton } from "../components/buttons/LogoutButton";
 
 const NavBar = () => {
   const menus = [
@@ -85,7 +86,7 @@ const NavBar = () => {
                  open && "gap-4 opacity-0 translate-x-28 overflow-hidden"
                }`}
               >
-                LogOut
+                <LogoutButton />
               </button>
             </div>
           </div>
