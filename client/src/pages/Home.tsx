@@ -3,7 +3,7 @@ import GymClassList from '../components/GymClassList';
 import Map from '../components/Map';
 import { LogoutButton } from '../components/buttons/LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
-import { LoginPage } from './LoginPage';
+import { LoginPage } from '../pages/LoginPage';
 import Lottie from 'react-lottie'
 import loadingLottie from '../lotties/loading.json'
 
