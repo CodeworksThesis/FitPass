@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 
 const PostSchema = new Schema<Post>({
-  id:{ type: String, required:true},
+  id:{ type: String, required:false},
   studioName:{type: String, required:true},
   exerciseName:{type: String, required:true },
   desc:{type: String, required:true},
@@ -13,7 +13,7 @@ const PostSchema = new Schema<Post>({
   location:{type:String, required:true},
   longitude:{type:Number, required: true},
   latitude:{type:Number, required:true},
-  classDate:{type:Date, required:true},
+  classDate:{type:Date, required:false},
   exerciseType:{type:String, required:true},
   price:{type:String, required: true},
   postPic:{type:String, required:true}
