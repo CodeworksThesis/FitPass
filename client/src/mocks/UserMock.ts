@@ -6,7 +6,7 @@ export const UserMock = {
             studioName: "PureGym2",
             exerciseName: "Abs and Legs",
             desc: "This is a short description.",
-            duration: 40, // minutes
+            duration: 45, // minutes
             longitude: 2.21,
             latitude: 41.4,
             classDate: new Date(1665227096),
@@ -34,7 +34,7 @@ export const UserMock = {
             studioName: "PureGym",
             exerciseName: "Abs and Legs",
             desc: "This is a short description.",
-            duration: 40, // minutes
+            duration: 45, // minutes
             longitude: 2.21,
             latitude: 41.4,
             classDate: new Date(1665227096),

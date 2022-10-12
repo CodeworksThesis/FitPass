@@ -7,8 +7,6 @@ import { Route, Routes, Link } from 'react-router-dom';
 
 interface User {
     id: string,
-    favourites: [],
-    booked: [],
     profilePic:string,
 }
 
@@ -26,9 +24,6 @@ function Profile(user: User){
                 <Link to="/stats" className='w-full flex justify-center'><Button buttonText='Stats' /></Link>
                 <Link to="" className='w-full flex justify-center'><Button buttonText='Settings' /></Link>
             </div>
-            {/* <div className='mt-40'>
-                <UserStats id={UserMock.id} favourites={UserMock.favourites} booked={UserMock.booked} profilePic={UserMock.profilePic} />
-            </div> */}
         </div>
     )
 }

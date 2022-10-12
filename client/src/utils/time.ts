@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const formatDate = (date: Date) => {
-    return moment(date).format('MMMM DDD')
+    return moment(date).format('ll')
 }
 
 export const formatTime = (date:Date) => {

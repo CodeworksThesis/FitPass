@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-//import { LoginPage } from './components/LoginPage';
 import { UserMock } from './mocks/UserMock';
 import Profile from './pages/profile';
 import { Route, Routes, Link } from 'react-router-dom';
@@ -25,7 +24,7 @@ function App() {
 
 
       <Routes>
-        <Route path="/profile" element={<Profile id={UserMock.id} favourites={[]} booked={[]} profilePic={UserMock.profilePic} />}/>
+        <Route path="/profile" element={<Profile id={UserMock.id} profilePic={UserMock.profilePic} />}/>
         <Route path="/stats" element={<UserStats  id={UserMock.id} favourites={UserMock.favourites} booked={UserMock.booked} profilePic={UserMock.profilePic} />}/>
     </Routes>
     </div>
