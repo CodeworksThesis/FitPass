@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { LoginPage } from './components/LoginPage';
+import { LoginPage } from './pages/LoginPage';
 import { UserMock } from './mocks/UserMock';
 import Home from './pages/Home';
 import { Route, Routes, Link } from 'react-router-dom';
