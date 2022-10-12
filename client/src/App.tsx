@@ -17,6 +17,7 @@ import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
 
+
   const { isAuthenticated } = useAuth0();
 
 
@@ -44,7 +45,7 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="/stats" element={<UserStats />} />
+        <Route path="/stats" element={<UserStats/>} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/gymclass/:id" element={<GymClassDetails />} />
         {/* ErrorPage always at the bottom */}
