@@ -26,9 +26,9 @@ export default function GymClassItem (post:Post) {
                         <p className="text-md">{formatTime(classDate)}</p>
                     </header>
                     {/* based on User Data */}
-                    <div className="flex justify-between mb-8">
+                    <div className="flex justify-between mb-4">
                         <div></div>
-                        <button className="flex w-10 h-10 mr-8" onClick={handleClick}>
+                        <button className="flex w-10 h-10 mr-4" onClick={handleClick}>
                             <img src={toggle ? "/heart-red.svg": "/heart-white.svg"} alt="heart"/>
                         </button>
                     </div>
