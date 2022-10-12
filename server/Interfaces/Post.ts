@@ -1,5 +1,5 @@
 
-export default interface IPost {
+export default interface Post {
   id:string,
   studioName: string,
   exerciseName:string,
