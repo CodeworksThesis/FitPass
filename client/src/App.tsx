@@ -11,6 +11,7 @@ import Favourites from './pages/Favourites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 import GymClassDetails from './pages/GymClassDetails';
+import Payment from './pages/Payment';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
       <Route path="/favourites" element={<Favourites/>}/>
       <Route path="/searchresults" element={<SearchResults/>}/>
       <Route path="/stats" element={<UserStats/>}/>
+      <Route path="/payment" element={<Payment/>}/>
       <Route path="/gymclass/:id" element={<GymClassDetails />}/>
     </Routes>
     </>

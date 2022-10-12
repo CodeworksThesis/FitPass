@@ -1,7 +1,7 @@
 import React from 'react';
-import { LoginButton } from './buttons/LoginButton';
-import { LogoutButton } from './buttons/LogoutButton';
-import { SignUpButton } from './buttons/SignUpButton';
+import { LoginButton } from '../components/buttons/LoginButton';
+import { LogoutButton } from '../components/buttons/LogoutButton';
+import { SignUpButton } from '../components/buttons/SignUpButton';
 
 export const LoginPage = () => {
     return (
