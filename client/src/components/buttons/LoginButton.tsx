@@ -8,7 +8,7 @@ export const LoginButton = () => {
   return (
     <>
       {isAuthenticated ?
-        '' : <button onClick={() => loginWithRedirect()}>Login</button>
+        '' : <button className='rounded-lg bg-white h-14 text-[#4A9DAC] font-bold  text-lg w-9/12' onClick={() => loginWithRedirect()}>Login</button>
       }
     </>
   )

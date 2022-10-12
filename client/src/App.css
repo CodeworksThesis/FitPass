@@ -7,6 +7,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -28,6 +29,11 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+
+/* .FitPassLogin{
+  font-weight: bold;
+} */
 
 .App-header {
   background-color: #282c34;

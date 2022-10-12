@@ -2,6 +2,8 @@
 import Post from '../Model/classModel'
 import {Request, Response} from 'express'
 
+const { jwtCheck } = require('./check-jwt')
+
 export const getGymClass= async(req: Request, res: Response) =>{
 
   try{
@@ -32,3 +34,6 @@ export const postGymClass= async( req: Request, res: Response)=>{
     res.status(400);
   }
 }
+
+
+

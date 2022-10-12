@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { GoogleMap, useLoadScript, MarkerF, InfoWindow } from '@react-google-maps/api';
-import { GymClass } from '../mocks/GymClassMock';
 import { Post } from '../../../globalTypes/Post.d';
 import { formatDate, formatTime} from '../utils/time';
 import { isDisplayInfoWindow } from '../utils/location';
+import { useNavigate } from 'react-router-dom';
 interface locationProps {
   longitude:number,
   latitude:number,
@@ -35,16 +35,22 @@ const initialMarker = {
     postPic:''
 }
 
+interface IMapProps {
+  gymClassList: Post[]
+  isHome: boolean
+}
 
 
-export default function Map() {
+export default function Map({ gymClassList, isHome }:IMapProps) {
   const [location, setLocation] = useState<locationProps>(defaultLocation)
   const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
-  const center = useMemo(() => ({lat:location.latitude, lng:location.longitude}),[location]);
+  const navigate = useNavigate()
 
+  // useMemo to prevent the map from re-centering on every re-render
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const latitude = position.coords.latitude
@@ -69,24 +75,28 @@ export default function Map() {
     })
   },[])
 
+  const center = isHome 
+    ? useMemo(() => ({ lat:location.latitude, lng:location.longitude }),[location])
+    : {lat: gymClassList[0].latitude, lng: gymClassList[0].longitude}
+
   const handleClick= (post:Post) => {
     setSelectedMarker(post)  
   }
   if(!isLoaded) return <div>Loading...</div>
 
   return (
-    <div className="rounded-lg overflow-hidden">
+    <div className="mt-16 rounded-lg overflow-hidden h-full">
     { isLoaded && 
     <GoogleMap 
-      zoom={13}
+      zoom={11}
       center={center}
-      mapContainerClassName="w-full h-[30rem] mt-[10%] overflow-hidden"
+      mapContainerClassName="w-full h-full overflow-hidden"
       onClick={() => setSelectedMarker(initialMarker)}
     >
-      {GymClass && GymClass.map((post, index) => (
+      {gymClassList && gymClassList.map((post) => (
         // note for react18 use MarkerF instead of Marker
       <MarkerF 
-        key = {index}
+        key = {post.id}
         position={{ lat: post.latitude, lng: post.longitude}}
         onMouseOver={() => handleClick(post)}
       />))}
@@ -96,7 +106,10 @@ export default function Map() {
             position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
             onCloseClick={() => setSelectedMarker(initialMarker)}
           >
-            <div className="flex flex-col w-48 h-48 rounded-md cursor-pointer">
+            <div 
+              className="flex flex-col w-48 h-48 rounded-md cursor-pointer"
+              onClick={() => navigate(`/gymclass/${selectedMarker.id}`)}
+            >
               <div className="w-full h-[50%] overflow-hidden rounded-lg">
                 <img src={selectedMarker.postPic} alt={selectedMarker.exerciseName} className="w-full h-full object-cover" />
               </div>
