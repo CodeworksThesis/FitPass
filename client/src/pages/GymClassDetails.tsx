@@ -20,7 +20,7 @@ export default function GymClassDetails() {
         <img src={postPic} alt={exerciseName} className="w-full h-full object-cover"/>
       </div>
       <PageTitle title={exerciseName}/>
-      <article className="bg-[#6F87F5] flex flex-col mx-auto w-[95%] rounded-xl text-white mb-5 transition-all">
+      <article className="bg-[#6F87F5] flex flex-col mx-auto w-[95%] rounded-xl text-white mb-5 transition-all swing-in-top-fwd">
         <div className="flex gap-2 pl-4">
           <div className="flex flex-1 gap-2">
             <p className="rounded-2xl border-[1px] border-white py-3 px-3 mt-4 text-md md:text-lg">{exerciseType}</p>
