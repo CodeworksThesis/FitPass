@@ -5,5 +5,4 @@ export default interface User {
   favorites: Post[],
   booked: Post[],
   profilePic: string
-
 }

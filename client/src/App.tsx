@@ -12,37 +12,41 @@ import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 import GymClassDetails from './pages/GymClassDetails';
 import Payment from './pages/Payment';
+import { useAuth0 } from '@auth0/auth0-react';
+import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
 
+  const { isAuthenticated } = useAuth0();
+
+
   return (
     <>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-      </ul>
-    </nav>
+      {isAuthenticated ?
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          </ul>
+        </nav> : ''}
 
-    <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/login" element={<LoginPage />}/>
-      <Route path="/profile" element={<Profile id={UserMock.id} favourites={[]} booked={[]} profilePic={UserMock.profilePic} />}/>
-      <Route path="/search" element={<Search/>}/>
-      <Route path="/bookings" element={<Bookings/>}/>
-      <Route path="/favourites" element={<Favourites/>}/>
-      <Route path="/searchresults" element={<SearchResults/>}/>
-      <Route path="/stats" element={<UserStats/>}/>
-      <Route path="/payment" element={<Payment/>}/>
-      <Route path="/gymclass/:id" element={<GymClassDetails />}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/searchresults" element={<SearchResults />} />
+        <Route path="/stats" element={<UserStats />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/gymclass/:id" element={<GymClassDetails />} />
+        {/* ErrorPage always at the bottom */}
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </>
   );
 }

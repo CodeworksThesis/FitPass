@@ -3,38 +3,35 @@ import GymClassList from '../components/GymClassList';
 import Map from '../components/Map';
 import { LogoutButton } from '../components/buttons/LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
-import { LoginPage } from './LoginPage';
-import Lottie from 'react-lottie'
+import { LoginPage } from '../pages/LoginPage';
+import { useLottie } from "lottie-react";
 import loadingLottie from '../lotties/loading.json'
+import {GymClass} from '../mocks/GymClassMock'
 
 
 export default function Landing() {
 
   const { isAuthenticated, isLoading } = useAuth0();
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
+  const options = {
     animationData: loadingLottie,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+    loop: true
   };
+
+  const { View } = useLottie(options);
 
   if (isLoading) {
     return (
       <div className='flex justify-center items-center h-screen flex-col'>
-        <Lottie options={defaultOptions}
-          height={400}
-          width={400}
-        />
+        {/* {View} */}
       </div>
     )
   }
 
   return (
     <div className="mx-auto">
-      {isAuthenticated ? <div className="w-[90%] mx-auto"><><LogoutButton /> <Map /><GymClassList /></></div> : <LoginPage />}
+      {isAuthenticated ? <div className="w-[90%] mx-auto"><><LogoutButton /> <div className='w-[100%] h-[15rem]'><Map gymClassList={GymClass} isHome={true}/></div> <GymClassList /></></div> : <LoginPage />}
     </div>
   )
 }
+
