@@ -22,7 +22,7 @@ export default function Landing() {
       ? <div className="w-[90%] mx-auto">
           <>
             <LogoutButton /> 
-            <div className='w-[100%] h-[15rem] mt-16'>
+            <div className='w-[100%] h-[15rem] mt-12'>
               <Map gymClassList={GymClass} isHome={true} />
             </div> 
             <GymClassList />
