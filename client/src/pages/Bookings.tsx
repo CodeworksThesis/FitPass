@@ -41,7 +41,7 @@ function Bookings(){
 
     return(
 
-        <div className='relative block flex flex-col w-full items-center'>
+        <div className='relative block flex flex-col w-full items-center mt-20'>
           <div className='flex flex-row justify-center'>
             <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
             <BookingFilterButton buttonClick={() => {setButton('tomorrow')}} buttonText='TOMORROW' isPressed={button==='tomorrow'}/>

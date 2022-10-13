@@ -14,7 +14,7 @@ const Profile = () =>{
         <>
         { isAuthenticated ? 
             <>
-            <div>
+            <div className='mt-20'>
             <div className="relative flex flex-col w-full items-center mt-6">
             <img src={user?.picture} className="object-cover w-36 h-36 rounded-full custom-position border-4 border-[#6F87F5]"></img>
             </div>

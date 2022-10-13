@@ -1,6 +1,5 @@
 import React from 'react';
 import GymClassItemSmall from '../components/GymClassItemSmall';
-import {useEffect, useState} from 'react';
 import { calculateWorkoutTime } from '../utils/workoutTime';
 import { UserMock } from '../mocks/UserMock';
 
@@ -29,7 +28,7 @@ function UserStats(){
           })
       
     return(
-        <div className='relative block flex flex-col w-full items-center'>
+        <div className='relative block flex flex-col w-full items-center mt-20'>
             <h2 className='italic font-bold text-xl'>YOUR STATS</h2>
             <p className='text-xs mb-6'>This week</p>
             <div className='flex fles-row justify-centers h-24 w-full max-w-lg pl-2 pr-2'>

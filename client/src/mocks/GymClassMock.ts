@@ -34,9 +34,9 @@ export const GymClass = [
         longitude: 10.767559,
         latitude: 59.914963,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Strength",
         price: "€40",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/sven-mieke-optBC2FxCfc-unsplash_dg8dfo.jpg"
     },
     {
         id: "1111d",
@@ -47,9 +47,9 @@ export const GymClass = [
         longitude: 10.824497,
         latitude: 59.857887,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Pilates",
         price: "€15",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/bruce-mars-gJtDg6WfMlQ-unsplash_bbwa3w.jpg"
     },
     {
         id: "1111e",
@@ -60,9 +60,9 @@ export const GymClass = [
         longitude: 10.208468,
         latitude: 59.730430,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Yoga",
         price: "€25",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/dylan-gillis-YJdCZba0TYE-unsplash_ybpojn.jpg"
     },
     {
         id: "1111f",
@@ -73,9 +73,9 @@ export const GymClass = [
         longitude: 10.209210,
         latitude: 59.736536,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Boxing",
         price: "€35",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash_rmbmdi.jpg"
     },
     {
         id: "1111g",
@@ -86,9 +86,9 @@ export const GymClass = [
         longitude: 12.570341,
         latitude: 55.682821,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Dance",
         price: "€20",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/miguel-angel-hernandez-Nwc-Z3_aEvw-unsplash_vkf3a5.jpg"
     },
     {
         id: "1111h",
@@ -99,9 +99,9 @@ export const GymClass = [
         longitude: -0.092956,
         latitude: 51.480695,
         classDate: new Date(1665227096000),
-        exerciseType: "Cycling",
+        exerciseType: "Restorative",
         price: "€18",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/yoga_ed1fvb.jpg"
     },
     {
         id: "1111i",
@@ -114,6 +114,6 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Cycling",
         price: "€15",
-        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/andrew-valdivia-aiqCqSHaOCc-unsplash_ybqiwx.jpg"
     },
 ]

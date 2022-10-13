@@ -17,8 +17,18 @@ export default function Landing() {
   }
 
   return (
-    <div className="mx-auto">
-      {isAuthenticated ? <div className="w-[90%] mx-auto"><><LogoutButton /> <div className='w-[100%] h-[15rem]'><Map gymClassList={GymClass} isHome={true} /></div> <GymClassList /></></div> : <LoginPage />}
+    <div className="mx-auto mb-4">
+      {isAuthenticated 
+      ? <div className="w-[90%] mx-auto">
+          <>
+            <LogoutButton /> 
+            <div className='w-[100%] h-[15rem] mt-12'>
+              <Map gymClassList={GymClass} isHome={true} />
+            </div> 
+            <GymClassList />
+          </>
+        </div> 
+      : <LoginPage />}
     </div>
   )
 }

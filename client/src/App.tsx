@@ -10,6 +10,7 @@ import Bookings from './pages/Bookings';
 import Favourites from './pages/Favourites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
+import NavBar from './Navigation/NavigationBar';
 import GymClassDetails from './pages/GymClassDetails';
 import Payment from './pages/Payment';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -23,17 +24,21 @@ function App() {
 
   return (
     <>
-      {isAuthenticated ?
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          </ul>
-        </nav> : ''}
+    {isAuthenticated ? 
+    <nav className='fixed top-0 right-0 z-50'>
+          <NavBar/>
+      
+        {/* <li>
+          <Link to="/">Home</Link>
+          </li>
+          <li>
+          <Link to="/login">Login</Link>
+          </li>
+          <li>
+          <Link to="/profile">Profile</Link>
+        </li> */}
+    </nav>
+      : ''}
 
       <Routes>
         <Route path="/" element={<Home />} />

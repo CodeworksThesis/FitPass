@@ -11,12 +11,6 @@ export default function GymClassList() {
         <GymClassItem 
           key={post.id} 
           {...post}
-          // id ={post.id}
-          // exerciseName={post.exerciseName} 
-          // studioName={post.studioName} 
-          // classDate={post.classDate} 
-          // postPic={post.postPic} 
-          // exerciseType={post.exerciseType}
         />
       )})}
     </div>
