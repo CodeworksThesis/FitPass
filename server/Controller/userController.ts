@@ -3,13 +3,11 @@ import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
 
-
-
-
 export const getFavorites = async (req:Request, res:Response)=>{
 
   try{
   const {id} = req.params
+  if(!id) throw new Error('no user id provided')
   const updates = await Favorites.findOne({"favorited.userId": id})
   res.status(201)
   res.send(updates)
@@ -27,9 +25,8 @@ export const addFavorites = async (req: Request, res: Response) => {
   try {
     const {id} = req.params
     const { gymClassId } = req.body
+    if(!id || !gymClassId) throw new Error('no user id or gymclass id provided')
     const updates = await Favorites.findOne({"favorited.userId": id})
-
-
     if(!updates || Object.keys(updates).length ===0){
     const updateCreated =  await Favorites.create(
       {favorited: {
@@ -38,7 +35,7 @@ export const addFavorites = async (req: Request, res: Response) => {
       }})
     res.status(201);
     res.send(updateCreated);
-    } else{
+  } else{
          updates.favorited.map(item => {
         if(item.userId === id) {
         return item.gymClassId = [...item.gymClassId, gymClassId]
@@ -56,34 +53,12 @@ export const addFavorites = async (req: Request, res: Response) => {
   }
 };
 
-
-/*
-{
-  "_id": "6347f5896dfc067ddf82582e",
-  "favorited": [
-    {
-      "userId": "u4h",
-      "gymClassId": [
-        "please work",
-        "please work again",
-        "please work again, :)"
-      ],
-      "_id": "6347f5896dfc067ddf82582f"
-    }
-  ],
-  "__v": 9
-}
-
-*/
-
 export const deleteFavorite= async (req:Request, res:Response)=>{
 
   try{
   const {id} = req.params;
-
   const {gymClassId }= req.body;
-
-
+  if(!id || !gymClassId) throw new Error('no userId or gymClassId provided')
   const update = await Favorites.findOne({"favorited.userId": id});
 
   const favoritedItem = update.favorited.find((item) => {
@@ -109,13 +84,11 @@ export const deleteFavorite= async (req:Request, res:Response)=>{
 
 }
 
-
-
-
 export const getBookings = async (req:Request, res:Response)=>{
 
   try{
     const {id} = req.params
+    if(!id) throw new Error('no user id provided')
     const updates = await Bookings.findOne({"booked.userId": id})
     res.status(201)
     res.send(updates)
@@ -124,7 +97,6 @@ export const getBookings = async (req:Request, res:Response)=>{
       console.log(e)
       res.status(400).end()
     }
-
 
 }
 

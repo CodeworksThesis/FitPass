@@ -1,47 +1,38 @@
-import { TrafficLayer } from "@react-google-maps/api"
-import { json } from "stream/consumers"
-
 const baseURL= 'http://localhost:3001/'
 
 export const getFavorites = async (userId:string)=> {
-
+  if(!userId) return;
   try{
-    if(!userId) return;
-
     const response = await fetch(baseURL + `favorites/${userId}`)
     const data= await response.json()
     return data;
-
   }
   catch(e){
     console.log(e)
   }
-
-
 }
 
 export const deleteFavorite = async(userId:string, gymClassId:string) =>{
-
-try{
-    const response = await fetch(baseURL + `favorites/delete/${userId}`,{
-      method:'PUT',
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({gymClassId})
-    })
-    const data= await response.json()
-    return data;
-
-  }
-  catch(e){
-    console.log(e)
-  }
+  if(!userId || !gymClassId) return;
+  try{
+      const response = await fetch(baseURL + `favorites/delete/${userId}`,{
+        method:'PUT',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({gymClassId})
+      })
+      const data= await response.json()
+      return data;
+    }
+    catch(e){
+      console.log(e)
+    }
 
 }
 
 export const addFavorites = async (userId:string, gymClassId: string)=> {
-
+  if(!userId || !gymClassId) return;
   try{
     const response = await fetch(baseURL + `favorites/add/${userId}`,{
       method:'PUT',
@@ -61,12 +52,11 @@ export const addFavorites = async (userId:string, gymClassId: string)=> {
 }
 
 export const getBookings = async (userId:string)=> {
-
+  if(!userId) return;
   try{
     const response = await fetch(baseURL + `bookings/${userId}`)
     const data = await response.json()
     return data;
-
   }
   catch(e){
     console.log(e)
@@ -76,7 +66,7 @@ export const getBookings = async (userId:string)=> {
 }
 
 export const addBookings = async (userId:string, gymClassId: string)=> {
-
+  if(!userId || !gymClassId) return;
   try{
     const response = await fetch(baseURL + `bookings/add/${userId}`,{
       method:'PUT',
@@ -85,10 +75,8 @@ export const addBookings = async (userId:string, gymClassId: string)=> {
       },
       body:JSON.stringify({gymClassId})
     })
-
     const data = await response.json()
     return data;
-
   }
   catch(e){
     console.log(e)
@@ -112,9 +100,8 @@ export const getGymClasses = async ()=> {
 }
 
 export const getGymClass = async (gymClassId:string)=> {
-
+  if(!gymClassId) return;
   try{
-    if(!gymClassId) return;
     const response = await fetch(baseURL + `gymclass/${gymClassId}`)
     const data = await response.json()
     return data;
