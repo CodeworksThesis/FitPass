@@ -15,8 +15,8 @@ const Profile = () =>{
         { isAuthenticated ? 
             <>
             <div>
-            <div className="relative block flex flex-col w-full items-center mt-6">
-            <img src={user?.picture} className="object-cover w-36 h-36 rounded-full custom-position object-cover border-4 border-[#6F87F5]"></img>
+            <div className="relative flex flex-col w-full items-center mt-6">
+            <img src={user?.picture} className="object-cover w-36 h-36 rounded-full custom-position border-4 border-[#6F87F5]"></img>
             </div>
             <p className='text-lg text-center font-bold pt-4 pb-4'>{user?.name}</p>
             <div className='flex flex-col items-center h-72 justify-between'>
