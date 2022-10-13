@@ -28,7 +28,7 @@ export const getGymClass= async(req: Request, res: Response) =>{
 
     const {id} = req.params
 
-    const classes = await Post.findOne({_id: new ObjectId(id)});
+    const classes = await Post.findOne({id: id});
     console.log(classes)
 
      res.status(200)

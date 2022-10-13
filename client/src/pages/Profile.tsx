@@ -10,22 +10,7 @@ const Profile = () =>{
 
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-    const profileAPI = async () => {
-        try {
-            const token = await getAccessTokenSilently();
-            const response = await fetch(`http://localhost:3001/user/${user.sub.split('|')[1]}`, {
-                headers: {
-                    'authorization': `Bearer ${token}`,
-                    'content-type': 'application/json'
-                }
-            });
-            const user = await response.json();
-            console.log(user)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
+   
     const navigate = useNavigate();
 
     return(
