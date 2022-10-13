@@ -17,7 +17,7 @@ export default function GymClassDetails() {
 
   return (
     <div className="overflow-y-scroll">
-      <div className="w-full h-40 md:h-64">
+      <div className="w-full h-56 md:h-64 mt-16">
         <img src={postPic} alt={exerciseName} className="w-full h-full object-cover"/>
       </div>
       <PageTitle title={exerciseName}/>

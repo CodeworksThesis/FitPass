@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { Link, BrowserRouter } from "react-router-dom";
 import { LogoutButton } from "../components/buttons/LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const menus = [
@@ -18,12 +19,15 @@ const NavBar = () => {
   ];
 
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate()
 
   return (
     <nav className="scrollbar-hide font-montserrat">
       <div className="bg-white shadow-lg shadow-black-500/40 w-full ">
         <div className="grid grid-cols-2 w-full">
-          <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl w-screen">
+          <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl w-screen"
+            onClick={() => navigate('/')}
+          >
             FitPass
           </div>
           <div className="flex justify-end px-4 py-4 text-fitpassGreen">
