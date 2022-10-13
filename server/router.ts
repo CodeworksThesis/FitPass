@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {getGymClass, postGymClass, getGymClasses}  from './Controller/postController'
-import {getUser, postUser, updateFavorites, updateBookings, getUsers} from './Controller/userController'
+import {  updateFavorites, updateBookings } from './Controller/userController'
 
 const router = Router()
 

@@ -1,18 +1,36 @@
 import React from 'react';
 import Button from '../components/Button'
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, User } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { UserData } from 'auth0';
+
 
 
 const Profile = () =>{
 
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+    const profileAPI = async () => {
+        try {
+            const token = await getAccessTokenSilently();
+            const response = await fetch(`http://localhost:3001/user/${user.sub.split('|')[1]}`, {
+                headers: {
+                    'authorization': `Bearer ${token}`,
+                    'content-type': 'application/json'
+                }
+            });
+            const user = await response.json();
+            console.log(user)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const navigate = useNavigate();
 
     return(
         <>
-        { isAuthenticated ? 
+        { isAuthenticated ?
             <>
             <div className='mt-20'>
             <div className="relative flex flex-col w-full items-center mt-6">
