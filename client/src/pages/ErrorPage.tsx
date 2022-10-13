@@ -1,6 +1,9 @@
 import React from 'react'
 import { useLottie } from "lottie-react";
 import errorLottie from '../lotties/error-msg.json'
+import { useAuth0 } from '@auth0/auth0-react';
+import { Loading } from '../components/Loading';
+
 
 export const ErrorPage = () => {
 

@@ -19,7 +19,7 @@ export default function GymClassItem (post:Post) {
                     <img src={postPic} alt={exerciseName} className="w-full h-full object-cover"/>
                 </Link>
                 <div className="flex flex-col gap-5 bg-[#6F87F5] w-[50%]">
-                    <header className="flex flex-1 bg-red flex-col text-white pt-8 pl-8 gap-2">
+                    <header className="flex flex-1 bg-red flex-col text-white pt-4 pl-8 gap-2">
                         <h2 className="text-2xl font-bold">{exerciseName}</h2>
                         <p className="text-md">{studioName}</p>
                         <p className="text-md">{formatDate(classDate)}</p>
