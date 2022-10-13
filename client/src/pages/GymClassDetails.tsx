@@ -5,6 +5,7 @@ import PageTitle from '../components/PageTitle';
 import Map from '../components/Map';
 import { formatDateTime } from '../utils/time';
 import ReserveBar from '../components/ReserveBar';
+import { Loading } from '../components/Loading';
 
 
 export default function GymClassDetails() {
@@ -12,7 +13,7 @@ export default function GymClassDetails() {
   const [toggle, setToggle] = useState(false)
   const gymClass = GymClass.filter(post => post.id === id)
   const {postPic, exerciseName, desc,exerciseType, classDate, studioName, price} = gymClass[0]
-  if (!gymClass) return <div>Loading...</div>
+  if (!gymClass) return <Loading />
 
   return (
     <div className="overflow-y-scroll">

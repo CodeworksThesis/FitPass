@@ -1,7 +1,10 @@
 import React from 'react'
+import PageTitle from '../components/PageTitle'
 
 export default function Search() {
   return (
-    <div>Search</div>
+    <div>
+      <PageTitle title='SEARCH YOUR CLASS' />
+    </div>
   )
 }

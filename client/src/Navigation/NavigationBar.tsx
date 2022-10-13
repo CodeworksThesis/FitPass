@@ -6,24 +6,24 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
 } from "react-icons/ai";
-import { BrowserRouter } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
+import { LogoutButton } from "../components/buttons/LogoutButton";
 
 const NavBar = () => {
   const menus = [
-    { name: "Home", icon: AiOutlineHome },
-    { name: "Profile", icon: AiOutlineUser },
-    { name: "Search", icon: AiOutlineSearch },
-    { name: "Favorites", icon: AiOutlineHeart },
+    { name: "Home", link:'/', icon: AiOutlineHome },
+    { name: "Profile", link:'/profile', icon: AiOutlineUser },
+    { name: "Search", link:'/search', icon: AiOutlineSearch },
+    { name: "Favorites", link:'/favourites', icon: AiOutlineHeart },
   ];
 
   const [open, setOpen] = useState(true);
 
   return (
-    <section className="w-full h-screen scrollbar-hide">
-      {/* El header va aquí */}
+    <nav className="scrollbar-hide font-montserrat">
       <div className="bg-white shadow-lg shadow-black-500/40 w-full ">
         <div className="grid grid-cols-2 w-full">
-          <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl ">
+          <div className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl w-screen">
             FitPass
           </div>
           <div className="flex justify-end px-4 py-4 text-fitpassGreen">
@@ -58,7 +58,7 @@ const NavBar = () => {
               {menus?.map((menu, i) => (
                 <>
                   {/* Recuerda agregar el Link para las rutas aquí!!! */}
-                  <div
+                  <Link to={menu?.link}
                     key={i}
                     className=" px-4 cursor-pointer flex items-center text-sm gap-3.5 font-semibold p-2 hover:bg-highlightGreen duration-500 rounded-md"
                   >
@@ -73,33 +73,26 @@ const NavBar = () => {
                       {/* navbar element */}
                       <div>{menu?.name}</div>
                     </div>
-                  </div>
+                  </Link>
                 </>
               ))}
             </div>
 
-            <div className="">
+            <div className="flex justify-center">
               <button
                 className={` mb-32 border-2 border-white bg-white text-fitpassGreen font-bold
               hover:bg-fitpassGreen hover:border-2 hover:text-white hover:border-white
                py-2 px-4 rounded-full whitespace-pre duration-500 ${
-                 open && "opacity-0 translate-x-28 overflow-hidden"
+                 open && "gap-4 opacity-0 translate-x-28 overflow-hidden"
                }`}
               >
-                LogOut
+                <LogoutButton />
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="flex justify-between gap-6">
-        <div className="m-3 text-x1 text-gray-900 font-semibold">
-          SCREEN OVERLAYED TEST
-          <img></img>
-        </div>
-      </div>
-    </section>
+    </nav>
   );
 };
 

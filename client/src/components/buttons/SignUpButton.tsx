@@ -8,7 +8,7 @@ export const SignUpButton = () => {
     return (
         <>
             {isAuthenticated ?
-                '' : <button className='signup-button' onClick={() => loginWithRedirect({
+                '' : <button className='rounded-lg bg-white h-14 text-[black] font-bold  text-lg w-9/12' onClick={() => loginWithRedirect({
                     screen_hint: 'signup',
                 })}>Sign Up</button>
             }
