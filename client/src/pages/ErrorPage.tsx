@@ -7,7 +7,7 @@ export const ErrorPage = () => {
     const options = {
         animationData: errorLottie,
         loop: true
-      };
+    };
 
     const { View } = useLottie(options)
 

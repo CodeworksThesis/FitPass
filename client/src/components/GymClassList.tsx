@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import GymClassItem from './GymClassItem';
 import { Post } from '../../../globalTypes/Post';
-import { getGymClasses } from '../utils/api.service'
 
-export default function GymClassList() {
+interface Props {
+  classes: Post[]
+}
 
-  const [classes, setClasses] = useState([])
-
-  useEffect(() => {
-    getGymClasses()
-      .then(data => setClasses(data))
-      .catch(error => console.log(error))
-
-  }, [])
+export default function GymClassList({ classes }: Props) {
 
   return (
     <div className="flex flex-col w-[100%] h-[100%] gap-[1%] mt-[20%] md:mt-4">

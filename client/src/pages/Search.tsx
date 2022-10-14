@@ -3,31 +3,29 @@ import PageTitle from '../components/PageTitle';
 import locationIcon from '../icons/location.svg';
 import ButtonSearch from '../components/ButtonSearch';
 import ButtonSearchCategories from '../components/ButtonSearchCategories';
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Search() {
 
-  const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cyclyng' ,'Swimming', 'Dance', 'Hiking', 'Other']
+  const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cyclyng', 'Swimming', 'Dance', 'Hiking', 'Other']
 
   const [maxPrice, setMaxPrice] = useState<number>(50);
   const [timeButtons, setTimeButtons] = useState<Array<string>>([]);
   const [categoryButtons, setCategoryButtons] = useState<Array<string>>([]);
 
-  const handleRange = (event:any) => {
+  const handleRange = (event: any) => {
     setMaxPrice(event.target.value)
   }
 
   const handleTime = (newButton: string) => {
-    timeButtons.includes(newButton) ? 
-    setTimeButtons(oldButtons => oldButtons.filter(el => { return el !== newButton})) : setTimeButtons([...timeButtons, newButton])
+    timeButtons.includes(newButton) ?
+      setTimeButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setTimeButtons([...timeButtons, newButton])
   }
 
   const handleCategory = (newButton: string) => {
-    categoryButtons.includes(newButton) ? 
-    setCategoryButtons(oldButtons => oldButtons.filter(el => { return el !== newButton})) : setCategoryButtons([...categoryButtons, newButton])
+    categoryButtons.includes(newButton) ?
+      setCategoryButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setCategoryButtons([...categoryButtons, newButton])
   }
-
-  
 
   return (
     <main className='mt-20'>
@@ -46,20 +44,20 @@ export default function Search() {
         </form>
         <section className='mt-6'>
           <h2>Time</h2>
-          <ButtonSearch buttonText='Morning' buttonClick={() => handleTime('Morning')} isPressed={timeButtons.includes('Morning')}/>
-          <ButtonSearch buttonText='Afternoon' buttonClick={() => handleTime('Afternoon')} isPressed={timeButtons.includes('Afternoon')}/>
-          <ButtonSearch buttonText='Evening' buttonClick={() => handleTime('Evening')} isPressed={timeButtons.includes('Evening')}/>
+          <ButtonSearch buttonText='Morning' buttonClick={() => handleTime('Morning')} isPressed={timeButtons.includes('Morning')} />
+          <ButtonSearch buttonText='Afternoon' buttonClick={() => handleTime('Afternoon')} isPressed={timeButtons.includes('Afternoon')} />
+          <ButtonSearch buttonText='Evening' buttonClick={() => handleTime('Evening')} isPressed={timeButtons.includes('Evening')} />
         </section>
         <section className='mt-6'>
           <h2>Price</h2>
           <form>
-            <input type="range" id="price" min={0} max={50} onChange={(event) => handleRange(event)} className="w-[90%] max-w-sm"/>
+            <input type="range" id="price" min={0} max={50} onChange={(event) => handleRange(event)} className="w-[90%] max-w-sm" />
             <p>{maxPrice}</p>
           </form>
         </section>
         <section className='mt-6'>
           <h2>Categories</h2>
-          {categories.map((category, index) => <ButtonSearchCategories key={index} buttonText={category} buttonClick={() => handleCategory(category)} isPressed={categoryButtons.includes(category)}/>)}
+          {categories.map((category, index) => <ButtonSearchCategories key={index} buttonText={category} buttonClick={() => handleCategory(category)} isPressed={categoryButtons.includes(category)} />)}
         </section>
       </section>
     </main>

@@ -41,14 +41,12 @@ const NavBar = () => {
         </div>
 
         <div
-          className={`absolute top-0 right-0 bg-[#269FAE] h-screen ${
-            open ? "w-0" : "w-72"
-          } duration-300 text-white divide-y-2`}
+          className={`absolute top-0 right-0 bg-[#269FAE] h-screen ${open ? "w-0" : "w-72"
+            } duration-300 text-white divide-y-2`}
         >
           <div
-            className={`py-4 px-4 flex justify-start ${
-              open && "opacity-0 translate-x-28 hidden"
-            }`}
+            className={`py-4 px-4 flex justify-start ${open && "opacity-0 translate-x-28 hidden"
+              }`}
           >
             <AiOutlineMenu
               size={26}
@@ -57,9 +55,8 @@ const NavBar = () => {
             />
           </div>
           <div
-            className={`flex flex-col w-full h-screen ${
-              open && "opacity-0 translate-x-28 hidden"
-            }`}
+            className={`flex flex-col w-full h-screen ${open && "opacity-0 translate-x-28 hidden"
+              }`}
           >
             <div className="mt-4 flex flex-col gap-4 relative flex-1">
               {menus?.map((menu) => (
@@ -84,9 +81,8 @@ const NavBar = () => {
               <div
                 className={` mb-32 border-2 border-white bg-white text-fitpassGreen font-bold
               hover:bg-fitpassGreen hover:border-2 hover:text-white hover:border-white
-               py-2 px-4 rounded-full whitespace-pre duration-500 ${
-                 open && "gap-4 opacity-0 translate-x-28 overflow-hidden"
-               }`}
+               py-2 px-4 rounded-full whitespace-pre duration-500 ${open && "gap-4 opacity-0 translate-x-28 overflow-hidden"
+                  }`}
               >
                 <LogoutButton />
               </div>

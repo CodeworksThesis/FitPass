@@ -185,7 +185,7 @@ export const UserMock = {
             price: "€5",
             postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg"
         },
-   
+
     ],
-    profilePic:'https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/07/outdoor-portraits-1.jpg?w=2000&ssl=1',
+    profilePic: 'https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2011/07/outdoor-portraits-1.jpg?w=2000&ssl=1',
 }

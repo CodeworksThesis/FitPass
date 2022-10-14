@@ -3,25 +3,21 @@ import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
 
-
 export const getFavorites = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params
     if (!id) throw new Error('no user id provided')
     const updates = await Favorites.findOne({ "favorited.userId": id })
     res.status(201)
-    res.send(updates)
+    res.send({ error: null, data: updates })
   }
   catch (e) {
     console.log(e)
-    res.status(400).end()
+    res.status(400).send({ error: e.message, data: null })
   }
-
 }
 
 export const addFavorites = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params
     const { gymClassId } = req.body
@@ -46,7 +42,6 @@ export const addFavorites = async (req: Request, res: Response) => {
       })
       updates.markModified('favorited')
       updates.save()
-
       res.send(updates)
       res.status(201)
     }
@@ -57,26 +52,20 @@ export const addFavorites = async (req: Request, res: Response) => {
 };
 
 export const deleteFavorite = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params;
     const { gymClassId } = req.body;
     if (!id || !gymClassId) throw new Error('no userId or gymClassId provided')
     const update = await Favorites.findOne({ "favorited.userId": id });
-
     const favoritedItem = update.favorited.find((item) => {
       return item.userId === id;
     })
     const updatedGymClassIds = favoritedItem.gymClassId.filter((classId) => {
       return classId !== gymClassId
     })
-
     favoritedItem.gymClassId = updatedGymClassIds
-
-
     update.markModified('favorited')
     await update.save()
-
     res.send(update)
     res.status(201)
   }
@@ -84,27 +73,13 @@ export const deleteFavorite = async (req: Request, res: Response) => {
     console.log(e)
     res.status(400).end()
   }
-
 }
 
-// class BookingError extends Error{
-//   constructor(message){
-//     super(message)
-//     this.type = 'booking error'
-//   }
-// }
-
 export const getBookings = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params
     if (!id) throw new Error('no user id provided')
-    // throw new BookingError('no user id provided')
     const updates = await Bookings.findOne({ "booked.userId": id })
-    //FIXME: check why it does not work
-    // if (!updates) {
-    //   return res.send({ error: null, data: 'no bookings found' })
-    // }
     console.log({ updates })
     res.status(201)
     res.send({ error: null, data: updates })
@@ -113,20 +88,13 @@ export const getBookings = async (req: Request, res: Response) => {
     console.log(e)
     res.status(400).send({ error: e.message, data: null })
   }
-
 }
 
-
 export const addBookings = async (req: Request, res: Response) => {
-
   try {
-
     const { id } = req.params
     const { gymClassId } = req.body;
-
     const updates = await Bookings.findOne({ "booked.userId": id })
-
-
     if (!updates || Object.keys(updates).length === 0) {
       const updateCreated = await Bookings.create(
         {
@@ -146,7 +114,6 @@ export const addBookings = async (req: Request, res: Response) => {
       })
       updates.markModified('booked')
       await updates.save()
-
       res.send(updates)
       res.status(201)
     }

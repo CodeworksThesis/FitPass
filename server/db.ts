@@ -4,7 +4,6 @@ require('dotenv').config();
 const DBPATH = process.env.DBPATH;
 const DBTest = process.env.DBTEST
 
-
 async function main() {
 
   await mongoose.connect(DBPATH!)

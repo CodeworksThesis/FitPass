@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import { LoginPage } from './pages/LoginPage';
-import { UserMock } from './mocks/UserMock';
 import Home from './pages/Home';
 import { Route, Routes, Link } from 'react-router-dom';
 import Search from './pages/Search';
@@ -18,27 +16,15 @@ import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
 
-
   const { isAuthenticated } = useAuth0();
-
 
   return (
     <>
-    {isAuthenticated ? 
-    <nav className='fixed top-0 right-0 z-50'>
-          <NavBar/>
-      
-        {/* <li>
-          <Link to="/">Home</Link>
-          </li>
-          <li>
-          <Link to="/login">Login</Link>
-          </li>
-          <li>
-          <Link to="/profile">Profile</Link>
-        </li> */}
-    </nav>
-      : ''}
+      {isAuthenticated ?
+        <nav className='fixed top-0 right-0 z-50'>
+          <NavBar />
+        </nav>
+        : ''}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -47,7 +33,7 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="/stats" element={<UserStats/>} />
+        <Route path="/stats" element={<UserStats />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/gymclass/:id" element={<GymClassDetails />} />
         {/* ErrorPage always at the bottom */}
