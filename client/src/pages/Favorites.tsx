@@ -8,7 +8,7 @@ export default function Favorites() {
   return (
     <div>
 
-      <div className='relative block flex flex-col w-full items-center mt-20'>
+      <div className='relative flex flex-col w-full items-center mt-20'>
         <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
         <div className='flex flex-col items-center w-full'>
           {favoriteGymClassDetails.map(gymclass =>
