@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../components/Button'
 import { useAuth0, User } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { UserData } from 'auth0';
+// import { UserData } from 'auth0';
 
 
 
