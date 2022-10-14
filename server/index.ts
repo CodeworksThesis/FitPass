@@ -16,7 +16,7 @@ mongoose.connect(atlasUri);
 const connection = mongoose.connection;
 connection.once('open', () => console.log('Database connection successful🍃'))
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`server started at http://localhost:${PORT}`)
 })
 

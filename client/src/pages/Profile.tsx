@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = () =>{
 
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
    
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Profile = () =>{
             </div>
             <p className='text-lg text-center font-bold pt-4 pb-4'>{user?.name}</p>
             <div className='flex flex-col items-center h-72 justify-between'>
-            <Button buttonClick={() => {navigate('/favourites')}} buttonText='Favourites' />
+            <Button buttonClick={() => {navigate('/favorites')}} buttonText='Favorites' />
             <Button buttonClick={() => {navigate('/bookings')}} buttonText='Bookings' />
             <Button buttonClick={() => {navigate('/stats')}} buttonText='Stats' />
             <Button buttonClick={() => {navigate('/settings')}} buttonText='Settings' />

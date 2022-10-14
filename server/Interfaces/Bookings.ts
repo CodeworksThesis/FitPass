@@ -1,5 +1,5 @@
 
-export interface Booking{
+export interface Booking {
   userId: string,
   gymClassId: string[],
 }

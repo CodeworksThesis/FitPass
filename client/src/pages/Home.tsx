@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { LoginPage } from '../pages/LoginPage';
 import { GymClass } from '../mocks/GymClassMock'
 import { Loading } from '../components/Loading';
+import PageTitle from '../components/PageTitle';
 
 
 export default function Landing() {
@@ -18,17 +19,18 @@ export default function Landing() {
 
   return (
     <div className="mx-auto mb-4">
-      {isAuthenticated 
-      ? <div className="w-[90%] mx-auto">
+      {isAuthenticated
+        ? <div className="w-[90%] mx-auto">
           <>
-            <LogoutButton /> 
+            <LogoutButton />
             <div className='w-[100%] h-[15rem] mt-12'>
+              <PageTitle title='FIND YOUR NEAREST CLASS' />
               <Map gymClassList={GymClass} isHome={true} />
-            </div> 
+            </div>
             <GymClassList />
           </>
-        </div> 
-      : <LoginPage />}
+        </div>
+        : <LoginPage />}
     </div>
   )
 }

@@ -4,5 +4,5 @@ export interface User {
     id: string,
     favourites: Post[],
     booked: Post[],
-    profilePic:string,
+    profilePic: string,
 }
