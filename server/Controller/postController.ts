@@ -1,22 +1,16 @@
 
 import Post from '../Model/classModel'
 import {Request, Response} from 'express'
-import {ObjectId} from 'mongodb'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-const { jwtCheck } = require('./check-jwt')
+export const getGymClasses= async(req: Request, res: Response) =>{
 
-export const getGymClass= async(req: Request, res: Response) =>{
-=======
-export const getGymClasses= async(req: Request, res: Response) =>{
->>>>>>> 06206e7 (pairprogramming server session)
-=======
-export const getGymClasses= async(req: Request, res: Response) =>{
->>>>>>> backend2
 
   try{
+
     const classes = await Post.find();
+    console.log(classes)
+    if(!classes.length || !classes)
+    { throw new Error('no user found')}
      res.status(200)
      res.send(classes);
   }
@@ -35,9 +29,9 @@ export const getGymClass= async(req: Request, res: Response) =>{
     const {id} = req.params
     if(id) {
       const classes = await Post.findOne({id: id});
-      res.status(200)
-      res.send(classes);
-    }
+     res.status(200)
+     res.send(classes);
+  }
   }
   catch(error){
     console.log(error)
@@ -60,11 +54,8 @@ export const postGymClass= async( req: Request, res: Response)=>{
     console.log(e)
     res.status(400).end()
   }
-<<<<<<< HEAD
+
 }
 
 
 
-=======
-}
->>>>>>> backend2
