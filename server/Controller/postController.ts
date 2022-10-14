@@ -1,26 +1,48 @@
 
 import Post from '../Model/classModel'
 import {Request, Response} from 'express'
+import {ObjectId} from 'mongodb'
 
+<<<<<<< HEAD
 const { jwtCheck } = require('./check-jwt')
+
+export const getGymClass= async(req: Request, res: Response) =>{
+=======
+export const getGymClasses= async(req: Request, res: Response) =>{
+>>>>>>> 06206e7 (pairprogramming server session)
+
+  try{
+
+    const classes = await Post.find();
+    console.log(classes)
+    if(!classes.length || !classes)
+    { throw new Error('no user found')}
+     res.status(200)
+     res.send(classes);
+  }
+  catch(error){
+    console.log(error)
+    res.sendStatus(400).send('Sorry we can not find ')
+  }
+
+}
+
 
 export const getGymClass= async(req: Request, res: Response) =>{
 
   try{
 
-    const classes = await Post.find();
-    if(classes.length){
+    const {id} = req.params
+
+    const classes = await Post.findOne({_id: new ObjectId(id)});
+    console.log(classes)
+
      res.status(200)
      res.send(classes);
-    }
-    else{
-       throw new Error('Wrong')
-    }
-
   }
   catch(error){
     console.log(error)
-    res.status(400)
+    res.sendStatus(400).send('Sorry we can not find ')
   }
 
 }
@@ -28,19 +50,17 @@ export const getGymClass= async(req: Request, res: Response) =>{
 export const postGymClass= async( req: Request, res: Response)=>{
   try{
 
-    const gyms= await req.body
+    const gym= await req.body
 
-    // if(!gyms || !gyms.length) throw new Error('empty');
-
-    const classes = await Post.create(req.body)
-    if(!Object.keys(classes).length) throw new Error('wrong')
+    const gymClass = await Post.create(gym)
+    if(!Object.keys(gymClass).length) throw new Error('wrong')
     res.status(201)
-    res.send(classes)
+    res.send(gymClass)
 
   }
   catch(e){
     console.log(e)
-    res.status(400);
+    res.status(400).end()
   }
 }
 

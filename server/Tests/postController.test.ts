@@ -54,10 +54,10 @@ describe('GET /gymclass endpoint with user details', ()=>{
 })
 
 
-describe('GET /user endpoint without user details from POST', ()=>{
-  it('GET /user should return the 400 error if no user details is provided by POST', async()=>{
+describe.only('GET /gym endpoint without user details from POST', ()=>{
+  it('GET /gym should return the 400 error if no user details is provided by POST', async()=>{
     const response = await request(app)
-    .get('/gymclass')
+    .get(`/gymclass/${}`)
     .send(null)
     .set('Accept', 'application/json');
 
