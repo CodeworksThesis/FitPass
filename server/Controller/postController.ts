@@ -23,7 +23,6 @@ export const getGymClass= async(req: Request, res: Response) =>{
 export const postGymClass= async( req: Request, res: Response)=>{
   try{
 
-    console.log(req.body)
     const classes = await Post.create(req.body)
     res.send(classes)
     res.status(201)
