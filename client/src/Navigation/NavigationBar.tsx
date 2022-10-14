@@ -15,7 +15,7 @@ const NavBar = () => {
     { name: "Home", link:'/', icon: AiOutlineHome },
     { name: "Profile", link:'/profile', icon: AiOutlineUser },
     { name: "Search", link:'/search', icon: AiOutlineSearch },
-    { name: "Favorites", link:'/favourites', icon: AiOutlineHeart },
+    { name: "Favorites", link:'/favorites', icon: AiOutlineHeart },
   ];
 
   const [open, setOpen] = useState(true);

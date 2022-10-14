@@ -7,7 +7,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
-import Favourites from './pages/Favorites';
+import Favorites from './pages/Favorites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 import NavBar from './Navigation/NavigationBar';
@@ -45,7 +45,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/stats" element={<UserStats/>} />
         <Route path="/payment" element={<Payment />} />
