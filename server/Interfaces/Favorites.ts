@@ -1,5 +1,5 @@
 
-export interface Favorite{
+export interface Favorite {
   userId: string,
   gymClassId: string[],
 }

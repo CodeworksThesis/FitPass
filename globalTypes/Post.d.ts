@@ -4,10 +4,10 @@ export interface Post {
     exerciseName: string,
     desc: string,
     duration: number, // minutes
-    longitude:number,
-    latitude:number,
+    longitude: number,
+    latitude: number,
     classDate: Date,
     exerciseType: string,
     price: string,
-    postPic:string
+    postPic: string
 }

@@ -5,6 +5,8 @@ export const getFavorites = async (userId: string) => {
   try {
     const response = await fetch(baseURL + `favorites/${userId}`)
     const data = await response.json().catch(error => { return })
+    console.log('this is data', data)
+
     return data;
   }
   catch (e) {
@@ -52,11 +54,12 @@ export const getBookings = async (userId: string) => {
   if (!userId) return;
   try {
     const response = await fetch(baseURL + `bookings/${userId}`)
-    const data = await response.json().catch(error => { return })
-    return data;
+    const json = await response.json()
+    console.log({json})
+    return json.data;
   }
   catch (e) {
-    console.log(e)
+    console.error('getBookings', e)
   }
 }
 
