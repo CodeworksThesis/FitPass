@@ -3,22 +3,7 @@ import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-    res.status(201);
-    res.send(createUser);
-    } catch (e) {
-      console.log(e);
-      res.status(400).end();
-  }
-}
-
-=======
->>>>>>> ad1851f (debug API)
-=======
->>>>>>> backend2
 export const getFavorites = async (req:Request, res:Response)=>{
 
   try{
@@ -37,13 +22,6 @@ export const getFavorites = async (req:Request, res:Response)=>{
 
 export const addFavorites = async (req: Request, res: Response) => {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> backend2
-=======
->>>>>>> backend-francis
   try {
     const {id} = req.params
     const { gymClassId } = req.body
