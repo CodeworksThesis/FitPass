@@ -1,18 +1,21 @@
 import React from 'react';
 import Button from '../components/Button'
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, User } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { UserData } from 'auth0';
+
 
 
 const Profile = () =>{
 
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
+   
     const navigate = useNavigate();
 
     return(
         <>
-        { isAuthenticated ? 
+        { isAuthenticated ?
             <>
             <div className='mt-20'>
             <div className="relative flex flex-col w-full items-center mt-6">

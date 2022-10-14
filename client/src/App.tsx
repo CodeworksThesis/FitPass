@@ -7,7 +7,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
-import Favourites from './pages/Favourites';
+import Favourites from './pages/Favorites';
 import SearchResults from './pages/SearchResults';
 import UserStats from './pages/UserStats';
 import NavBar from './Navigation/NavigationBar';

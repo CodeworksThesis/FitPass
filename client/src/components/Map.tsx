@@ -85,7 +85,7 @@ export default function Map({ gymClassList, isHome }:IMapProps) {
   if(!isLoaded) return <div>Loading...</div>
 
   return (
-    <div className="mt-16 rounded-lg overflow-hidden h-full">
+    <div className="rounded-lg overflow-hidden h-full">
     { isLoaded && 
     <GoogleMap 
       zoom={11}
