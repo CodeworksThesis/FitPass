@@ -3,9 +3,9 @@ import { useGymClass } from '../hooks/useGymClass'
 
 export default function Favorites() {
 
-  const { favoriteGymClassDetails } = useGymClass();
+  const { favoriteGymClassDetails, bookedGymClassDetails } = useGymClass();
 
-  console.log(favoriteGymClassDetails)
+  console.log(bookedGymClassDetails)
 
   return (
     <div> </div>
