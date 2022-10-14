@@ -88,13 +88,8 @@ const NavBar = () => {
                  open && "gap-4 opacity-0 translate-x-28 overflow-hidden"
                }`}
               >
-<<<<<<< HEAD
-              </button>
-                {/* <LogoutButton /> */}
-=======
                 <LogoutButton />
               </div>
->>>>>>> c27b38df39e03c62a8545f0b7a81fdd37eb6bce3
             </div>
           </div>
         </div>
