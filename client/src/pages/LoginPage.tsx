@@ -5,7 +5,7 @@ import { SignUpButton } from '../components/buttons/SignUpButton';
 export const LoginPage = () => {
 
     return (
-        <main className='relative block flex flex-col m-0 bg-[#4A9DAC] h-screen w-screen place-content-center space-y-20'>
+        <main className='relative flex flex-col m-0 bg-fitpassGreen h-screen w-screen place-content-center space-y-20'>
 
             <h1 className='text-white font-extrabold italic text-7xl text-center'>FitPass</h1>
             <section className='flex flex-col items-center space-y-6'>
