@@ -38,9 +38,12 @@ export const getFavorites = async (req:Request, res:Response)=>{
 export const addFavorites = async (req: Request, res: Response) => {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> backend2
+=======
+>>>>>>> backend-francis
   try {
     const {id} = req.params
     const { gymClassId } = req.body
