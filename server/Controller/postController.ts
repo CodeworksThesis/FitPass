@@ -12,11 +12,7 @@ export const getGymClasses= async(req: Request, res: Response) =>{
 >>>>>>> 06206e7 (pairprogramming server session)
 
   try{
-
     const classes = await Post.find();
-    console.log(classes)
-    if(!classes.length || !classes)
-    { throw new Error('no user found')}
      res.status(200)
      res.send(classes);
   }
@@ -33,12 +29,11 @@ export const getGymClass= async(req: Request, res: Response) =>{
   try{
 
     const {id} = req.params
-
-    const classes = await Post.findOne({id: id});
-    console.log(classes)
-
-     res.status(200)
-     res.send(classes);
+    if(id) {
+      const classes = await Post.findOne({id: id});
+      res.status(200)
+      res.send(classes);
+    }
   }
   catch(error){
     console.log(error)
@@ -51,7 +46,6 @@ export const postGymClass= async( req: Request, res: Response)=>{
   try{
 
     const gym= await req.body
-
     const gymClass = await Post.create(gym)
     if(!Object.keys(gymClass).length) throw new Error('wrong')
     res.status(201)
