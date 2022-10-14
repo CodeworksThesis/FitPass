@@ -26,7 +26,7 @@ export default function ReserveBar() {
                 nav={() => navigate("/")}
             />
             <ReserveButton
-                buttonText={isAuthenticated ? "LOGIN TO RESERVE" : "RESERVE"}
+                buttonText={isAuthenticated ? "RESERVE" : "LOGIN TO RESERVE"}
                 backgroundColor="#6F87F5"
                 textColor="#FFF"
                 hoverBackgroundColor="#269FAE"
