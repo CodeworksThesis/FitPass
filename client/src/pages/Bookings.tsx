@@ -10,37 +10,38 @@ import { tomorrow, dayAfterTomorrow ,nextMonday, secondMonday } from '../utils/d
 function Bookings(){
   const initialClasses = UserMock.booked.filter((item) => {
     return item.classDate >= new Date();
-      })
+    })
 
   const [button, setButton] = useState('');
   const [classes, setClasses] = useState(initialClasses);
   const [dateString, setDateString] = useState('')
 
-  let selectedClasses = classes;
-   useEffect(() => {
+   useEffect(function sideEffect() {
+    let selectedClasses:any[] =[];
       if(button === 'today'){
         setDateString(formatDate(new Date()))
         selectedClasses = initialClasses.filter((item) => {
           return item.classDate <= tomorrow();
         })
-      } 
+        setClasses(selectedClasses);
+      }
       if(button === 'tomorrow'){
         setDateString(formatDate(tomorrow()))
         selectedClasses = initialClasses.filter((item) => {
           return item.classDate >= tomorrow() && item.classDate <= dayAfterTomorrow();
         })
+        setClasses(selectedClasses);
       } 
       if(button === 'nextWeek'){
         setDateString('NEXT WEEK')
         selectedClasses = initialClasses.filter((item) => {
           return item.classDate >= nextMonday() && item.classDate <= secondMonday();
         })
+        setClasses(selectedClasses);
       } 
-      setClasses(selectedClasses);
  }, [button])
 
     return(
-
         <div className='relative block flex flex-col w-full items-center mt-20'>
           <div className='flex flex-row justify-center'>
             <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
