@@ -21,7 +21,6 @@ export const getFavorites = async (req:Request, res:Response)=>{
 
 export const addFavorites = async (req: Request, res: Response) => {
 
-
   try {
     const {id} = req.params
     const { gymClassId } = req.body

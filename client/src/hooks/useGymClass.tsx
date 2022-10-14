@@ -51,8 +51,8 @@ export const GymClassProvider = ({children}: { children: React.ReactNode}) => {
     const [bookings, setBookings] = useState<BookingsType>()
     const {user} = useAuth0()
 
-    // const userId = user?.sub?.split("|")[1]
-    const userId = '114683311426231214348'
+    const userId = user?.sub?.split("|")[1]
+    // const userId = '114683311426231214348'
 
     // get favorite and booking gymclass Ids
     useEffect(() => {
@@ -89,7 +89,6 @@ export const GymClassProvider = ({children}: { children: React.ReactNode}) => {
         bookings && bookings.booked[0].gymClassId.forEach(item => {
           getGymClass(item)
           .then(data => {
-             console.log('bookings',data)
               setBookedGymClassDetails(prev => [...prev, data])
           })
           .catch((error) => console.log(error))
