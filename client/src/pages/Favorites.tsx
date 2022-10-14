@@ -8,6 +8,11 @@ export default function Favorites() {
   console.log(bookedGymClassDetails)
 
   return (
-    <div> </div>
+    <div> 
+      {bookedGymClassDetails.map(gymclass => 
+      <div key={gymclass.id}>
+        {gymclass.desc}
+      </div>)}
+    </div>
   )
 }
