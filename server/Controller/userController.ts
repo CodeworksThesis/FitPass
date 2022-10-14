@@ -4,6 +4,7 @@ import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     res.status(201);
@@ -16,6 +17,8 @@ import { Request, Response } from "express";
 
 =======
 >>>>>>> ad1851f (debug API)
+=======
+>>>>>>> backend2
 export const getFavorites = async (req:Request, res:Response)=>{
 
   try{
@@ -34,6 +37,10 @@ export const getFavorites = async (req:Request, res:Response)=>{
 
 export const addFavorites = async (req: Request, res: Response) => {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> backend2
   try {
     const {id} = req.params
     const { gymClassId } = req.body

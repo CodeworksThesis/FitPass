@@ -4,12 +4,16 @@ import {Request, Response} from 'express'
 import {ObjectId} from 'mongodb'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const { jwtCheck } = require('./check-jwt')
 
 export const getGymClass= async(req: Request, res: Response) =>{
 =======
 export const getGymClasses= async(req: Request, res: Response) =>{
 >>>>>>> 06206e7 (pairprogramming server session)
+=======
+export const getGymClasses= async(req: Request, res: Response) =>{
+>>>>>>> backend2
 
   try{
     const classes = await Post.find();
@@ -56,7 +60,11 @@ export const postGymClass= async( req: Request, res: Response)=>{
     console.log(e)
     res.status(400).end()
   }
+<<<<<<< HEAD
 }
 
 
 
+=======
+}
+>>>>>>> backend2
