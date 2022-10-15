@@ -2,6 +2,8 @@
 import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
+require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 export const getFavorites = async (req: Request, res: Response) => {
   try {
@@ -124,3 +126,28 @@ export const addBookings = async (req: Request, res: Response) => {
   }
 };
 
+
+export const makePayment = async (req: Request, res: Response) => {
+  const { token, amount } = await req.body
+  if (!token || !amount) throw new Error("Missing payment details")
+
+  try {
+      await stripe.charges.create({
+          source: token.id,
+          amount,
+          currency: "eur",
+      })
+      res.send({
+          status: "success",
+          error: null,
+      })
+  } catch (err) {
+      if (err instanceof Error) {
+          console.log(err)
+          res.send({
+              status: "failure",
+              error: err.message,
+          })
+      }
+  }
+}

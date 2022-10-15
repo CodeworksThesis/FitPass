@@ -8,7 +8,6 @@
     "test": "jest --runInBand --resetMocks --watch",
     "ts-test": "ts-jest Tests"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -33,6 +32,7 @@
     "mongodb-memory-server": "^8.9.3",
     "mongoose": "^6.6.5",
     "nodemon": "^2.0.20",
+    "stripe": "^10.14.0",
     "supertest": "^6.3.0"
   },
   "exclude": [
