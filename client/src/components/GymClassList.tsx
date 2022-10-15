@@ -9,7 +9,7 @@ interface Props {
 export default function GymClassList({ classes }: Props) {
 
   return (
-    <div className="flex flex-col w-[100%] h-[100%] gap-[1%] mt-[20%] md:mt-4">
+    <div className="flex flex-col w-[100%] h-[100%] gap-[1%] mt-20">
       {classes.map((post: Post) => {
         return (
           <GymClassItem
