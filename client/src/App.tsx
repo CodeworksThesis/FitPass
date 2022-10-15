@@ -13,6 +13,7 @@ import GymClassDetails from './pages/GymClassDetails';
 import Payment from './pages/Payment';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ErrorPage } from './pages/ErrorPage';
+import { Settings } from './pages/Settings';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/stats" element={<UserStats />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/gymclass/:id" element={<GymClassDetails />} />
         {/* ErrorPage always at the bottom */}
         <Route path="*" element={<ErrorPage />} />
