@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
 import Bookings from '../Interfaces/Bookings'
-import Favorites from '../Interfaces/Favorites'
-import { Favorite } from '../Interfaces/Favorites'
 
 const Schema = mongoose.Schema
 

@@ -3,7 +3,6 @@ import Post from '../Interfaces/Post'
 
 const Schema = mongoose.Schema
 
-
 const PostSchema = new Schema<Post>({
   id: { type: String, required: true },
   studioName: { type: String, required: true },
@@ -17,7 +16,6 @@ const PostSchema = new Schema<Post>({
   exerciseType: { type: String, required: true },
   price: { type: String, required: true },
   postPic: { type: String, required: true }
-
 })
 
 const Post = mongoose.model<Post>('Post', PostSchema)

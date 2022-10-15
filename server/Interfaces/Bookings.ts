@@ -1,4 +1,3 @@
-
 export interface Booking {
   userId: string,
   gymClassId: string[],

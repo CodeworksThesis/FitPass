@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react"
 
 interface buttonProps {
@@ -24,3 +25,21 @@ export default function BookingFilterButton({
         </button>
     )
 }
+=======
+import React from 'react';
+
+
+interface buttonProps {
+  buttonText: string;
+  buttonClick?: () => void;
+  isPressed: boolean;
+}
+
+export default function BookingFilterButton({ buttonText, buttonClick, isPressed }: buttonProps) {
+  return (
+    <button onClick={buttonClick} className={isPressed ?
+      'bg-[#6F87F5] rounded-lg p-3 m-2 text-white shadow shadow-[#808080]'
+      : 'rounded-lg border border-[#808080] p-3 m-2 shadow shadow-[#808080]'}>{buttonText}</button>
+  )
+}
+>>>>>>> development

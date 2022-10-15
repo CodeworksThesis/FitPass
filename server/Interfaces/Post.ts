@@ -1,8 +1,7 @@
-
 export default interface Post {
-  id:string,
+  id: string,
   studioName: string,
-  exerciseName:string,
+  exerciseName: string,
   desc: string,
   duration: number,
   location: string,
