@@ -1,11 +1,10 @@
-// @ts-nocheck
 import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
-
+require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export const getFavorites = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params
     if (!id) throw new Error('no user id provided')
@@ -17,11 +16,9 @@ export const getFavorites = async (req: Request, res: Response) => {
     console.log(e)
     res.status(400).end()
   }
-
 }
 
 export const addFavorites = async (req: Request, res: Response) => {
-
   try {
     const { id } = req.params
     const { gymClassId } = req.body
@@ -64,18 +61,18 @@ export const deleteFavorite = async (req: Request, res: Response) => {
     if (!id || !gymClassId) throw new Error('no userId or gymClassId provided')
     const update = await Favorites.findOne({ "favorited.userId": id });
 
-    const favoritedItem = update.favorited.find((item) => {
+    const favoritedItem = update?.favorited.find((item) => {
       return item.userId === id;
     })
-    const updatedGymClassIds = favoritedItem.gymClassId.filter((classId) => {
+    const updatedGymClassIds = favoritedItem?.gymClassId.filter((classId) => {
       return classId !== gymClassId
     })
-
-    favoritedItem.gymClassId = updatedGymClassIds
-
-
-    update.markModified('favorited')
-    await update.save()
+    if(updatedGymClassIds && favoritedItem) {
+      favoritedItem.gymClassId = updatedGymClassIds
+    }
+    
+    update?.markModified('favorited')
+    await update?.save()
 
     res.send(update)
     res.status(201)
@@ -110,10 +107,11 @@ export const getBookings = async (req: Request, res: Response) => {
     res.send({ error: null, data: updates })
   }
   catch (e) {
-    console.log(e)
-    res.status(400).send({ error: e.message, data: null })
+    if(e instanceof Error) {
+      console.log(e)
+      res.status(400).send({ error: e.message, data: null })
+    }
   }
-
 }
 
 
@@ -155,5 +153,31 @@ export const addBookings = async (req: Request, res: Response) => {
     console.log(e);
     res.status(400).end();
   }
+};
+
+export const makePayment = async (req: Request, res: Response) => {
+  const { token, amount } = await req.body;
+  if (!token || !amount ) throw new Error('Missing payment details')
+
+  try {
+    await stripe.charges.create({
+      source: token.id,
+      amount,
+      currency: 'eur'
+    })
+    res.send({
+      status:'success',
+      error: null
+    })
+  } 
+  catch (err) {
+    if(err instanceof Error) {
+      console.log(err)
+      res.send({
+        status:'failure',
+        error: err.message
+      })
+    }
+  } 
 };
 

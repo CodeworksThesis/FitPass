@@ -8,7 +8,6 @@ export const getGymClasses = async (req: Request, res: Response) => {
   try {
 
     const classes = await Post.find();
-    console.log(classes)
     if (!classes.length || !classes) { throw new Error('no user found') }
     res.status(200)
     res.send(classes);
