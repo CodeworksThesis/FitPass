@@ -1,5 +1,5 @@
-import * as React from "react"
-import { formatDate, formatStartEndTime } from "../utils/time"
+import * as React from 'react';
+import { formatDate, formatStartEndTime } from '../utils/time';
 interface GymClassItemProps {
   exerciseName: string,
   studioName: string,

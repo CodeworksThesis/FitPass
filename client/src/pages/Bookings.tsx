@@ -12,9 +12,9 @@ function Bookings() {
     return item.classDate >= new Date();
   })
 
-    const [button, setButton] = useState("")
-    const [classes, setClasses] = useState(initialClasses)
-    const [dateString, setDateString] = useState("")
+  const [button, setButton] = useState('');
+  const [classes, setClasses] = useState(initialClasses);
+  const [dateString, setDateString] = useState('')
 
   useEffect(function sideEffect() {
     let selectedClasses: any[] = [];
@@ -58,4 +58,4 @@ function Bookings() {
   )
 }
 
-export default Bookings
+export default Bookings;

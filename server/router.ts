@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getGymClass, postGymClass, getGymClasses } from './Controller/postController'
-import { deleteFavorite, getBookings, getFavorites, addFavorites, addBookings, makePayment } from './Controller/userController'
+import { deleteFavorite, getBookings, getFavorites, addFavorites, addBookings } from './Controller/userController'
 
 const router = Router()
 
@@ -12,6 +12,6 @@ router.put('/favorites/add/:id', addFavorites)
 router.put('/favorites/delete/:id', deleteFavorite)
 router.get('/bookings/:id', getBookings)
 router.put('/bookings/add/:id', addBookings)
-router.post('/payment', makePayment)
+
 
 export default router

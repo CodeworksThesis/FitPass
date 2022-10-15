@@ -10,8 +10,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Other",
         price: "€5",
-        postPic:
-            "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227462/wuda2qfwm3thcwjhabyn.jpg"
     },
     {
         id: "1111b",
@@ -24,8 +23,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Cycling",
         price: "€8",
-        postPic:
-            "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg",
+        postPic: "https://res.cloudinary.com/dh695qkqe/image/upload/v1665227471/cjnrzvgbaqxi9ime66jb.jpg"
     },
     {
         id: "1111c",
@@ -38,8 +36,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Strength",
         price: "€40",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/sven-mieke-optBC2FxCfc-unsplash_dg8dfo.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/sven-mieke-optBC2FxCfc-unsplash_dg8dfo.jpg"
     },
     {
         id: "1111d",
@@ -52,8 +49,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Pilates",
         price: "€15",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/bruce-mars-gJtDg6WfMlQ-unsplash_bbwa3w.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/bruce-mars-gJtDg6WfMlQ-unsplash_bbwa3w.jpg"
     },
     {
         id: "1111e",
@@ -62,12 +58,11 @@ export const GymClass = [
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         duration: 41, // minutes
         longitude: 10.208468,
-        latitude: 59.73043,
+        latitude: 59.730430,
         classDate: new Date(1665227096000),
         exerciseType: "Yoga",
         price: "€25",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/dylan-gillis-YJdCZba0TYE-unsplash_ybpojn.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/dylan-gillis-YJdCZba0TYE-unsplash_ybpojn.jpg"
     },
     {
         id: "1111f",
@@ -75,13 +70,12 @@ export const GymClass = [
         exerciseName: "Kickboxing",
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         duration: 41, // minutes
-        longitude: 10.20921,
+        longitude: 10.209210,
         latitude: 59.736536,
         classDate: new Date(1665227096000),
         exerciseType: "Boxing",
         price: "€35",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash_rmbmdi.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash_rmbmdi.jpg"
     },
     {
         id: "1111g",
@@ -94,8 +88,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Dance",
         price: "€20",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/miguel-angel-hernandez-Nwc-Z3_aEvw-unsplash_vkf3a5.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580974/miguel-angel-hernandez-Nwc-Z3_aEvw-unsplash_vkf3a5.jpg"
     },
     {
         id: "1111h",
@@ -108,8 +101,7 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Restorative",
         price: "€18",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/yoga_ed1fvb.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580973/yoga_ed1fvb.jpg"
     },
     {
         id: "1111i",
@@ -122,7 +114,6 @@ export const GymClass = [
         classDate: new Date(1665227096000),
         exerciseType: "Cycling",
         price: "€15",
-        postPic:
-            "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/andrew-valdivia-aiqCqSHaOCc-unsplash_ybqiwx.jpg",
+        postPic: "https://res.cloudinary.com/diytr4p8a/image/upload/v1665580975/andrew-valdivia-aiqCqSHaOCc-unsplash_ybqiwx.jpg"
     },
 ]
