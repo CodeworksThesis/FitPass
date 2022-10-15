@@ -2,17 +2,18 @@ import React from "react"
 import ReserveButton from "./ReserveButton"
 import { useNavigate } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
+import { useLocation } from 'react-router-dom';
+import { Post } from '../../../globalTypes/Post.d';
 
-export default function ReserveBar() {
+export default function ReserveBar(gymClass: Post) {
     const navigate = useNavigate()
-    const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } =
-        useAuth0()
+    const location = useLocation()
+    const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0()
 
     const handleReserve = async () => {
         if (!isAuthenticated) navigate("/login")
-        const access_token = await getAccessTokenSilently()
-
-        // To call post User Api service and pass JWT and post data
+        navigate('/payment',{
+            state: gymClass})
     }
 
     return (

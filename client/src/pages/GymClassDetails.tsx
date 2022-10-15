@@ -1,27 +1,39 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { GymClass } from "../mocks/GymClassMock"
 import PageTitle from "../components/PageTitle"
 import Map from "../components/Map"
 import { formatDateTime } from "../utils/time"
 import ReserveBar from "../components/ReserveBar"
 import { Loading } from "../components/Loading"
+import { Post } from "../../../globalTypes/Post"
+import { getGymClass } from '../utils/api.service'
 
 export default function GymClassDetails() {
     const { id } = useParams()
     const [toggle, setToggle] = useState(false)
-    const gymClass = GymClass.filter((post) => post.id === id)
+    const [gymClass, setGymClass] = useState<Post>()
+
+    useEffect(() => {
+        if(id) {
+            getGymClass(id)
+                .then(data => setGymClass(data))
+                .catch(error => console.log(error))
+        }
+        
+    },[id])
+    
+    if (!gymClass || !id) return <Loading />
+    
     const {
         postPic,
         exerciseName,
-        desc,
-        exerciseType,
         classDate,
         studioName,
         price,
-    } = gymClass[0]
-    if (!gymClass) return <Loading />
-
+        exerciseType,
+        desc
+    } = gymClass as Post
+    
     return (
         <div className="overflow-y-scroll">
             <div className="w-full h-56 md:h-64 mt-16">
@@ -68,10 +80,11 @@ export default function GymClassDetails() {
                 </div>
             </article>
             <div className="flex flex-col flex-1 w-[95%] mx-auto h-[24rem] mb-28 md:h-[36rem] transition-all">
-                <Map gymClassList={gymClass} isHome={false} />
+                <Map gymClassList={[gymClass]} isHome={false} />
             </div>
             <div className="fixed bottom-0 w-full bg-white">
-                <ReserveBar />
+                {/* accept EUR payment only */}
+                <ReserveBar {...gymClass}/>
             </div>
         </div>
     )

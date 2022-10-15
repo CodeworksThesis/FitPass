@@ -7,7 +7,6 @@ export const getFavorites = async (userId: string) => {
         const data = await response.json().catch((error) => {
             return
         })
-        console.log("this is data", data)
 
         return data
     } catch (e) {
