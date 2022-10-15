@@ -6,6 +6,17 @@ import ButtonSearchCategories from '../components/ButtonSearchCategories';
 import { useState } from 'react';
 
 export default function Search() {
+    const categories = [
+        "Yoga",
+        "Pilates",
+        "Boxing",
+        "Running",
+        "Cyclyng",
+        "Swimming",
+        "Dance",
+        "Hiking",
+        "Other",
+    ]
 
   const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cyclyng', 'Swimming', 'Dance', 'Hiking', 'Other']
 

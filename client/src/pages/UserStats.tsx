@@ -1,7 +1,7 @@
-import React from 'react';
-import GymClassItemSmall from '../components/GymClassItemSmall';
-import { calculateWorkoutTime } from '../utils/workoutTime';
-import { UserMock } from '../mocks/UserMock';
+import React from "react"
+import GymClassItemSmall from "../components/GymClassItemSmall"
+import { calculateWorkoutTime } from "../utils/workoutTime"
+import { UserMock } from "../mocks/UserMock"
 
 interface GymClassItemProps {
     exerciseName: string,
@@ -36,9 +36,11 @@ function UserStats() {
                     <p className='text-center font-bold'>{classes.length}</p>
                     <p className='text-center'>Classes Attended</p>
                 </div>
-                <div className='flex flex-col justify-center w-1/2 border border-[#808080] rounded-lg shadow shadow-[#808080]'>
-                    <p className='text-center font-bold'>{calculateWorkoutTime(classes)}</p>
-                    <p className='text-center'>Workout time</p>
+                <div className="flex flex-col justify-center w-1/2 border border-[#808080] rounded-lg shadow shadow-[#808080]">
+                    <p className="text-center font-bold">
+                        {calculateWorkoutTime(classes)}
+                    </p>
+                    <p className="text-center">Workout time</p>
                 </div>
             </div>
             <h2 className='italic font-bold text-xl mt-6'>HISTORY</h2>
@@ -49,4 +51,4 @@ function UserStats() {
     )
 }
 
-export default UserStats;
+export default UserStats
