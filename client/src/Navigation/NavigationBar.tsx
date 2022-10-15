@@ -26,7 +26,7 @@ const NavBar = () => {
       <div className="bg-white shadow-lg shadow-black-500/40 w-full ">
         <div className="grid grid-cols-2 w-full">
           <div
-            className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl w-screen"
+            className="py-3 px-3 font-extrabold italic text-fitpassGreen text-left text-2xl w-screen cursor-pointer"
             onClick={() => navigate("/")}
           >
             FitPass
