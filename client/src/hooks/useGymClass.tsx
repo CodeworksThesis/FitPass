@@ -24,8 +24,10 @@ interface Props {
   favoriteGymClassDetails: Post[],
   bookedGymClassDetails: Post[],
   userId: string | undefined,
+  favorites: FavoritesType | undefined ,
   loadingFavorites: boolean,
   loadingBookings: boolean,
+  setFavorites:React.Dispatch<React.SetStateAction<FavoritesType | undefined>>,
   setFavoriteGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
   setBookedGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
   noFavorites: boolean
@@ -35,11 +37,14 @@ interface Props {
 const GymClassContext = createContext<Props>({
   favoriteGymClassDetails: [],
   bookedGymClassDetails: [],
+  favorites: {favorited:[], _id:new ObjectId("")},
   userId: '',
   loadingFavorites: false,
   loadingBookings: false,
   noFavorites: false,
   noBookings: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setFavorites: () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setFavoriteGymClassDetails: () => { },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -116,6 +121,8 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
   }, [bookings])
 
   const memoedValue = useMemo(() => ({
+    favorites,
+    setFavorites,
     favoriteGymClassDetails,
     bookedGymClassDetails,
     userId,
@@ -125,7 +132,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
     setBookedGymClassDetails,
     noFavorites,
     noBookings,
-  }), [userId, loadingFavorites, loadingBookings, favoriteGymClassDetails, bookedGymClassDetails])
+  }), [userId, loadingFavorites, loadingBookings, favoriteGymClassDetails, bookedGymClassDetails, favorites])
 
   return (
     <GymClassContext.Provider value={memoedValue}>
