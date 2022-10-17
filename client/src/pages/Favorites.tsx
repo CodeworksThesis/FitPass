@@ -8,6 +8,7 @@ export default function Favorites() {
 
   return (
     <div>
+
       <div className='relative flex flex-col w-full items-center mt-20'>
         <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
         {noFavorites ?
@@ -15,7 +16,7 @@ export default function Favorites() {
           :
           <div className='flex flex-col items-center w-full'>
             {favoriteGymClassDetails.map(post =>
-          <GymClassItemSmall key={post.id} {...post}/>
+              <GymClassItemSmall key={post.id} {...post}/>
             )}
           </div>
         }

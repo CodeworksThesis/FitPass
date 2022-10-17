@@ -3,15 +3,29 @@ import PageTitle from '../components/PageTitle';
 import locationIcon from '../icons/location.svg';
 import ButtonSearch from '../components/ButtonSearch';
 import ButtonSearchCategories from '../components/ButtonSearchCategories';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { getGymClasses } from '../utils/api.service'
+import { dayAfterTomorrow } from '../utils/days';
 
 export default function Search() {
+
+  const [classes, setClasses] = useState([])
+
+  useEffect(() => {
+    getGymClasses()
+      .then(data => setClasses(data))
+      .catch(error => console.log(error))
+
+  }, [])
+
 
   const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cyclyng', 'Swimming', 'Dance', 'Hiking', 'Other']
 
   const [maxPrice, setMaxPrice] = useState<number>(50);
   const [timeButtons, setTimeButtons] = useState<Array<string>>([]);
   const [categoryButtons, setCategoryButtons] = useState<Array<string>>([]);
+
 
   const handleRange = (event: any) => {
     setMaxPrice(event.target.value)
@@ -27,10 +41,28 @@ export default function Search() {
       setCategoryButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setCategoryButtons([...categoryButtons, newButton])
   }
 
+  const handleSearch = async () => {
+
+    // get time, location, price
+    // create a url
+    //fetch('/search?location=' + location + '&time=' + time)
+
+    const categoryString = categoryButtons.join()
+    const response = await fetch( 'http://localhost:3001/search?exerciseType=' + categoryString) //http://localhost:3001/search?exerciseType=Other,Pilates
+    const json = await response.json()
+
+    console.log(json)
+
+  }
+
   return (
     <main className='mt-20'>
       <PageTitle title='SEARCH YOUR CLASS' />
       <section className='ml-8 font-black mt-6'>
+
+
+
+        <button onClick={handleSearch}>search</button>
         <h2 className='mb-3 location-h2'>Location</h2>
         <form>
           {/* <label htmlFor="location" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label> */}
