@@ -4,11 +4,11 @@ export const getFavorites = async (userId: string) => {
   if (!userId) return;
   try {
     const response = await fetch(baseURL + `favorites/${userId}`)
-    const data = await response.json().catch(error => { return })
-    return data;
+    const json = await response.json()
+    return json.data;
   }
   catch (e) {
-    console.log(e)
+    console.error('getBookings', e)
   }
 }
 
@@ -77,7 +77,6 @@ export const addBookings = async (userId: string, gymClassId: string) => {
     console.log(e)
   }
 }
-
 
 export const getGymClasses = async () => {
   try {

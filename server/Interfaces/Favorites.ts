@@ -1,4 +1,3 @@
-
 export interface Favorite {
   userId: string,
   gymClassId: string[],

@@ -4,11 +4,11 @@ export const formatDate = (date: Date) => {
     return moment(date).format('ll')
 }
 
-export const formatTime = (date:Date) => {
+export const formatTime = (date: Date) => {
     return moment(date).format('LT')
 }
 
-export const formatDateTime = (date:Date) => {
+export const formatDateTime = (date: Date) => {
     return moment(date).format('llll')
 }
 export const formatStartEndTime = (date: Date, duration: number) => {

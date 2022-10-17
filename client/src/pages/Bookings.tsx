@@ -55,7 +55,7 @@ import { Post } from '../../../globalTypes/Post'
             <BookingFilterButton buttonClick={() => {setButton('tomorrow')}} buttonText='TOMORROW' isPressed={button==='tomorrow'}/>
             <BookingFilterButton buttonClick={() => {setButton('nextWeek')}} buttonText='NEXT WEEK' isPressed={button==='nextWeek'}/>
           </div>
-          <div className='w-full max-w-4xl pl-4 h-8'>
+          <div className='w-full max-w-4xl pl-4'>
             <p>{dateString}</p>
           </div>
             <div className='flex flex-col items-center w-full'>

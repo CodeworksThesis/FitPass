@@ -3,7 +3,7 @@ import React from 'react';
 interface buttonSearchProps {
   buttonText: string;
   buttonClick?: () => void;
-  isPressed:boolean;
+  isPressed: boolean;
 }
 
 export default function ButtonSearchCategories({ buttonText, buttonClick, isPressed }: buttonSearchProps) {

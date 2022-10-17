@@ -1,26 +1,7 @@
 import React from 'react';
 import GymClassItemSmall from '../components/GymClassItemSmall';
 import { calculateWorkoutTime } from '../utils/workoutTime';
-import { UserMock } from '../mocks/UserMock';
 import { useGymClass } from '../hooks/useGymClass';
-import { Post } from "../../../globalTypes/Post"
-
-interface GymClassItemProps {
-    exerciseName: string,
-    studioName:string,
-    classDate:Date,
-    postPic:string,
-    exerciseType:string,
-    duration: number,
-    desc: string,
-}
-
-interface User {
-    id: string,
-    favourites: GymClassItemProps[],
-    booked: GymClassItemProps[],
-    profilePic:string,
-}
 
 
 function UserStats(){
