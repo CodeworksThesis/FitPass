@@ -11,11 +11,14 @@ export const getClasses = async (req: Request, res: Response) => {
     const parsedQs = querystring.parse(parsedUrl.query);
    
     const exerciseTypes = parsedQs.exerciseType.split(',');
-    console.log(exerciseTypes)
+    console.log(parsedQs)
+
 
 
     const classes = await Post.find()
-   .where('exerciseType').equals(parsedQs.exerciseType);
+    .where('location').equals(parsedQs.location)
+    .where('exerciseType').in(exerciseTypes)
+
    
 
     if (!classes.length || !classes) { throw new Error('no found') }
