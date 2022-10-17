@@ -10,7 +10,10 @@ import {FavoritesType} from '../hooks/useGymClass'
 // copy this
 export default function Favorites() {
 
-  const { favoriteGymClassDetails, userId} = useGymClass();
+  const { favoriteGymClassDetails, userId, noFavorites} = useGymClass();
+
+
+  console.log(' this is favoriteGymClassDetails', favoriteGymClassDetails);
 
 
   const [favorites, setFavorites] = useState<FavoritesType>()
@@ -27,7 +30,7 @@ export default function Favorites() {
     }
   },[userId])
 
-
+  if(noFavorites) return <h1> no favorites </h1>
 
 
 

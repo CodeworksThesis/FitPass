@@ -6,13 +6,19 @@ import {Post} from '../../../globalTypes/Post'
 
 export const isFavorite = (favoriteGymClassDetails:Post[], id:string) =>{
 
- const findId = favoriteGymClassDetails.find(item=>{
-    console.log(item.id.toString() === id.toString())
-    console.log('this is id', id)
-    console.log('this is item.id', item.id)
+   if(!favoriteGymClassDetails) return;
+
+ const hasId = favoriteGymClassDetails.find(item=>{
+
     return item.id.toString() === id.toString()
- })
-  if(findId) return true;
-  else return false;
+ });
+
+ // console.log({hasId, id, favoriteGymClassDetails})
+
+
+   if(hasId) return true
+   else return false;
+   
+
 }
 

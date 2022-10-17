@@ -8,7 +8,19 @@ export const getFavorites = async (userId: string) => {
     return json.data;
   }
   catch (e) {
-    console.error('getBookings', e)
+    console.error('getFavorites', e)
+  }
+}
+
+export const getFavoritesDetails = async (userId: string) => {
+  if (!userId) return;
+  try {
+    const response = await fetch(baseURL + `favorites/details/${userId}`)
+    const json = await response.json()
+    return json.data;
+  }
+  catch (e) {
+    console.error('getFavorites', e)
   }
 }
 

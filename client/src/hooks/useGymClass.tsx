@@ -5,22 +5,22 @@ import { Post } from "../../../globalTypes/Post";
 import { getBookings, getFavorites, getGymClass } from '../utils/api.service';
 import { ObjectId } from "mongodb";
 
-interface Favorited {
+export interface Favorited {
   userId: string,
   gymClassId: string[]
 }
 
-interface FavoritesType {
+export interface FavoritesType {
   favorited: Favorited[],
-  _id: ObjectId
+  _id: any
 }
 
-interface BookingsType {
+export interface BookingsType {
   booked: Favorited[],
-  _id: ObjectId
+  _id: any
 }
 
-interface Props {
+export interface Props {
   favoriteGymClassDetails: Post[],
   bookedGymClassDetails: Post[],
   userId: string | undefined,
@@ -28,6 +28,7 @@ interface Props {
   loadingFavorites: boolean,
   loadingBookings: boolean,
   setFavorites:React.Dispatch<React.SetStateAction<FavoritesType | undefined>>,
+  setNoFavorites: React.Dispatch<React.SetStateAction<boolean>>,
   setFavoriteGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
   setBookedGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
   noFavorites: boolean
@@ -37,7 +38,7 @@ interface Props {
 const GymClassContext = createContext<Props>({
   favoriteGymClassDetails: [],
   bookedGymClassDetails: [],
-  favorites: {favorited:[], _id:new ObjectId("")},
+  favorites: {favorited:[{userId:"", gymClassId:[]}], _id:""},
   userId: '',
   loadingFavorites: false,
   loadingBookings: false,
@@ -48,7 +49,9 @@ const GymClassContext = createContext<Props>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setFavoriteGymClassDetails: () => { },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setBookedGymClassDetails: () => { }
+  setBookedGymClassDetails: () => { },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setNoFavorites: () => {}
 })
 
 export const GymClassProvider = ({ children }: { children: React.ReactNode }) => {
@@ -71,7 +74,8 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
     if (userId) {
       getFavorites(userId)
         .then(data => {
-          setFavorites(data)
+          if(!data) setFavorites({favorited:[{userId:userId, gymClassId:[]}], _id:""})
+          else setFavorites(data)
         })
         .catch(error => console.log(error))
 
@@ -90,17 +94,27 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
       return setNoFavorites(true);
     } else {
       setNoFavorites(false)
-      favorites && favorites.favorited[0].gymClassId.forEach(item => {
+      console.log('line 97')
+      console.log(favorites.favorited[0].gymClassId)
+      if(favorites.favorited[0].gymClassId.length === 0 ){
+        setFavoriteGymClassDetails([])
+      }
+       favorites.favorited[0].gymClassId.forEach(item => {
+         console.log('line 99')
         getGymClass(item)
           .then(data => {
+            if(!favoriteGymClassDetails.filter(item => item.id === data.id).length){
+            console.log('line 102')
             setFavoriteGymClassDetails(prev => [...prev, data])
+            }
           })
           .catch((error) => console.log(error))
           .finally(() => setLoadingFavorites(false))
+
       })
     }
 
-  }, [favorites]);
+  }, [favorites?.favorited[0]?.gymClassId]);
 
   // to get booking details
   useEffect(() => {
@@ -121,6 +135,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
   }, [bookings])
 
   const memoedValue = useMemo(() => ({
+    setNoFavorites,
     favorites,
     setFavorites,
     favoriteGymClassDetails,
