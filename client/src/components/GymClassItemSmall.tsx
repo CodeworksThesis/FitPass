@@ -1,17 +1,10 @@
 import * as React from 'react';
 import { formatDate, formatStartEndTime } from '../utils/time';
-interface GymClassItemProps {
-    exerciseName: string,
-    studioName:string,
-    classDate:Date,
-    postPic:string,
-    exerciseType:string,
-    duration:number,
-    desc:string,
-}
+import { Post } from '../../../globalTypes/Post'
 
 
-export default function GymClassItemSmall ({exerciseName, studioName, classDate, postPic, exerciseType, duration, desc}: GymClassItemProps) {
+export default function GymClassItemSmall (post: Post) {
+  const { exerciseName, studioName, postPic, classDate, duration, desc } = post
   return (
     <div className="rounded-2xl flex w-[95%] overflow-hidden mt-[3%] h-[8rem] max-w-4xl">
       <div className="w-52 overflow-hidden ">

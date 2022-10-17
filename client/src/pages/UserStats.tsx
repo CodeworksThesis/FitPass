@@ -2,6 +2,8 @@ import React from 'react';
 import GymClassItemSmall from '../components/GymClassItemSmall';
 import { calculateWorkoutTime } from '../utils/workoutTime';
 import { UserMock } from '../mocks/UserMock';
+import { useGymClass } from '../hooks/useGymClass';
+import { Post } from "../../../globalTypes/Post"
 
 interface GymClassItemProps {
     exerciseName: string,
@@ -22,11 +24,13 @@ interface User {
 
 
 function UserStats(){
+
+    const { bookedGymClassDetails } = useGymClass();
     
-    const classes = UserMock.booked.filter((item) => {
-        return item.classDate <= new Date();
-          })
-      
+    const classes = bookedGymClassDetails.filter((item) => {
+        return new Date(item.classDate) < new Date()
+    }).sort((a, b) => { return new Date(b.classDate).getTime() - new Date(a.classDate).getTime() }) 
+
     return(
         <div className='relative block flex flex-col w-full items-center mt-20'>
             <h2 className='italic font-bold text-xl'>YOUR STATS</h2>
@@ -43,7 +47,7 @@ function UserStats(){
             </div>
             <h2 className='italic font-bold text-xl mt-6'>HISTORY</h2>
             <div className='flex flex-col items-center w-full'>
-                {classes.map((post,index) => <GymClassItemSmall key={index} exerciseName={post.exerciseName} studioName={post.studioName} classDate={post.classDate} postPic={post.postPic} exerciseType={post.exerciseType} duration={post.duration} desc={post.desc}/>)}
+                {classes.map(post => <GymClassItemSmall key={post.id} {...post}/>)}
             </div>
         </div>
     )
