@@ -6,8 +6,13 @@ import ButtonSearchCategories from '../components/ButtonSearchCategories';
 import { useState, useEffect } from 'react';
 
 import { getGymClasses } from '../utils/api.service'
+import { useNavigate } from 'react-router-dom';
+import { Post } from '../../../globalTypes/Post'
+
 
 export default function Search() {
+
+  const navigate = useNavigate();
 
   const [classes, setClasses] = useState([])
 
@@ -47,7 +52,6 @@ export default function Search() {
 
   const handleSearch = async () => {
 
-    console.log(location)
 
     // get time, location, price
     // create a url
@@ -61,10 +65,23 @@ export default function Search() {
       categoryString = categoryButtons.join()
     }
 
-    const response = await fetch( 'http://localhost:3001/search?exerciseType=' + categoryString + '&location=' + location) //http://localhost:3001/search?exerciseType=Other,Pilates
-    const json = await response.json()
+    try {
+      const response = await fetch( 'http://localhost:3001/search?exerciseType=' + categoryString + '&location=' + location) //http://localhost:3001/search?exerciseType=Other,Pilates
+      const json = await response.json()
+      console.log(json)
 
-    console.log(json)
+      navigate('/searchresults', {state: {
+        data: json
+      }} )
+    } catch (error) {
+      console.log(error)
+    }
+
+
+
+
+
+
 
   }
 

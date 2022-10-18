@@ -16,8 +16,11 @@ export const getClasses = async (req: Request, res: Response) => {
 
 
     const classes = await Post.find()
-    .where('location').equals(parsedQs.location)
+    //.where('location').equals(parsedQs.location)
     .where('exerciseType').in(exerciseTypes)
+
+    
+
 
    
 
