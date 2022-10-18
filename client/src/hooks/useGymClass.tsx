@@ -91,7 +91,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
   // to get favorite details
   useEffect(() => {
     setLoadingFavorites(true);
-    if (!favorites) {
+    if (!favorites || !Object.keys(favorites.favorited[0].gymClassId).length) {
       return setNoFavorites(true);
     } else {
       setNoFavorites(false)
@@ -105,7 +105,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
   // to get booking details
   useEffect(() => {
     setLoadingBookings(true)
-    if (!bookings) {
+    if (!bookings || !Object.keys(bookings.booked[0].gymClassId).length) {
       return setNoBookings(true);
     } else {
       setNoBookings(false)

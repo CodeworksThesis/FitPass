@@ -23,30 +23,30 @@ export default function Favorites() {
     .then(data=>{console.log(data)
       setFavorites(data)})
       .catch(e => console.log(e))
-    }
+    }  
   },[userId])
-  
-  //not working and makes is authenticated not work
-  // if(noFavorites) return <h1> no favorites </h1>
   
 
   return (
     <>
-      {isAuthenticated ? 
-      <div className='relative flex flex-col w-full items-center mt-20'>
+    {isAuthenticated? 
+        <div className='relative flex flex-col w-full items-center mt-20'>
         <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
+      {noFavorites ? 
+      <h1 className='mt-2'>No favorites</h1> :
         <div className='flex flex-col items-center w-[90%]'>
-          {favoriteGymClassDetails?.map((item:Post)=>{
-            return (
-              <GymClassItem
-              key={item.id}
-              {...item}
-              />
-              )
-            })}
-        </div>
-      </div>
-          : navigate('/')}
+        {favoriteGymClassDetails?.map((item:Post)=>{
+          return (
+            <GymClassItem
+            key={item.id}
+            {...item}
+            />
+            )
+          })}
+          </div>
+          }
+          </div>
+        : navigate('/')}
     </>
   )
 }
