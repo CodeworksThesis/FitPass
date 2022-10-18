@@ -6,6 +6,9 @@ import Post from '../Model/classModel'
 require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
+const axios = require('axios')
+require('dotenv').config()
+
 export const getFavorites = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
@@ -200,3 +203,27 @@ export const makePayment = async (req: Request, res: Response) => {
       }
   }
 }
+//change username in auth0 database
+const mgmt_api_token = process.env.MANANAGEMENT_API_KEY
+
+export const changeUsername =  async (req: Request, res) => {
+  const { id } = req.params
+  const { nickname } = req.body
+
+  var options = {
+      method: 'PATCH',
+      url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+      headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${mgmt_api_token}`,
+          'cache-control': 'no-cache'
+      },
+      data: JSON.stringify({ nickname })
+  };
+  axios.request(options).then(function (response: any) {
+      console.log(response.data);
+      res.send(response.data)
+  }).catch(function (error: any) {
+      console.error(error);
+  });
+};

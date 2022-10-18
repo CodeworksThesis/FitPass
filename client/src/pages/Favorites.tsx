@@ -1,11 +1,13 @@
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useGymClass } from '../hooks/useGymClass'
 import { getFavorites } from '../utils/api.service';
 import { useEffect, useState } from 'react';
 import GymClassItem from '../components/GymClassItem'
 import {Post} from '../../../globalTypes/Post'
-import { useAuth0 } from "@auth0/auth0-react";
 import {FavoritesType} from '../hooks/useGymClass'
+import { useNavigate } from 'react-router-dom';
+
 
 // copy this
 export default function Favorites() {
