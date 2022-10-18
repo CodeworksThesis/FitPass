@@ -151,3 +151,26 @@ export const changeUsername =  async (req: Request, res) => {
       console.error(error);
   });
 };
+
+//change profile pic in auth0 database
+export const changePic =  async (req: Request, res) => {
+  const { id } = req.params
+  const { picture } = req.body
+
+  var options = {
+      method: 'PATCH',
+      url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+      headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${mgmt_api_token}`,
+          'cache-control': 'no-cache'
+      },
+      data: JSON.stringify({ picture })
+  };
+  axios.request(options).then(function (response: any) {
+      console.log(response.data);
+      res.send(response.data)
+  }).catch(function (error: any) {
+      console.error(error);
+  });
+};
