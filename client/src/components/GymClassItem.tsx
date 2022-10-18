@@ -1,88 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { formatDate, formatTime } from "../utils/time";
 import { Link } from "react-router-dom";
 import { Post } from "../../../globalTypes/Post";
-import { addFavorites, deleteFavorite, getGymClass, getFavoritesDetails } from "../utils/api.service";
-import { FavoritesType, useGymClass } from "../hooks/useGymClass";
+import { addFavorites, deleteFavorite } from "../utils/api.service";
+import { useGymClass } from "../hooks/useGymClass";
 import { isFavorite } from "../utils/LikeButton";
 
 // copy this
 export default function GymClassItem(post: Post) {
-  const [toggle, setToggle] = useState(false);
   const { exerciseName, id, studioName, postPic, classDate } = post;
 
-  const { favorites, userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails } =
+  const { userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails } =
     useGymClass();
-
-    // console.log({favorites})
-
-  //setFavorites()
-
-  // const newFavorites = favorites.favorited[0].gymClassId.push(id)
-  // console.log(newFavorites)
 
   const handleClick =  () => {
     if (userId) {
-      const newFavorites = { ...favorites } as FavoritesType;
-      console.log(isFavorite(favoriteGymClassDetails, id));
-
       if (!isFavorite(favoriteGymClassDetails, id)) {
-        // double check that isFavorite is working as expected
-
-        //newFavorites.favorited[0].gymClassId.push(id)
+        // update favoritegymclassdetails
+        if(!favoriteGymClassDetails.filter(item => item.id === id)) {
+          setFavoriteGymClassDetails([...favoriteGymClassDetails, post]) 
+        }
         addFavorites(userId, id) // check what is happening here is correct
           .then((data) => {
             setFavorites(data);
           }) // check this is working as expected
           .catch((e) => console.log(e));
-          getFavoritesDetails(userId)
-            .then(data=> setFavoriteGymClassDetails(data))
-            .catch(e=> console.log(e))
 
       } else {
         // newFavorites?.favorited[0]?.gymClassId.filter((item) => item !== id);
-        const newFavorited = {...favorites} as FavoritesType // we tell typescript favorites can not be undefined
-        newFavorited.favorited[0].gymClassId = newFavorited?.favorited[0]?.gymClassId.filter(
-          (item) => item !== id
-        );
-        console.log({newFavorited});
-        if (newFavorited) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-          setFavorites(newFavorited);
-          deleteFavorite(userId, id)
-            .then((data) => {console.log('deleteFavorited', data)
-             setFavorites(data);
-            //  if(data.favorited[0].gymClassId.length === 0 ){
-            //     setFavoriteGymClassDetails([])
-            //   }
-            //   // @ts-nocheck
-            //   data.favorited[0].gymClassId.forEach(item => {
-            //    getGymClass(item)
-            //      .then(data => {
-            //        if(!favoriteGymClassDetails.filter(item => item.id === data.id).length){
-            //        console.log('line 102')
-            //        setFavoriteGymClassDetails(prev => [...prev, data])
-            //        }
-            //      })
-            //      .catch((error) => console.log(error))
-            //     })
-            })
-
-            getFavoritesDetails(userId)
-            .then(data=> setFavoriteGymClassDetails(data))
-            .catch(e=> console.log(e))
-
-
-            // console.log({newFavorited});
+        setFavoriteGymClassDetails(favoriteGymClassDetails.filter(item => item.id != id))
+        deleteFavorite(userId, id)
+          .then((data) => {
+            setFavorites(data);
+          })
       }
     }
-  }
 }
 
-
-
-  console.log(isFavorite(favoriteGymClassDetails, id));
 
   return (
     <article className="rounded-2xl flex w-full overflow-hidden mt-[3%] h-[15rem]  hover:scale-105 transition delay-150 duration-300">
@@ -121,7 +75,5 @@ export default function GymClassItem(post: Post) {
     </article>
   );
 }
-function item(item: any, arg1: (any: any) => void) {
-    throw new Error("Function not implemented.");
-}
+
 

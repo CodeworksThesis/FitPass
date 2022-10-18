@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Post } from "../../../globalTypes/Post";
-import { getBookings, getFavorites, getGymClass } from '../utils/api.service';
+import { getBookings, getFavorites, getGymClass, getFavoritesDetails } from '../utils/api.service';
 import { ObjectId } from "mongodb";
 
 export interface Favorited {
@@ -94,27 +94,13 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
       return setNoFavorites(true);
     } else {
       setNoFavorites(false)
-      console.log('line 97')
-      console.log(favorites.favorited[0].gymClassId)
-      if(favorites.favorited[0].gymClassId.length === 0 ){
-        setFavoriteGymClassDetails([])
-      }
-       favorites.favorited[0].gymClassId.forEach(item => {
-         console.log('line 99')
-        getGymClass(item)
-          .then(data => {
-            if(!favoriteGymClassDetails.filter(item => item.id === data.id).length){
-            console.log('line 102')
-            setFavoriteGymClassDetails(prev => [...prev, data])
-            }
-          })
+      getFavoritesDetails(userId as string)
+          .then(data => setFavoriteGymClassDetails(data))
           .catch((error) => console.log(error))
           .finally(() => setLoadingFavorites(false))
 
-      })
-    }
-
-  }, [favorites?.favorited[0]?.gymClassId]);
+      }
+  }, [favorites]);
 
   // to get booking details
   useEffect(() => {

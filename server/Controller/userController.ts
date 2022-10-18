@@ -27,25 +27,13 @@ export const getFavoritesDetails = async (req:Request, res:Response) =>{
     if (!id) throw new Error('no user id provided')
     const updates = await Favorites.findOne({ "favorited.userId": id })
     const gymClassDetails =  []
-
-    // const gymClassDetails =  await updates.favorited[0].gymClassId.map(async (item)=> {
-    //   const details = await Post.findOne({ id: item }).then(data=>{return data});
-
-
-    //   //  return gymClassDetails.push(details)
-    //   })
-
+    // loop through and update gymClassDetails
     for(let i = 0; i < updates.favorited[0].gymClassId.length; i++ ){
         const details = await Post.findOne({ id: updates.favorited[0].gymClassId[i] })
         gymClassDetails.push(details)
-
     }
-
-      console.log({gymClassDetails});
-
-      res.status(201)
-      res.send(gymClassDetails);
-
+    res.status(201)
+    res.send(gymClassDetails);
   }
 
   catch(e){

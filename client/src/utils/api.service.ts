@@ -17,7 +17,7 @@ export const getFavoritesDetails = async (userId: string) => {
   try {
     const response = await fetch(baseURL + `favorites/details/${userId}`)
     const json = await response.json()
-    return json.data;
+    return json;
   }
   catch (e) {
     console.error('getFavorites', e)

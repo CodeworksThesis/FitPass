@@ -13,12 +13,9 @@ export const isFavorite = (favoriteGymClassDetails:Post[], id:string) =>{
     return item.id.toString() === id.toString()
  });
 
- // console.log({hasId, id, favoriteGymClassDetails})
-
 
    if(hasId) return true
    else return false;
-   
 
 }
 
