@@ -10,10 +10,6 @@ const axios = require('axios')
 const { cloudinary } = require('../utils/cloudinary')
 require('dotenv').config()
 
-const axios = require('axios')
-const { cloudinary } = require('../utils/cloudinary')
-require('dotenv').config()
-
 export const getFavorites = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
