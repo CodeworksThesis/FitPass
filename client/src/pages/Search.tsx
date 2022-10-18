@@ -27,7 +27,7 @@ export default function Search() {
   const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cycling', 'Swimming', 'Dance', 'Hiking', 'Other']
 
   const [maxPrice, setMaxPrice] = useState<number>(50);
-  const [timeButtons, setTimeButtons] = useState<Array<string>>([]);
+  const [dayButtons, setDayButtons] = useState<Array<string>>([]);
   const [categoryButtons, setCategoryButtons] = useState<Array<string>>([]);
   const [location, setLocation] = useState<string>();
 
@@ -36,9 +36,9 @@ export default function Search() {
     setMaxPrice(event.target.value)
   }
 
-  const handleTime = (newButton: string) => {
-    timeButtons.includes(newButton) ?
-      setTimeButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setTimeButtons([...timeButtons, newButton])
+  const handleDay = (newButton: string) => {
+    dayButtons.includes(newButton) ?
+      setDayButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setDayButtons([...dayButtons, newButton])
   }
 
   const handleCategory = (newButton: string) => {
@@ -65,8 +65,11 @@ export default function Search() {
       categoryString = categoryButtons.join()
     }
 
+    const dayString = dayButtons.join();
+    
     try {
-      const response = await fetch( 'http://localhost:3001/search?exerciseType=' + categoryString + '&location=' + location) //http://localhost:3001/search?exerciseType=Other,Pilates
+      const response = await fetch( 'http://localhost:3001/search?exerciseType=' + categoryString + '&location=' + location + '&price=' + maxPrice + '&day=' + dayString) //http://localhost:3001/search?exerciseType=Other,Pilates
+      //const response = await fetch(url)
       const json = await response.json()
       console.log(json)
 
@@ -78,11 +81,6 @@ export default function Search() {
     }
 
 
-
-
-
-
-
   }
 
   return (
@@ -90,9 +88,12 @@ export default function Search() {
       <PageTitle title='SEARCH YOUR CLASS' />
       <section className='ml-8 font-black mt-6'>
 
+        <div className='flex'>
 
+          <input type="text" placeholder='insert exercise name' />
+          <button onClick={handleSearch}>search</button>
 
-        <button onClick={handleSearch}>search</button>
+        </div>
         <h2 className='mb-3 location-h2'>Location</h2>
         <form>
           {/* <label htmlFor="location" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label> */}
@@ -106,9 +107,9 @@ export default function Search() {
         </form>
         <section className='mt-6'>
           <h2>Time</h2>
-          <ButtonSearch buttonText='Morning' buttonClick={() => handleTime('Morning')} isPressed={timeButtons.includes('Morning')} />
-          <ButtonSearch buttonText='Afternoon' buttonClick={() => handleTime('Afternoon')} isPressed={timeButtons.includes('Afternoon')} />
-          <ButtonSearch buttonText='Evening' buttonClick={() => handleTime('Evening')} isPressed={timeButtons.includes('Evening')} />
+          <ButtonSearch buttonText='Today' buttonClick={() => handleDay('Today')} isPressed={dayButtons.includes('Today')} />
+          <ButtonSearch buttonText='Tomorrow' buttonClick={() => handleDay('Tomorrow')} isPressed={dayButtons.includes('Tomorrow')} />
+          <ButtonSearch buttonText='Next week' buttonClick={() => handleDay('Next week')} isPressed={dayButtons.includes('Next week')} />
         </section>
         <section className='mt-6'>
           <h2>Price</h2>

@@ -2,8 +2,39 @@ import Post from '../Model/classModel'
 import { Request, Response } from 'express'
 import url from 'url'
 import { isAssertEntry } from 'typescript';
+
 //import querystring from 'querystring'
 const querystring = require('querystring');
+
+
+export const tomorrow = () => {
+    const day = new Date().setHours(0, 0, 0);
+    const tomorrow = new Date(day);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+}
+export const dayAfterTomorrow = () => {
+    const dayAfterTomorrow = new Date(tomorrow());
+    dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
+    return dayAfterTomorrow;
+}
+export const nextMonday = () => {
+    const day = new Date().setHours(0, 0, 0);
+    const nextMonday = new Date(day);
+    nextMonday.setDate(nextMonday.getDate() + (((8 - nextMonday.getDay()) % 7) || 7));
+    return nextMonday;
+}
+export const secondMonday = () => {
+    const secondMonday = new Date(nextMonday());
+    secondMonday.setDate(secondMonday.getDate() + 7);
+    return secondMonday;
+}
+
+
+
+
+
+
 
 export const getClasses = async (req: Request, res: Response) => {
   try {
@@ -12,31 +43,87 @@ export const getClasses = async (req: Request, res: Response) => {
     const parsedQs = querystring.parse(parsedUrl.query);
    
     const exerciseTypes = parsedQs.exerciseType.split(',');
+    const day = parsedQs.day.split(',');
     console.log(parsedQs)
-
-
-
-    const classes = await Post.find({
-        $or: [
-                { location:
-                    {$in: [ parsedQs.location ]}
-                },
-                {exerciseType:
-                    {$in: exerciseTypes }
-                } 
-            ]
-        })
     
 
+    let query:any = {   
+            $and: [ {exerciseType: {$in: exerciseTypes }},
+                    {price: { $lte: Number(parsedQs.price)}},
+                    {classDate: { $gte: new Date().toISOString()}}
+                ]
+    }
     
-
+    if(parsedQs.location !== 'undefined'){
+        query.$and.push( {location:{$in: [ parsedQs.location ]}})
+    }
     
-
- 
-
-    console.log('getClasses, classes', classes)
-    //getClasses, classes []
-
+    if(parsedQs.day) {
+        if(day.includes('Today') && day.includes('Tomorrow')) {
+            query.$and.push({ classDate: { $lte: new Date( dayAfterTomorrow()).toISOString()} })
+        }
+        else if(day.includes('Today') && day.includes('Next week')) {
+            query.$and.push(
+                {
+                    $or: [
+                            // today
+                            { classDate: { $lte: new Date( tomorrow() ).toISOString()}},
+                            // next week
+                            {$and: [
+                                { classDate: { $gte: new Date( nextMonday()).toISOString()}},
+                                { classDate: { $lte: new Date( secondMonday()).toISOString()}},
+                                ]
+                            }
+                        ]
+                }
+            )
+        }
+        else if(day.includes('Tomorrow') && day.includes('Next week')) {
+            query.$and.push(
+                {
+                    $or: [
+                        // tomorrow
+                        { $and: [
+                                { classDate: { $lte: new Date( dayAfterTomorrow() ).toISOString()}},
+                                { classDate: { $gte: new Date( tomorrow()).toISOString()}},
+                             ]
+                        },
+                        // next week
+                        {$and: [
+                            { classDate: { $gte: new Date( nextMonday()).toISOString()}},
+                            { classDate: { $lte: new Date( secondMonday()).toISOString()}},
+                            ]
+                        }
+                    ]
+                }
+            )
+        }
+        else if(day.includes('Today') )
+        {
+            query.$and.push({ classDate: { $lte: new Date(tomorrow()).toISOString() }})
+        }
+        else if(day.includes('Tomorrow') ) {
+            query.$and.push(
+                {
+                    $and: [
+                        { classDate: { $lte: new Date( dayAfterTomorrow() ).toISOString()}},
+                        { classDate: { $gte: new Date( tomorrow()).toISOString()}},
+                    ]
+                }
+            )
+        }
+        else if (day.includes('Next week')) {
+            query.$and.push(
+                {$and: 
+                [
+                    { classDate: { $gte: new Date( nextMonday()).toISOString()}},
+                    { classDate: { $lte: new Date( secondMonday()).toISOString()}},
+                ]
+            })
+        }
+    
+    }
+    const classes = await Post.find(query);
 
     if (!classes.length || !classes) { throw new Error('no found') }
     res.status(200)
@@ -48,3 +135,5 @@ export const getClasses = async (req: Request, res: Response) => {
     res.send({ error: "no results found", data: null });
     }
 }
+
+
