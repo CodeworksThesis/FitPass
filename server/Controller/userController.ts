@@ -2,6 +2,7 @@
 import Favorites from "../Model/favoritesModel";
 import Bookings from '../Model/bookingModel'
 import { Request, Response } from "express";
+import Post from '../Model/classModel'
 require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
@@ -17,6 +18,28 @@ export const getFavorites = async (req: Request, res: Response) => {
     console.log(e)
     res.status(400).send({ error: e.message, data: null })
   }
+}
+
+export const getFavoritesDetails = async (req:Request, res:Response) =>{
+
+  try{
+    const { id } = req.params
+    if (!id) throw new Error('no user id provided')
+    const updates = await Favorites.findOne({ "favorited.userId": id })
+    const gymClassDetails =  []
+    // loop through and update gymClassDetails
+    for(let i = 0; i < updates.favorited[0].gymClassId.length; i++ ){
+        const details = await Post.findOne({ id: updates.favorited[0].gymClassId[i] })
+        gymClassDetails.push(details)
+    }
+    res.status(201)
+    res.send(gymClassDetails);
+  }
+
+  catch(e){
+    console.log(e)
+  }
+
 }
 
 export const addFavorites = async (req: Request, res: Response) => {
@@ -38,7 +61,12 @@ export const addFavorites = async (req: Request, res: Response) => {
     } else {
       updates.favorited.map(item => {
         if (item.userId === id) {
+          if(item.gymClassId.some(element => element === gymClassId)){
+          return
+        }
+          else{
           return item.gymClassId = [...item.gymClassId, gymClassId]
+          }
         }
         return item
       })
@@ -90,6 +118,27 @@ export const getBookings = async (req: Request, res: Response) => {
     console.log(e)
     res.status(400).send({ error: e.message, data: null })
   }
+}
+
+export const getBookingsDetails = async (req: Request, res: Response) => {
+  try{
+    const { id } = req.params
+    if (!id) throw new Error('no user id provided')
+    const updates = await Bookings.findOne({ "booked.userId": id })
+    const gymClassDetails = []
+    // loop through and update gymClassDetails
+    for(let i = 0; i < updates.booked[0].gymClassId.length; i++ ){
+        const details = await Post.findOne({ id: updates.booked[0].gymClassId[i] })
+        gymClassDetails.push(details)
+    }
+    res.status(201)
+    res.send(gymClassDetails);
+  }
+
+  catch(e){
+    console.log(e)
+  }
+
 }
 
 export const addBookings = async (req: Request, res: Response) => {
