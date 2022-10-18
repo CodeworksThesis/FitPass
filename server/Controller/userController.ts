@@ -6,6 +6,10 @@ import Post from '../Model/classModel'
 require("dotenv").config()
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
+const axios = require('axios')
+const { cloudinary } = require('../utils/cloudinary')
+require('dotenv').config()
+
 export const getFavorites = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
@@ -198,5 +202,69 @@ export const makePayment = async (req: Request, res: Response) => {
               error: err.message,
           })
       }
+  }
+}
+//change username in auth0 database
+const mgmt_api_token = process.env.MANANAGEMENT_API_KEY
+
+export const changeUsername = async (req: Request, res) => {
+  const { id } = req.params
+  const { nickname } = req.body
+
+  var options = {
+    method: 'PATCH',
+    url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${mgmt_api_token}`,
+      'cache-control': 'no-cache'
+    },
+    data: JSON.stringify({ nickname })
+  };
+  axios.request(options).then(function (response: any) {
+    console.log(response.data);
+    res.send(response.data)
+  }).catch(function (error: any) {
+    console.error(error);
+  });
+};
+
+//change profile pic in auth0 database
+export const changePic = async (req: Request, res) => {
+  const { id } = req.params
+  const { picture } = req.body
+
+  var options = {
+    method: 'PATCH',
+    url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${mgmt_api_token}`,
+      'cache-control': 'no-cache'
+    },
+    data: JSON.stringify({ picture: picture })
+  };
+  axios.request(options).then(function (response: any) {
+    console.log(response.data);
+    res.send(response.data)
+  }).catch(function (error: any) {
+    console.error(error);
+  });
+};
+
+//upload image to cloudinary
+export const uploadToCloudinary = async (req, res) => {
+  try {
+    const fileStr = req.body.data
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: 'fitpass'
+    })
+    console.log(uploadedResponse)
+    // res.json({msg: "yay"})
+    res.send(uploadedResponse)
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ err: "Something went wrong" })
   }
 }
