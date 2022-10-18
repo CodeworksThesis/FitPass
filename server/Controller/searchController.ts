@@ -1,63 +1,34 @@
 import Post from '../Model/classModel'
 import { Request, Response } from 'express'
 import url from 'url'
-import { isAssertEntry } from 'typescript';
-
-//import querystring from 'querystring'
+import { tomorrow, dayAfterTomorrow ,nextMonday, secondMonday } from '../utils/days';
 const querystring = require('querystring');
-
-
-export const tomorrow = () => {
-    const day = new Date().setHours(0, 0, 0);
-    const tomorrow = new Date(day);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow;
-}
-export const dayAfterTomorrow = () => {
-    const dayAfterTomorrow = new Date(tomorrow());
-    dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
-    return dayAfterTomorrow;
-}
-export const nextMonday = () => {
-    const day = new Date().setHours(0, 0, 0);
-    const nextMonday = new Date(day);
-    nextMonday.setDate(nextMonday.getDate() + (((8 - nextMonday.getDay()) % 7) || 7));
-    return nextMonday;
-}
-export const secondMonday = () => {
-    const secondMonday = new Date(nextMonday());
-    secondMonday.setDate(secondMonday.getDate() + 7);
-    return secondMonday;
-}
-
-
-
-
-
-
 
 export const getClasses = async (req: Request, res: Response) => {
   try {
-
     const parsedUrl = url.parse(req.url)
     const parsedQs = querystring.parse(parsedUrl.query);
-   
     const exerciseTypes = parsedQs.exerciseType.split(',');
     const day = parsedQs.day.split(',');
-    console.log(parsedQs)
-    
 
     let query:any = {   
-            $and: [ {exerciseType: {$in: exerciseTypes }},
+            $and: [
+                    {exerciseType: { $in: exerciseTypes }},
                     {price: { $lte: Number(parsedQs.price)}},
                     {classDate: { $gte: new Date().toISOString()}}
                 ]
     }
-    
+    if(parsedQs.general !=='undefined') {
+        query.$and.push({exerciseName: { 
+                //partial text search
+                $regex: parsedQs.general,
+                // case insensitive
+                $options: "i"
+            }})
+    }
     if(parsedQs.location !== 'undefined'){
         query.$and.push( {location:{$in: [ parsedQs.location ]}})
     }
-    
     if(parsedQs.day) {
         if(day.includes('Today') && day.includes('Tomorrow')) {
             query.$and.push({ classDate: { $lte: new Date( dayAfterTomorrow()).toISOString()} })

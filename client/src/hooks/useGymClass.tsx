@@ -27,10 +27,10 @@ interface Props {
   userId: string | undefined,
   loadingFavorites: boolean,
   loadingBookings: boolean,
-  setFavoriteGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
-  setBookedGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
-  noFavorites: boolean
-  noBookings: boolean
+  setFavoriteGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>,
+  setBookedGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>,
+  noFavorites: boolean,
+  noBookings: boolean,
 }
 
 const GymClassContext = createContext<Props>({
@@ -59,9 +59,9 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
   const [noBookings, setNoBookings] = useState(false)
 
 
-  //const userId = user?.sub?.split("|")[1]
+  const userId = user?.sub?.split("|")[1]
   // const userId = '114683311426231214348'
-   const userId = '6348534908c244ef54eebefd'
+   //const userId = '6348534908c244ef54eebefd'
 
   // get favorite and booking gymclass Ids
   useEffect(() => {

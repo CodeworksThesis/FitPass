@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import { formatDateTime } from '../utils/time';
 import PageTitle from '../components/PageTitle';
 import { useNavigate } from 'react-router-dom';
+import { addBookings } from '../utils/api.service';
+import { useGymClass } from '../hooks/useGymClass'
 
 // modified from youtube tutorial - https://www.youtube.com/watch?v=W-9uV_OQtV8
 // https://github.com/aliseena/react-stripe-integration-master/blob/master/client/src/App.js
@@ -15,7 +17,8 @@ const mySwal = withReactContent(Swal);
 const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY
 
 export default function Payment() {
-    const { price, exerciseName, classDate, postPic, studioName } = useLocation().state
+    const { userId } = useGymClass();
+    const { price, exerciseName, classDate, postPic, studioName, id } = useLocation().state
     const navigate = useNavigate()
     const priceInCent = price * 100;
     console.log(priceInCent)
@@ -25,7 +28,9 @@ export default function Payment() {
             icon: 'success',
             title: 'Payment was successful',
         })
-        .then(() => navigate('/'))
+        .then(() => {
+            navigate('/')
+        })
     };
     const handleFailure = () => {
         mySwal.fire({
