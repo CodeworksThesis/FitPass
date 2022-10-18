@@ -1,10 +1,7 @@
 import React from 'react'
-import { ValueType } from 'tailwindcss/types/config'
 
 interface popupProps {
   setOpenMessage: (arg0: boolean) => void
-
-  
 }
 
 export const Popup = ({setOpenMessage}: popupProps) => {

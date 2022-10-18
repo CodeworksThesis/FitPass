@@ -6,16 +6,22 @@ import Map from '../components/Map';
 import { formatDateTime } from '../utils/time';
 import ReserveBar from '../components/ReserveBar';
 import { Loading } from '../components/Loading';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function GymClassDetails() {
   const { id } = useParams()
   const [toggle, setToggle] = useState(false)
+  const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
   const gymClass = GymClass.filter(post => post.id === id)
   const { postPic, exerciseName, desc, exerciseType, classDate, studioName, price } = gymClass[0]
   if (!gymClass) return <Loading />
 
   return (
+    <>
+    {isAuthenticated ? 
     <div className="overflow-y-scroll">
       <div className="w-full h-56 md:h-64 mt-16">
         <img src={postPic} alt={exerciseName} className="w-full h-full object-cover" />
@@ -44,5 +50,7 @@ export default function GymClassDetails() {
         <ReserveBar />
       </div>
     </div>
+  : navigate('/')}
+    </>
   )
 }
