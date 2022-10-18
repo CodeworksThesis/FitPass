@@ -120,6 +120,27 @@ export const getBookings = async (req: Request, res: Response) => {
   }
 }
 
+export const getBookingsDetails = async (req: Request, res: Response) => {
+  try{
+    const { id } = req.params
+    if (!id) throw new Error('no user id provided')
+    const updates = await Bookings.findOne({ "booked.userId": id })
+    const gymClassDetails = []
+    // loop through and update gymClassDetails
+    for(let i = 0; i < updates.booked[0].gymClassId.length; i++ ){
+        const details = await Post.findOne({ id: updates.booked[0].gymClassId[i] })
+        gymClassDetails.push(details)
+    }
+    res.status(201)
+    res.send(gymClassDetails);
+  }
+
+  catch(e){
+    console.log(e)
+  }
+
+}
+
 export const addBookings = async (req: Request, res: Response) => {
   try {
     const { id } = req.params

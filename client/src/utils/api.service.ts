@@ -72,6 +72,18 @@ export const getBookings = async (userId: string) => {
   }
 }
 
+export const getBookingsDetails = async (userId: string) => {
+  if (!userId) return;
+  try {
+    const response = await fetch(baseURL + `bookings/details/${userId}`)
+    const json = await response.json()
+    return json;
+  }
+  catch (e) {
+    console.error('getBookings', e)
+  }
+}
+
 export const addBookings = async (userId: string, gymClassId: string) => {
   if (!userId || !gymClassId) return;
   try {

@@ -9,9 +9,7 @@ import { isFavorite } from "../utils/LikeButton";
 // copy this
 export default function GymClassItem(post: Post) {
   const { exerciseName, id, studioName, postPic, classDate } = post;
-
-  const { userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails } =
-    useGymClass();
+  const { userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails } = useGymClass();
 
   const handleClick =  () => {
     if (userId) {

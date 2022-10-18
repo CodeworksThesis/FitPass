@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Post } from "../../../globalTypes/Post";
-import { getBookings, getFavorites, getGymClass, getFavoritesDetails } from '../utils/api.service';
+import { getBookings, getFavorites, getGymClass, getFavoritesDetails, getBookingsDetails } from '../utils/api.service';
 import { ObjectId } from "mongodb";
 
 export interface Favorited {
@@ -98,8 +98,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
           .then(data => setFavoriteGymClassDetails(data))
           .catch((error) => console.log(error))
           .finally(() => setLoadingFavorites(false))
-
-      }
+    }
   }, [favorites]);
 
   // to get booking details
@@ -109,14 +108,10 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
       return setNoBookings(true);
     } else {
       setNoBookings(false)
-      bookings && bookings.booked[0].gymClassId.forEach(item => {
-        getGymClass(item)
-          .then(data => {
-            setBookedGymClassDetails(prev => [...prev, data])
-          })
+      getBookingsDetails(userId as string)
+          .then(data => setBookedGymClassDetails(data))
           .catch((error) => console.log(error))
           .finally(() => setLoadingBookings(false))
-      })
     }
   }, [bookings])
 
