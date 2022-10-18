@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from '../components/Button'
-import { useAuth0, User } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import editIcon from '../icons/edit.svg'
-import axios from 'axios'
+
 
 const Profile = () => {
 

@@ -8,19 +8,13 @@ import {Post} from '../../../globalTypes/Post'
 import {FavoritesType} from '../hooks/useGymClass'
 import { useNavigate } from 'react-router-dom';
 
-
 // copy this
 export default function Favorites() {
 
   const { favoriteGymClassDetails, userId, noFavorites} = useGymClass();
-
-
-  console.log(' this is favoriteGymClassDetails', favoriteGymClassDetails);
-
-
+  const { isAuthenticated, isLoading } = useAuth0();
   const [favorites, setFavorites] = useState<FavoritesType>()
-
-
+  const navigate = useNavigate();
 
   useEffect(()=>{
     if(userId){
@@ -28,29 +22,31 @@ export default function Favorites() {
     getFavorites(userId)
     .then(data=>{console.log(data)
       setFavorites(data)})
-    .catch(e => console.log(e))
+      .catch(e => console.log(e))
     }
   },[userId])
-
-  if(noFavorites) return <h1> no favorites </h1>
-
-
+  
+  //not working and makes is authenticated not work
+  // if(noFavorites) return <h1> no favorites </h1>
+  
 
   return (
-    <div>
+    <>
+      {isAuthenticated ? 
       <div className='relative flex flex-col w-full items-center mt-20'>
         <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
-        <div className='flex flex-col items-center w-full'>
+        <div className='flex flex-col items-center w-[90%]'>
           {favoriteGymClassDetails?.map((item:Post)=>{
             return (
               <GymClassItem
               key={item.id}
               {...item}
               />
-            )
-          })}
+              )
+            })}
         </div>
       </div>
-    </div>
+          : navigate('/')}
+    </>
   )
 }

@@ -6,11 +6,15 @@ import { formatDate } from '../utils/time';
 import { tomorrow, dayAfterTomorrow ,nextMonday, secondMonday } from '../utils/days';
 import { useGymClass } from '../hooks/useGymClass';
 import { Post } from '../../../globalTypes/Post'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useNavigate } from 'react-router-dom';
 
 
  function Bookings(){
 
   const { bookedGymClassDetails } = useGymClass();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0()
 
   const initialClasses = bookedGymClassDetails.filter((item) => {
     return new Date(item.classDate) >= new Date();
@@ -49,6 +53,8 @@ import { Post } from '../../../globalTypes/Post'
   }, [button, bookedGymClassDetails])
 
     return(
+      <>
+      {isAuthenticated? 
         <div className='relative block flex flex-col w-full items-center mt-20'>
           <div className='flex flex-row justify-center'>
             <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
@@ -62,6 +68,8 @@ import { Post } from '../../../globalTypes/Post'
               {classes.map(post => <GymClassItemSmall key={post.id} {...post}/>)}
             </div>
         </div>
+    : navigate('/')}
+      </>
     )
 }
 

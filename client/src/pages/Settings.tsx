@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
+import { useNavigate } from 'react-router-dom';
 
 export const Settings = () => {
 
@@ -9,7 +10,8 @@ export const Settings = () => {
     const [nickname, setNickname] = useState('')
     const [profilePic, setProfilePic] = useState('')
     const [previewSource, setPreviewSource] = useState<any | null>(null);
-    const { user } = useAuth0()
+    const { user, isAuthenticated } = useAuth0()
+    const navigate = useNavigate();
     const userId = user?.sub
 
 
@@ -107,7 +109,9 @@ export const Settings = () => {
 
     return (
 
-        <div>
+        <>
+        {isAuthenticated ?
+        <>
             <div className='mt-[20%]' >
                 <h2 className='italic font-bold text-xl text-center mb-[20px]'>SETTINGS</h2>
 
@@ -115,11 +119,11 @@ export const Settings = () => {
                     <h1 className='text-sm'>Change Username</h1>
                     <form className='mt-[10px] flex flex-col'
                         onSubmit={handleUsernameChange}
-                    >
+                        >
                         <input className='border border-zinc-400 py-2 text-[11px] rounded w-72 text-center' type='text' name='nickname' onChange={e => setNickname(e.target.value)} value={nickname} />
                         <button type='submit'
                             className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
-                        >CONFIRM</button>
+                            >CONFIRM</button>
                     </form >
                     <h1 className='mt-[30px] text-sm'>Change Profile Picture</h1>
                     {/* <button className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] mt-[5px]'
@@ -138,15 +142,17 @@ export const Settings = () => {
                         {/* <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} /> */}
                         <button type='submit'
                             className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
-                        >CONFIRM</button>
+                            >CONFIRM</button>
                     </form >
                     {previewSource && (
                         <img className='h-3/6 w-6/12 rounded-full mt-[20px]' src={previewSource} />
-                    )}
+                        )}
                 </section>
 
             </div>
             {openMessage && <Popup setOpenMessage={setOpenMessage} popupText={popupText} />}
-        </div>
+            </>
+        : navigate('/')}
+        </>
     )
 }
