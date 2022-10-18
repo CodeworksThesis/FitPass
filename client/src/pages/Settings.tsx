@@ -56,6 +56,9 @@ export const Settings = () => {
                         className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] ml-[5px]'
                     >Change</button>
                 </form >
+                <h1 className='mt-[10px]'>Change Profile Picture</h1>
+                <button className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] mt-[5px]'
+                    >Change</button>
             </div>
             {openMessage && <Popup setOpenMessage={setOpenMessage} />}
         </div>
