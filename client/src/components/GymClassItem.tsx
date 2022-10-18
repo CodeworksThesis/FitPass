@@ -16,16 +16,15 @@ export default function GymClassItem(post: Post) {
       if (!isFavorite(favoriteGymClassDetails, id)) {
         // update favoritegymclassdetails
         if(!favoriteGymClassDetails.filter(item => item.id === id)) {
-          setFavoriteGymClassDetails([...favoriteGymClassDetails, post]) 
+          setFavoriteGymClassDetails([...favoriteGymClassDetails, post])
         }
-        addFavorites(userId, id) // check what is happening here is correct
+        addFavorites(userId, id)
           .then((data) => {
             setFavorites(data);
-          }) // check this is working as expected
+          })
           .catch((e) => console.log(e));
 
       } else {
-        // newFavorites?.favorited[0]?.gymClassId.filter((item) => item !== id);
         setFavoriteGymClassDetails(favoriteGymClassDetails.filter(item => item.id != id))
         deleteFavorite(userId, id)
           .then((data) => {
