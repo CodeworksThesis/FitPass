@@ -70,7 +70,7 @@ export default function GymClassDetails() {
                         {formatDateTime(classDate)}
                     </p>
                     <p className="text-md md:text-lg px-4 pt-1 pb-1">
-                        <span className="font-bold">Price: </span>
+                        <span className="font-bold">Price(€): </span>
                         {price}
                     </p>
                     <p className="text-md md:text-lg px-4 pt-1 pb-5">

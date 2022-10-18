@@ -68,7 +68,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
 
   const userId = user?.sub?.split("|")[1]
   // const userId = '114683311426231214348'
-  // const userId = '6348534908c244ef54eebefd'
+   //const userId = '6348534908c244ef54eebefd'
 
   // get favorite and booking gymclass Ids
   useEffect(() => {

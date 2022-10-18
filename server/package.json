@@ -35,8 +35,10 @@
     "mongodb-memory-server": "^8.9.3",
     "mongoose": "^6.6.5",
     "nodemon": "^2.0.20",
+    "querystring": "^0.2.1",
     "stripe": "^10.14.0",
-    "supertest": "^6.3.0"
+    "supertest": "^6.3.0",
+    "url": "^0.11.0"
   },
   "exclude": [
     "tests"

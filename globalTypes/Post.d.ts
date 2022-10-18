@@ -8,6 +8,7 @@ export interface Post {
     latitude: number,
     classDate: Date,
     exerciseType: string,
-    price: string,
-    postPic: string
+    price: number,
+    postPic: string,
+    location: string
 }
