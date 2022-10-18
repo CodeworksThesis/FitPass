@@ -7,7 +7,7 @@ const DBTest = process.env.DBTEST
 async function main() {
 
   await mongoose.connect(DBPATH!)
-  console.log('datbase is connected')
+  console.log('database is connected')
 }
 
 main().catch(err => console.log(err))

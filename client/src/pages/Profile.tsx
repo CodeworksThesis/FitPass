@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from '../components/Button'
-import { useAuth0, User } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+
 
 const Profile = () => {
 
     const { user, isAuthenticated } = useAuth0();
-
-
     const navigate = useNavigate();
+    // console.log(user)
+
 
     return (
         <>
@@ -18,7 +19,10 @@ const Profile = () => {
                         <div className="relative flex flex-col w-full items-center mt-6">
                             <img src={user?.picture} className="object-cover w-36 h-36 rounded-full custom-position border-4 border-[#6F87F5]"></img>
                         </div>
-                        <p className='text-lg text-center font-bold pt-4 pb-4'>{user?.name}</p>
+                        <section className='flex text-lg justify-center font-bold pt-4 pb-4'>
+                            {user?.nickname}
+                            {/* <button><img className='h-3 w-7' src={editIcon} /></button> */}
+                            </section>
                         <div className='flex flex-col items-center h-72 justify-between'>
                             <Button buttonClick={() => { navigate('/favorites') }} buttonText='Favorites' />
                             <Button buttonClick={() => { navigate('/bookings') }} buttonText='Bookings' />
