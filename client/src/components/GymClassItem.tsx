@@ -36,7 +36,7 @@ export default function GymClassItem(post: Post) {
 
 
   return (
-    <article className="rounded-2xl flex w-full overflow-hidden mt-[3%] h-[15rem]"  /** hover:scale-105 transition delay-150 duration-300 **/>
+    <article className="rounded-2xl flex w-full overflow-hidden mt-[3%] h-[15rem]">
       <Link
         className="w-[40%] overflow-hidden cursor-pointer"
         to={`/gymclass/${id}`}

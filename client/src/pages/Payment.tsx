@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import StripeCheckout from 'react-stripe-checkout';
@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { formatDateTime } from '../utils/time';
 import PageTitle from '../components/PageTitle';
 import { useNavigate } from 'react-router-dom';
-import { addBookings } from '../utils/api.service';
+import { addBookings, getBookingsDetails } from '../utils/api.service';
 import { useGymClass } from '../hooks/useGymClass'
 
 // modified from youtube tutorial - https://www.youtube.com/watch?v=W-9uV_OQtV8
@@ -17,7 +17,7 @@ const mySwal = withReactContent(Swal);
 const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY
 
 export default function Payment() {
-    const { userId } = useGymClass();
+    const { userId, setBookings, setBookedGymClassDetails } = useGymClass();
     const { price, exerciseName, classDate, postPic, studioName, id } = useLocation().state
     const navigate = useNavigate()
     const priceInCent = price * 100;
@@ -30,7 +30,14 @@ export default function Payment() {
         })
         .then(() => {
             navigate('/')
+            addBookings(userId as string, id)
+            .then(data => setBookings(data))
+            .catch(error => console.log(error))
         })
+
+        getBookingsDetails(userId as string)
+        .then(data => setBookedGymClassDetails(data))
+        .catch(error => console.log(error))
     };
     const handleFailure = () => {
         mySwal.fire({

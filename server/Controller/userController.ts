@@ -114,7 +114,6 @@ export const getBookings = async (req: Request, res: Response) => {
     const { id } = req.params
     if (!id) throw new Error('no user id provided')
     const updates = await Bookings.findOne({ "booked.userId": id })
-    console.log({ updates })
     res.status(201)
     res.send({ error: null, data: updates })
   }
@@ -222,7 +221,6 @@ export const changeUsername = async (req: Request, res) => {
     data: JSON.stringify({ nickname })
   };
   axios.request(options).then(function (response: any) {
-    console.log(response.data);
     res.send(response.data)
   }).catch(function (error: any) {
     console.error(error);
@@ -245,7 +243,6 @@ export const changePic = async (req: Request, res) => {
     data: JSON.stringify({ picture: picture })
   };
   axios.request(options).then(function (response: any) {
-    console.log(response.data);
     res.send(response.data)
   }).catch(function (error: any) {
     console.error(error);
@@ -259,7 +256,6 @@ export const uploadToCloudinary = async (req, res) => {
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
       upload_preset: 'fitpass'
     })
-    console.log(uploadedResponse)
     // res.json({msg: "yay"})
     res.send(uploadedResponse)
 

@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
     return new Date(item.classDate) >= new Date();
   }).sort((a, b) => { return new Date(a.classDate).getTime() - new Date(b.classDate).getTime() }) 
   
+  // const initialClasses = [...bookedGymClassDetails]
   const [button, setButton] = useState('');
   const [classes, setClasses] = useState(initialClasses);
   const [dateString, setDateString] = useState('');
@@ -28,21 +29,21 @@ import { useNavigate } from 'react-router-dom';
     let selectedClasses: Post[] = [];
       if(button === 'today'){
         setDateString(formatDate(new Date()))
-        selectedClasses = initialClasses.filter((item) => {
-          return new Date(item.classDate) <= tomorrow();
+        selectedClasses = bookedGymClassDetails.filter((item) => {
+          return new Date(item.classDate) <= tomorrow() && new Date(item.classDate) === new Date(Date.now());
         })
         setClasses(selectedClasses);
       }
       if(button === 'tomorrow'){
         setDateString(formatDate(tomorrow()))
-        selectedClasses = initialClasses.filter((item) => {
+        selectedClasses = bookedGymClassDetails.filter((item) => {
           return new Date(item.classDate) >= tomorrow() && new Date(item.classDate) < dayAfterTomorrow();
         })
         setClasses(selectedClasses);
       } 
       if(button === 'nextWeek'){
         setDateString('NEXT WEEK')
-        selectedClasses = initialClasses.filter((item) => {
+        selectedClasses = bookedGymClassDetails.filter((item) => {
           return new Date(item.classDate) >= nextMonday() && new Date(item.classDate) < secondMonday();
         })
         setClasses(selectedClasses);
@@ -55,7 +56,7 @@ import { useNavigate } from 'react-router-dom';
     return(
       <>
       {isAuthenticated? 
-        <div className='relative block flex flex-col w-full items-center mt-20'>
+        <div className='relative flex flex-col w-full items-center mt-20'>
           <div className='flex flex-row justify-center'>
             <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
             <BookingFilterButton buttonClick={() => {setButton('tomorrow')}} buttonText='TOMORROW' isPressed={button==='tomorrow'}/>

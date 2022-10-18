@@ -21,12 +21,14 @@ export interface BookingsType {
 }
 
 export interface Props {
+  bookings:BookingsType | undefined,
   favoriteGymClassDetails: Post[],
   bookedGymClassDetails: Post[],
   userId: string | undefined,
   favorites: FavoritesType | undefined ,
   loadingFavorites: boolean,
   loadingBookings: boolean,
+  setBookings: React.Dispatch<React.SetStateAction<BookingsType | undefined>>,
   setFavorites:React.Dispatch<React.SetStateAction<FavoritesType | undefined>>,
   setNoFavorites: React.Dispatch<React.SetStateAction<boolean>>,
   setFavoriteGymClassDetails: React.Dispatch<React.SetStateAction<Post[]>>
@@ -39,6 +41,7 @@ const GymClassContext = createContext<Props>({
   favoriteGymClassDetails: [],
   bookedGymClassDetails: [],
   favorites: {favorited:[{userId:"", gymClassId:[]}], _id:""},
+  bookings: {booked:[{userId:"", gymClassId:[]}], _id:""},
   userId: '',
   loadingFavorites: false,
   loadingBookings: false,
@@ -51,7 +54,9 @@ const GymClassContext = createContext<Props>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setBookedGymClassDetails: () => { },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setNoFavorites: () => {}
+  setNoFavorites: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setBookings: () => {}
 })
 
 export const GymClassProvider = ({ children }: { children: React.ReactNode }) => {
@@ -118,6 +123,8 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
 
   const memoedValue = useMemo(() => ({
     setNoFavorites,
+    bookings,
+    setBookings,
     favorites,
     setFavorites,
     favoriteGymClassDetails,
@@ -129,7 +136,7 @@ export const GymClassProvider = ({ children }: { children: React.ReactNode }) =>
     setBookedGymClassDetails,
     noFavorites,
     noBookings,
-  }), [userId, loadingFavorites, loadingBookings, favoriteGymClassDetails, bookedGymClassDetails, favorites])
+  }), [userId, loadingFavorites, loadingBookings, favoriteGymClassDetails, bookedGymClassDetails, favorites, bookings])
 
   return (
     <GymClassContext.Provider value={memoedValue}>
