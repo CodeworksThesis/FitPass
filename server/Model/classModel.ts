@@ -14,7 +14,7 @@ const PostSchema = new Schema<Post>({
   latitude: { type: Number, required: true },
   classDate: { type: Date, required: false },
   exerciseType: { type: String, required: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   postPic: { type: String, required: true }
 })
 

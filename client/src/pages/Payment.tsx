@@ -17,7 +17,7 @@ const publishableKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY
 export default function Payment() {
     const { price, exerciseName, classDate, postPic, studioName } = useLocation().state
     const navigate = useNavigate()
-    const priceInCent = Number(price.slice(1)) * 100;
+    const priceInCent = price * 100;
     console.log(priceInCent)
 
     const handleSuccess = () => {
@@ -100,7 +100,7 @@ export default function Payment() {
                     name="Pay With Credit Card"
                     billingAddress
                     amount={priceInCent} 
-                    description={`Your total is ${price}`}
+                    description={`Your total is EUR ${price}`}
                     token={getPaymentToken}
                     currency="EUR"
                     allowRememberMe

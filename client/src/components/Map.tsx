@@ -32,8 +32,9 @@ const initialMarker = {
   latitude: defaultLocation.latitude,
   classDate: new Date(Date.now()),
   exerciseType: '',
-  price: '',
-  postPic: ''
+  price: 0,
+  postPic: '',
+  location: ''
 }
 
 interface IMapProps {

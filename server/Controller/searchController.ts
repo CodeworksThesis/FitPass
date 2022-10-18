@@ -1,6 +1,7 @@
 import Post from '../Model/classModel'
 import { Request, Response } from 'express'
 import url from 'url'
+import { isAssertEntry } from 'typescript';
 //import querystring from 'querystring'
 const querystring = require('querystring');
 
@@ -15,21 +16,35 @@ export const getClasses = async (req: Request, res: Response) => {
 
 
 
-    const classes = await Post.find()
-    //.where('location').equals(parsedQs.location)
-    .where('exerciseType').in(exerciseTypes)
+    const classes = await Post.find({
+        $or: [
+                { location:
+                    {$in: [ parsedQs.location ]}
+                },
+                {exerciseType:
+                    {$in: exerciseTypes }
+                } 
+            ]
+        })
+    
 
     
 
+    
 
-   
+ 
+
+    console.log('getClasses, classes', classes)
+    //getClasses, classes []
+
 
     if (!classes.length || !classes) { throw new Error('no found') }
     res.status(200)
-    res.send(classes);
+    res.send({ error: null, data: classes});
   }
   catch (error) {
     console.log(error)
-    res.sendStatus(400).send('Sorry we can not find ')
-  }
+    res.status(400);
+    res.send({ error: "no results found", data: null });
+    }
 }
