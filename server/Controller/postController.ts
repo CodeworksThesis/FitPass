@@ -20,6 +20,8 @@ export const getGymClasses = async (req: Request, res: Response) => {
       //current data structure doesn't allow distance filter in mongodb
     }
     const classes = await Post.find(query);
+
+    // we filter the distance after fetching from mongodb
     let filteredClasses: typeof classes;
     if( userLat && userLong) {
       filteredClasses = classes.filter(item => {
