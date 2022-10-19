@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
+import { useProfileUpdate } from '../hooks/useProfileUpdate';
 
 export const Settings = () => {
 
+    const { setNickname, setProfilePic } = useProfileUpdate();
+
     const [openMessage, setOpenMessage] = useState<boolean>(false)
     const [popupText, setPopupText] = useState('')
-    const [nickname, setNickname] = useState('')
-    const [profilePic, setProfilePic] = useState('')
+    const [nicknameValue, setNicknameValue] = useState('')
     const [previewSource, setPreviewSource] = useState<any | null>(null);
     const { user, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ export const Settings = () => {
 
     const handleUsernameChange = (e: any) => {
         e.preventDefault();
+        setNickname(nicknameValue)
 
         const changeUsername = async (id: string) => {
             try {
@@ -24,7 +27,7 @@ export const Settings = () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ nickname })
+                    body: JSON.stringify({ nickname: nicknameValue })
                 })
                 const data = await response.json()
 
@@ -43,7 +46,7 @@ export const Settings = () => {
             changeUsername(userId)
         }
 
-        setNickname('');
+        setNicknameValue('');
     }
 
 
@@ -64,7 +67,6 @@ export const Settings = () => {
         e.preventDefault();
         if (!previewSource) return;
         uploadImage(previewSource);
-
         setPreviewSource(null);
     }
 
@@ -93,6 +95,7 @@ export const Settings = () => {
                     const dataAuth = await responseAuth.json()
 
                     if (response.ok || responseAuth.ok) {
+                        setProfilePic(picture)
                         setOpenMessage(true);
                         setPopupText('Your picture has been changed!')
                     }
@@ -130,7 +133,7 @@ export const Settings = () => {
                             <form className='mt-[10px] flex flex-col'
                                 onSubmit={handleUsernameChange}
                             >
-                                <input className='border border-zinc-400 py-2 text-[11px] rounded w-72 text-center' type='text' name='nickname' onChange={e => setNickname(e.target.value)} value={nickname} />
+                                <input className='border border-zinc-400 py-2 text-[11px] rounded w-72 text-center' type='text' name='nickname' onChange={e => setNicknameValue(e.target.value)} value={nicknameValue} />
                                 <button type='submit'
                                     className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
                                 >CONFIRM</button>
@@ -144,7 +147,7 @@ export const Settings = () => {
                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
                                         </div>
-                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' accept='image/png, image/jpg' name='image' onChange={handlePicChange} value={profilePic} />
+                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' accept='image/png, image/jpg' name='image' onChange={handlePicChange} />
                                     </label>
                                 </div>
                                 <button type='submit'
