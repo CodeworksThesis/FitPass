@@ -8,6 +8,7 @@ import PageTitle from '../components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import { addBookings, getBookingsDetails } from '../utils/api.service';
 import { useGymClass } from '../hooks/useGymClass'
+import { useAuth0 } from '@auth0/auth0-react'
 
 // modified from youtube tutorial - https://www.youtube.com/watch?v=W-9uV_OQtV8
 // https://github.com/aliseena/react-stripe-integration-master/blob/master/client/src/App.js
@@ -20,6 +21,7 @@ export default function Payment() {
     const { userId, setBookings, setBookedGymClassDetails } = useGymClass();
     const { price, exerciseName, classDate, postPic, studioName, id } = useLocation().state
     const navigate = useNavigate()
+    const { isAuthenticated } = useAuth0()
     const priceInCent = price * 100;
     console.log(priceInCent)
 
@@ -75,6 +77,8 @@ export default function Payment() {
     
 
     return (
+        <>
+        {isAuthenticated ? 
         <div className="w-[90%] flex flex-col mt-24 mx-auto border-2 border-black rounded-lg overflow-hidden">
             <header className="mx-auto pt-4">
                 {/* company logo */}
@@ -116,9 +120,11 @@ export default function Payment() {
                     token={getPaymentToken}
                     currency="EUR"
                     allowRememberMe
-                />
+                    />
             </button>
         </div>
+                    : navigate('/')}
+                    </>
     );
 }
 

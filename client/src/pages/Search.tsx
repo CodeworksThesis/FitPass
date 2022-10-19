@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
 import { getGymClasses, getSearchGymClassResults } from '../utils/api.service'
 import { useNavigate } from 'react-router-dom';
-
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Search() {
 
   const navigate = useNavigate();
   const [classes, setClasses] = useState([])
+  const { isAuthenticated } = useAuth0()
+
 
   useEffect(() => {
     getGymClasses()
@@ -66,6 +67,8 @@ export default function Search() {
   }
 
   return (
+    <>
+    {isAuthenticated ? 
     <main className='mt-20'>
       <PageTitle title='SEARCH YOUR CLASS' />
       <section className='ml-8 mt-6'>
@@ -107,5 +110,7 @@ export default function Search() {
         </section>
       </section>
     </main>
+            : (navigate('/'))}
+            </>
   )
 }
