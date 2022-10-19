@@ -35,7 +35,7 @@ export default function GymClassDetails() {
     } = gymClass as Post
     
     return (
-        <div className="overflow-y-scroll">
+        <main className="overflow-y-scroll">
             <div className="w-full h-56 md:h-64 mt-16">
                 <img
                     src={postPic}
@@ -79,13 +79,13 @@ export default function GymClassDetails() {
                     </p>
                 </div>
             </article>
-            <div className="flex flex-col flex-1 w-[95%] mx-auto h-[24rem] mb-28 md:h-[36rem] transition-all">
+            <section className="flex flex-col flex-1 w-[95%] mx-auto h-[24rem] mb-28 md:h-[36rem] transition-all">
                 <Map gymClassList={[gymClass]} isHome={false} />
-            </div>
-            <div className="fixed bottom-0 w-full bg-white">
+            </section>
+            <footer className="fixed bottom-0 w-full bg-white">
                 {/* accept EUR payment only */}
                 <ReserveBar {...gymClass}/>
-            </div>
-        </div>
+            </footer>
+        </main>
     )
 }
