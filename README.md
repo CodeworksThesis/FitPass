@@ -10,7 +10,7 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * reserve a gym class and make payment by credit card
 * track exercise progress over time
 
-## How to start the app
+## HOW TO START THE APP
 ### CLIENT
 1. Go to ``client`` folder 
 2. Run ``npm install`` to install all the necessary dependencies
@@ -30,7 +30,7 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * **Authentication** - Auth0
 * **Payment** - Stripe
 
-## TEAM
+## TEAM MEMBERS
 * [Milita Buzaite](https://github.com/militabu)
 * [Sebastian Siclari](https://github.com/SebSiclari)
 * [Oliver Gallanti](https://github.com/OliverGallanti)
