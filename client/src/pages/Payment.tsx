@@ -97,7 +97,7 @@ export default function Payment() {
                     {formatDateTime(classDate)}
                 </p>
                 <p className="text-lg px-4 pt-3 pb-1">
-                    <span className="font-bold">Price: </span>
+                    <span className="font-bold">Price (€): </span>
                     {price}
                 </p>
                 <p className="text-lg px-4 pt-3 pb-1">
