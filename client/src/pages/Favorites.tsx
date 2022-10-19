@@ -31,7 +31,7 @@ export default function Favorites() {
   return (
     <>
     {isAuthenticated
-      ? <div className='relative flex flex-col w-full items-center mt-20'>
+      ? <main className='relative flex flex-col w-full items-center mt-20'>
           <PageTitle title="SAVED CLASSES"/>
             {noFavorites 
             ? <h1 className='mt-2'>No favorites</h1> 
@@ -45,7 +45,7 @@ export default function Favorites() {
                   )
                 })}
                 </div>)}
-          </div>
+          </main>
       : navigate('/')}
     </>
   )

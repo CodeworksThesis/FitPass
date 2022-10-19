@@ -56,7 +56,7 @@ import PageTitle from '../components/PageTitle';
     return(
       <>
       {isAuthenticated
-      ? <div className='relative flex flex-col w-full items-center mt-20'>
+      ? <main className='relative flex flex-col w-full items-center mt-20'>
           <PageTitle title="BOOKED CLASSES"/>
           {noBookings 
           ? <h1 className='mt-2'>No favorites</h1> 
@@ -73,7 +73,7 @@ import PageTitle from '../components/PageTitle';
                 {classes.map(post => <GymClassItemSmall key={post.id} {...post}/>)}
               </div>
             </>)}
-        </div>
+        </main>
       : navigate('/')}
       </>
     )

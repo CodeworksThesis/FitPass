@@ -48,7 +48,7 @@ export default function Map({ gymClassList, isHome }: IMapProps) {
   }
 
   return (
-    <div className="rounded-lg overflow-hidden h-full">
+    <section className="rounded-lg overflow-hidden h-full">
       {isLoaded &&
         <GoogleMap
           zoom={11}
@@ -85,6 +85,6 @@ export default function Map({ gymClassList, isHome }: IMapProps) {
             )
           }
         </GoogleMap>}
-    </div>
+    </section>
   )
 }
