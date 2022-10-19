@@ -7,6 +7,7 @@ import GymClassItem from '../components/GymClassItem'
 import {Post} from '../../../globalTypes/Post'
 import {FavoritesType} from '../hooks/useGymClass'
 import { useNavigate } from 'react-router-dom';
+import { sortByDate } from '../utils/sortAndFilter';
 
 // copy this
 export default function Favorites() {
@@ -29,24 +30,23 @@ export default function Favorites() {
 
   return (
     <>
-    {isAuthenticated? 
-        <div className='relative flex flex-col w-full items-center mt-20'>
-        <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
-      {noFavorites ? 
-      <h1 className='mt-2'>No favorites</h1> :
-        <div className='flex flex-col items-center w-[90%]'>
-        {favoriteGymClassDetails?.map((item:Post)=>{
-          return (
-            <GymClassItem
-            key={item.id}
-            {...item}
-            />
-            )
-          })}
+    {isAuthenticated
+      ? <div className='relative flex flex-col w-full items-center mt-20'>
+          <h2 className='italic font-bold text-xl'>SAVED CLASSES</h2>
+            {noFavorites 
+            ? <h1 className='mt-2'>No favorites</h1> 
+            : (<div className='flex flex-col items-center w-[90%]'>
+              {sortByDate(favoriteGymClassDetails).map((item:Post)=>{
+                return (
+                  <GymClassItem
+                  key={item.id}
+                  {...item}
+                  />
+                  )
+                })}
+                </div>)}
           </div>
-          }
-          </div>
-        : navigate('/')}
+      : navigate('/')}
     </>
   )
 }

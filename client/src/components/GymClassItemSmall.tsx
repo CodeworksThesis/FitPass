@@ -13,10 +13,10 @@ export default function GymClassItemSmall (post: Post) {
       <div className="flex flex-col gap-5 bg-[#6F87F5] w-full pl-4">
         <div className="flex flex-1 flex-col text-white gap-2">
             <h2 className="text-[1rem] font-bold text-xl uppercase mt-px pt-2">{studioName}</h2>
-            <p className='mt-[-1rem] font-bold text-sm'>{formatDate(classDate)}</p>
-            <p className='mt-[-0.8rem] text-sm'>{formatStartEndTime(classDate, duration)}</p>
+            <p className='mt-[-1rem] font-bold text-sm pt-1'>{formatDate(classDate)}</p>
+            <p className='mt-[-0.8rem] text-sm pt-1'>{formatStartEndTime(classDate, duration)}</p>
             <h2 className="text-[1rem] font-bold mt-[-0.2rem] text-lg uppercase">{exerciseName}</h2>
-            <p className='mt-[-0.6rem] text-sm multiline-text'>{desc}</p>
+            <p className='mt-[-0.6rem] text-sm multiline-text pt-1'>{desc}</p>
         </div>
       </div>
     </div>
