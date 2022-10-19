@@ -6,7 +6,7 @@ import { Post } from '../../../globalTypes/Post'
 export default function GymClassItemSmall (post: Post) {
   const { exerciseName, studioName, postPic, classDate, duration, desc } = post
   return (
-    <div className="rounded-2xl flex w-[95%] overflow-hidden mt-[3%] h-[10rem] max-w-4xl">
+    <article className="rounded-2xl flex w-[95%] overflow-hidden mt-[3%] h-[10rem] max-w-4xl">
       <div className="w-52 h-full overflow-hidden">
         <img src={postPic} alt={exerciseName} className="object-cover h-full w-full"/>
       </div>
@@ -19,6 +19,6 @@ export default function GymClassItemSmall (post: Post) {
             <p className='mt-[-0.6rem] text-sm multiline-text pt-1'>{desc}</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 } 

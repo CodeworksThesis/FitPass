@@ -13,7 +13,6 @@ export const getGymClasses = async (req: Request, res: Response) => {
     const parsedQs = querystring.parse(parsedUrl.query);
     const userLat = parsedQs.latitude;
     const userLong = parsedQs.longitude;
-    console.log(parsedQs)
 
     let query:any = {   
       $and: [{classDate: { $gte: new Date().toISOString()}}]
@@ -26,14 +25,12 @@ export const getGymClasses = async (req: Request, res: Response) => {
     if( userLat && userLong) {
       filteredClasses = classes.filter(item => {
         const distance =  getDistance(Number(userLat),Number(userLong), Number(item.latitude), Number(item.longitude),"K")
-        console.log('distance',distance)
         return distance <= DEFAULT_USER_DISTANCE
       })
     } else {
       filteredClasses = classes;
     }
     if (!classes.length || !classes) { throw new Error('no user found') }
-    console.log(filteredClasses)
     res.status(200)
     res.send({ error: null, data: filteredClasses});
   }

@@ -79,7 +79,7 @@ export default function Payment() {
     return (
         <>
         {isAuthenticated ? 
-        <div className="w-[90%] flex flex-col mt-24 mx-auto border-2 border-black rounded-lg overflow-hidden">
+        <main className="w-[90%] flex flex-col mt-24 mx-auto border-2 border-black rounded-lg overflow-hidden">
             <header className="mx-auto pt-4">
                 {/* company logo */}
                 <div className="w-12 h-12 mx-auto">
@@ -122,7 +122,7 @@ export default function Payment() {
                     allowRememberMe
                     />
             </button>
-        </div>
+        </main>
                     : navigate('/')}
                     </>
     );

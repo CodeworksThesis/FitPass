@@ -9,13 +9,6 @@ const Profile = () => {
     const { user, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
 
-    const [state, dispatch] = useReducer((i) => i + 1, 0);
-
-    useCallback(() => {
-      dispatch();
-    }, []);
-  
-
     return (
         <>
             {isAuthenticated ?

@@ -29,7 +29,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="mx-auto mb-4">
+    <main className="mx-auto mb-4">
       {isAuthenticated
         ? <div className="w-[90%] mx-auto">
           <>
@@ -42,7 +42,7 @@ export default function Landing() {
           </>
         </div>
         : <LoginPage />}
-    </div>
+    </main>
   )
 }
 
