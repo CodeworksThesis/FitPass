@@ -110,48 +110,50 @@ export const Settings = () => {
     return (
 
         <>
-        {isAuthenticated ?
-        <>
-            <div className='mt-[20%]' >
-                <h2 className='italic font-bold text-xl text-center mb-[20px]'>SETTINGS</h2>
+            {isAuthenticated ?
+                <>
+                    {openMessage &&
+                        <Popup setOpenMessage={setOpenMessage} popupText={popupText} />
+                    }
+                    <div className='mt-[20%]' >
+                        <h2 className='italic font-bold text-xl text-center mb-[20px]'>SETTINGS</h2>
 
-                <section className='flex flex-col justify-center items-center'>
-                    <h1 className='text-sm'>Change Username</h1>
-                    <form className='mt-[10px] flex flex-col'
-                        onSubmit={handleUsernameChange}
-                        >
-                        <input className='border border-zinc-400 py-2 text-[11px] rounded w-72 text-center' type='text' name='nickname' onChange={e => setNickname(e.target.value)} value={nickname} />
-                        <button type='submit'
-                            className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
-                            >CONFIRM</button>
-                    </form >
-                    <h1 className='mt-[30px] text-sm'>Change Profile Picture</h1>
-                    {/* <button className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] mt-[5px]'
+                        <section className='flex flex-col justify-center items-center'>
+                            <h1 className='text-sm'>Change Username</h1>
+                            <form className='mt-[10px] flex flex-col'
+                                onSubmit={handleUsernameChange}
+                            >
+                                <input className='border border-zinc-400 py-2 text-[11px] rounded w-72 text-center' type='text' name='nickname' onChange={e => setNickname(e.target.value)} value={nickname} />
+                                <button type='submit'
+                                    className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
+                                >CONFIRM</button>
+                            </form >
+                            <h1 className='mt-[30px] text-sm'>Change Profile Picture</h1>
+                            {/* <button className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] mt-[5px]'
                     >Change</button> */}
-                    <form className='mt-[10px] flex flex-col' onSubmit={handleSubmitPicture}>
-                        <div className="flex justify-center items-center w-full">
-                            <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer">
-                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                    <svg aria-hidden="true" className="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
+                            <form className='mt-[10px] flex flex-col' onSubmit={handleSubmitPicture}>
+                                <div className="flex justify-center items-center w-full">
+                                    <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer">
+                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                            <svg aria-hidden="true" className="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
+                                        </div>
+                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} />
+                                    </label>
                                 </div>
-                                <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} />
-                            </label>
-                        </div>
-                        {/* <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} /> */}
-                        <button type='submit'
-                            className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
-                            >CONFIRM</button>
-                    </form >
-                    {previewSource && (
-                        <img className='h-3/6 w-6/12 rounded-full mt-[20px]' src={previewSource} />
-                        )}
-                </section>
-            </div>
-            {openMessage && <Popup setOpenMessage={setOpenMessage} popupText={popupText} />}
-            </>
-        : navigate('/')}
+                                {/* <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} /> */}
+                                <button type='submit'
+                                    className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
+                                >CONFIRM</button>
+                            </form >
+                            {previewSource && (
+                                <img className='h-3/6 w-6/12 rounded-full mt-[20px]' src={previewSource} />
+                            )}
+                        </section>
+                    </div>
+                </>
+                : navigate('/')}
         </>
     )
 }

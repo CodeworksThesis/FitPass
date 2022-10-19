@@ -8,7 +8,7 @@ interface popupProps {
 export const Popup = ({ setOpenMessage, popupText }: popupProps) => {
 
   return (
-    <div className='w-[100vw] h-[100vh] bg-[#c8c8c8] fixed -mt-[435px]'>
+    <div className='bg-[#c8c8c8]'>
       <div className='absolute bg-white drop-shadow-lg py-5 w-[80vw] h-[15vh] left-[10%] mt-[100px]'>
         <section className='aboslute text-center'>
           <h1 className='text-sm mt-5'>{popupText}</h1>
