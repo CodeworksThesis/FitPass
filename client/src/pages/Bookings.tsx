@@ -8,11 +8,11 @@ import { useGymClass } from '../hooks/useGymClass';
 import { Post } from '../../../globalTypes/Post'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
-
+import PageTitle from '../components/PageTitle';
 
  function Bookings(){
 
-  const { bookedGymClassDetails } = useGymClass();
+  const { bookedGymClassDetails, noBookings } = useGymClass();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0()
 
@@ -55,21 +55,26 @@ import { useNavigate } from 'react-router-dom';
 
     return(
       <>
-      {isAuthenticated? 
-        <div className='relative flex flex-col w-full items-center mt-20'>
-          <div className='flex flex-row justify-center'>
-            <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
-            <BookingFilterButton buttonClick={() => {setButton('tomorrow')}} buttonText='TOMORROW' isPressed={button==='tomorrow'}/>
-            <BookingFilterButton buttonClick={() => {setButton('nextWeek')}} buttonText='NEXT WEEK' isPressed={button==='nextWeek'}/>
-          </div>
-          <div className='w-full max-w-4xl pl-4'>
-            <p>{dateString}</p>
-          </div>
-            <div className='flex flex-col items-center w-full'>
-              {classes.map(post => <GymClassItemSmall key={post.id} {...post}/>)}
-            </div>
+      {isAuthenticated
+      ? <div className='relative flex flex-col w-full items-center mt-20'>
+          <PageTitle title="BOOKED ClASSES"/>
+          {noBookings 
+          ? <h1 className='mt-2'>No favorites</h1> 
+          : (<>
+              <div className='flex flex-row justify-center'>
+                <BookingFilterButton buttonClick={() => {setButton('today')}} buttonText={'TODAY'} isPressed={button==='today'}/>
+                <BookingFilterButton buttonClick={() => {setButton('tomorrow')}} buttonText='TOMORROW' isPressed={button==='tomorrow'}/>
+                <BookingFilterButton buttonClick={() => {setButton('nextWeek')}} buttonText='NEXT WEEK' isPressed={button==='nextWeek'}/>
+              </div>
+              <div className='w-full max-w-4xl pl-4'>
+                <p>{dateString}</p>
+              </div>
+              <div className='flex flex-col items-center w-full'>
+                {classes.map(post => <GymClassItemSmall key={post.id} {...post}/>)}
+              </div>
+            </>)}
         </div>
-    : navigate('/')}
+      : navigate('/')}
       </>
     )
 }
