@@ -27,7 +27,7 @@ export const getClasses = async (req: Request, res: Response) => {
             }})
     }
     if(parsedQs.location !== 'undefined'){
-        query.$and.push( {location:{$in: [ parsedQs.location ]}})
+        query.$and.push( {location:{$regex: parsedQs.location, $options: "i" }})
     }
     if(parsedQs.day) {
         if(day.includes('Today') && day.includes('Tomorrow')) {

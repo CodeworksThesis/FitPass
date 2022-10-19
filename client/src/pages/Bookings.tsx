@@ -30,14 +30,14 @@ import PageTitle from '../components/PageTitle';
       if(button === 'today'){
         setDateString(formatDate(new Date()))
         selectedClasses = bookedGymClassDetails.filter((item) => {
-          return new Date(item.classDate) <= tomorrow() && new Date(item.classDate) === new Date(Date.now());
+          return new Date(item.classDate) <= new Date(tomorrow());
         })
         setClasses(selectedClasses);
       }
       if(button === 'tomorrow'){
         setDateString(formatDate(tomorrow()))
         selectedClasses = bookedGymClassDetails.filter((item) => {
-          return new Date(item.classDate) >= tomorrow() && new Date(item.classDate) < dayAfterTomorrow();
+          return new Date(item.classDate) > tomorrow() && new Date(item.classDate) < dayAfterTomorrow();
         })
         setClasses(selectedClasses);
       } 
