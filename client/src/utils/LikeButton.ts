@@ -8,10 +8,10 @@ export const isFavorite = (favoriteGymClassDetails:Post[], id:string) =>{
 
    if(!favoriteGymClassDetails) return;
 
- const hasId = favoriteGymClassDetails.find(item=>{
+   const hasId = favoriteGymClassDetails.find(item =>  {
 
-    return item.id.toString() === id.toString()
- });
+   return item.id.toString() === id.toString()
+});
 
 
    if(hasId) return true
@@ -19,3 +19,11 @@ export const isFavorite = (favoriteGymClassDetails:Post[], id:string) =>{
 
 }
 
+export const isReserved = (bookedGymClassDetails:Post[], id:string) => {
+   if(!bookedGymClassDetails) return;
+   const hasId = bookedGymClassDetails.find(item =>  {
+      return item.id.toString() === id.toString()
+   })
+   if (hasId) return true
+   else return false
+}

@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { Post } from "../../../globalTypes/Post";
 import { addFavorites, deleteFavorite } from "../utils/api.service";
 import { useGymClass } from "../hooks/useGymClass";
-import { isFavorite } from "../utils/LikeButton";
+import { isFavorite, isReserved } from "../utils/LikeButton";
 
 // copy this
 export default function GymClassItem(post: Post) {
   const { exerciseName, id, studioName, postPic, classDate } = post;
-  const { userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails } = useGymClass();
+  const { userId, favoriteGymClassDetails, setFavorites,  setFavoriteGymClassDetails, bookedGymClassDetails } = useGymClass();
 
   const handleClick =  () => {
     if (userId) {
@@ -56,7 +56,9 @@ export default function GymClassItem(post: Post) {
         </header>
         {/* based on User Data */}
         <div className="flex justify-between mb-4">
-          <div></div>
+          <div className="pl-4">
+            {isReserved(bookedGymClassDetails,id) ? (<p className="text-md italic text-white">{"Reserved"}</p>) : <></>}
+          </div>
           <button className="flex w-10 h-10 mr-4" onClick={handleClick}>
             <img
               src={
