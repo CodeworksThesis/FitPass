@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
-import e from 'express';
 
 export const Settings = () => {
 
@@ -11,19 +10,12 @@ export const Settings = () => {
     const [nickname, setNickname] = useState('')
     const [profilePic, setProfilePic] = useState('')
     const [previewSource, setPreviewSource] = useState<any | null>(null);
-    const [error, setError] = useState<any | null>(null);
     const { user, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const userId = user?.sub
 
-useEffect(() =>{
-    console.log('change')
-    // handleUsernameChange()
-},[])
-
     const handleUsernameChange = (e: any) => {
         e.preventDefault();
-        // console.log(e)
 
         const changeUsername = async (id: string) => {
             try {
@@ -34,16 +26,16 @@ useEffect(() =>{
                     },
                     body: JSON.stringify({ nickname })
                 })
-                console.log('this is respopnse', response)
-                if(!response.ok){
-                    throw Error('could not fetch')
-
-                }
                 const data = await response.json()
-                return data;
-            }
-            catch (e: any) {
-                console.log(e.message)
+
+                if (response.ok) {
+                    setOpenMessage(true);
+                    setPopupText('Your username has been changed!')
+                }
+
+            } catch (err: any) {
+                setOpenMessage(true);
+                setPopupText('Something went wrong. Try again later.')
             }
         }
 
@@ -52,8 +44,6 @@ useEffect(() =>{
         }
 
         setNickname('');
-        setOpenMessage(true);
-        setPopupText('Your username has been changed!')
     }
 
 
@@ -101,10 +91,16 @@ useEffect(() =>{
                         body: JSON.stringify({ picture })
                     })
                     const dataAuth = await responseAuth.json()
-                    return dataAuth;
+
+                    if (response.ok || responseAuth.ok) {
+                        setOpenMessage(true);
+                        setPopupText('Your picture has been changed!')
+                    }
                 }
                 catch (e) {
                     console.log(e)
+                    setOpenMessage(true);
+                    setPopupText('Something went wrong. Try again later.')
                 }
             }
 
@@ -113,10 +109,9 @@ useEffect(() =>{
             }
 
         } catch (error) {
-            console.error(error)
+            setOpenMessage(true);
+            setPopupText('The image must be less than 40MB in size.')
         }
-        setOpenMessage(true);
-        setPopupText('Your picture has been changed!')
     }
 
     return (
@@ -141,8 +136,6 @@ useEffect(() =>{
                                 >CONFIRM</button>
                             </form >
                             <h1 className='mt-[30px] text-sm'>Change Profile Picture</h1>
-                            {/* <button className='bg-[#6f87f5] text-white py-2 px-2 rounded text-[8px] mt-[5px]'
-                    >Change</button> */}
                             <form className='mt-[10px] flex flex-col' onSubmit={handleSubmitPicture}>
                                 <div className="flex justify-center items-center w-full">
                                     <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer">
@@ -151,10 +144,9 @@ useEffect(() =>{
                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
                                         </div>
-                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} />
+                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' accept='image/png, image/jpg' name='image' onChange={handlePicChange} value={profilePic} />
                                     </label>
                                 </div>
-                                {/* <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' name='image' onChange={handlePicChange} value={profilePic} /> */}
                                 <button type='submit'
                                     className='bg-[#6f87f5] text-white py-3 text-[10px] font-bold rounded w-72 mt-4'
                                 >CONFIRM</button>

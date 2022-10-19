@@ -30,13 +30,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/search" element={<Search />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/stats" element={<UserStats />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/gymclass/:id" element={<GymClassDetails />} />
         {/* ErrorPage always at the bottom */}
         <Route path="*" element={<ErrorPage />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, useReducer, useCallback} from 'react';
 import Button from '../components/Button'
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +8,13 @@ const Profile = () => {
 
     const { user, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
-    // console.log(user)
 
+    const [state, dispatch] = useReducer((i) => i + 1, 0);
+
+    useCallback(() => {
+      dispatch();
+    }, []);
+  
 
     return (
         <>
@@ -20,6 +25,7 @@ const Profile = () => {
                             <img src={user?.picture} className="object-cover w-36 h-36 rounded-full custom-position border-4 border-[#6F87F5]"></img>
                         </div>
                         <section className='flex text-lg justify-center font-bold pt-4 pb-4'>
+                            {/* {user?.nickname} */}
                             {user?.nickname}
                             {/* <button><img className='h-3 w-7' src={editIcon} /></button> */}
                             </section>

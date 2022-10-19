@@ -4,7 +4,7 @@ import cors from 'cors'
 import router from './router'
 const PORT = process.env.PORT || 3001
 const app = express()
-app.use(express.json({ limit: '50mb' }))
+app.use(express.json({ limit: '40mb' }))
 app.use(cors())
 app.use(router)
 require('dotenv').config();
