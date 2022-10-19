@@ -6,7 +6,7 @@ import { formatDateTime } from "../utils/time"
 import ReserveBar from "../components/ReserveBar"
 import { Loading } from "../components/Loading"
 import { Post } from "../../../globalTypes/Post"
-import { getGymClass } from '../utils/api.service'
+import { getGymClass } from '../utils/api.service';
 
 export default function GymClassDetails() {
     const { id } = useParams()

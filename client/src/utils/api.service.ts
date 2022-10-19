@@ -102,10 +102,10 @@ export const addBookings = async (userId: string, gymClassId: string) => {
   }
 }
 
-export const getGymClasses = async () => {
+export const getGymClasses = async (latitude?:number, longitude?:number) => {
   try {
-    const response = await fetch(baseURL + `gymclasses`)
-    const data = await response.json()
+    const response = await fetch(baseURL + `gymclasses?latitude=` + latitude + `&longitude=`+ longitude)
+    const {data} = await response.json()
     return data;
   }
   catch (e) {
@@ -127,7 +127,7 @@ export const getGymClass = async (gymClassId: string) => {
 
 export const getSearchGymClassResults = async (search:string, categoryString:string, location:string ,maxPrice:number, dayString:string) => {
   try{
-    const response = await fetch( 'http://localhost:3001/search?general=' + search + '&exerciseType=' + categoryString + '&location=' + location + '&price=' + maxPrice + '&day=' + dayString);
+    const response = await fetch( baseURL + 'search?general=' + search + '&exerciseType=' + categoryString + '&location=' + location + '&price=' + maxPrice + '&day=' + dayString);
     const json = await response.json()
     return json;
   } catch (error) {

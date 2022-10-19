@@ -17,7 +17,7 @@ This routine calculates the distance between two points (given the     :::
 //:::                  'N' is nautical miles                                  :::
 */
 
-export function getDistance(lat1:number, lon1:number, lat2:number, lon2:number, unit:string, userId:string) {
+export function getDistance(lat1:number, lon1:number, lat2:number, lon2:number, unit:string) {
 	
     if ((lat1 == lat2) && (lon1 == lon2)) {
 		return 0;

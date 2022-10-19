@@ -2,8 +2,7 @@ import React from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Post } from "../../../globalTypes/Post";
-import { getBookings, getFavorites, getGymClass, getFavoritesDetails, getBookingsDetails } from '../utils/api.service';
-import { ObjectId } from "mongodb";
+import { getBookings, getFavorites, getFavoritesDetails, getBookingsDetails } from '../utils/api.service';
 
 export interface Favorited {
   userId: string,
