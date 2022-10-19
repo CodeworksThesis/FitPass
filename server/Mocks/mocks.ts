@@ -17,6 +17,6 @@ export const mockClass = {
   latitude:111,
   classDate:Date.now(),
   exerciseType:'testExerciseType',
-  price:'testPrice',
+  price: 10,
   postPic:'testPic'
 }

@@ -41,6 +41,7 @@ export const getGymClass = async (req: Request, res: Response) => {
 export const postGymClass = async (req: Request, res: Response) => {
   try {
     const gym = await req.body
+    console.log(gym)
     const gymClass = await Post.create(gym)
     if (!Object.keys(gymClass).length) throw new Error('wrong')
     res.status(201)

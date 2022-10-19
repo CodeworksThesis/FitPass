@@ -19,7 +19,7 @@ const appRequest =  request(app)
     .post('/user')
     .send(mockUser)
     .set('Accept', 'application/json');
-
+expect(true).toBe(true);
     expect(response.statusCode).toBe(201);
     expect(response.body.favorites).toMatchObject(['test1', 'test2']);
     expect(response.body.booked).toMatchObject(['test1', 'test2', 'test3', 'test4'])

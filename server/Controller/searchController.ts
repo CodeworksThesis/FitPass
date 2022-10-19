@@ -11,9 +11,11 @@ export const getClasses = async (req: Request, res: Response) => {
     const exerciseTypes = parsedQs.exerciseType.split(',');
     const day = parsedQs.day.split(',');
 
+    //console.log(req.url)
+
     let query:any = {   
             $and: [
-                    {exerciseType: { $in: exerciseTypes }},
+                     {exerciseType: { $in: exerciseTypes }},
                     {price: { $lte: Number(parsedQs.price)}},
                     {classDate: { $gte: new Date().toISOString()}}
                 ]
