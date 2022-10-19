@@ -57,7 +57,7 @@ import PageTitle from '../components/PageTitle';
       <>
       {isAuthenticated
       ? <div className='relative flex flex-col w-full items-center mt-20'>
-          <PageTitle title="BOOKED ClASSES"/>
+          <PageTitle title="BOOKED CLASSES"/>
           {noBookings 
           ? <h1 className='mt-2'>No favorites</h1> 
           : (<>
