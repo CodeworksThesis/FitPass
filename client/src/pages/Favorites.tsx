@@ -20,10 +20,8 @@ export default function Favorites() {
 
   useEffect(()=>{
     if(userId){
-      console.log('getFavorites')
     getFavorites(userId)
-    .then(data=>{console.log(data)
-      setFavorites(data)})
+    .then(data=>{setFavorites(data)})
       .catch(e => console.log(e))
     }  
   },[userId])

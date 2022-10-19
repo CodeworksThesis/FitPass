@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
+import e from 'express';
 
 export const Settings = () => {
 
@@ -10,13 +11,19 @@ export const Settings = () => {
     const [nickname, setNickname] = useState('')
     const [profilePic, setProfilePic] = useState('')
     const [previewSource, setPreviewSource] = useState<any | null>(null);
+    const [error, setError] = useState<any | null>(null);
     const { user, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const userId = user?.sub
 
+useEffect(() =>{
+    console.log('change')
+    // handleUsernameChange()
+},[])
 
     const handleUsernameChange = (e: any) => {
         e.preventDefault();
+        // console.log(e)
 
         const changeUsername = async (id: string) => {
             try {
@@ -27,11 +34,16 @@ export const Settings = () => {
                     },
                     body: JSON.stringify({ nickname })
                 })
+                console.log('this is respopnse', response)
+                if(!response.ok){
+                    throw Error('could not fetch')
+
+                }
                 const data = await response.json()
                 return data;
             }
-            catch (e) {
-                console.log(e)
+            catch (e: any) {
+                console.log(e.message)
             }
         }
 
