@@ -4,6 +4,9 @@ import url from 'url';
 const querystring = require('querystring');
 import { getDistance } from '../utils/distance';
 
+// initial distance for fetching classes near the user
+const DEFAULT_USER_DISTANCE = 50
+
 export const getGymClasses = async (req: Request, res: Response) => {
   try {
     const parsedUrl = url.parse(req.url)
@@ -22,7 +25,7 @@ export const getGymClasses = async (req: Request, res: Response) => {
       filteredClasses = classes.filter(item => {
         const distance =  getDistance(Number(userLat),Number(userLong), Number(item.latitude), Number(item.longitude),"K")
         console.log('distance',distance)
-        return distance <=50
+        return distance <= DEFAULT_USER_DISTANCE
       })
     } else {
       filteredClasses = classes;
