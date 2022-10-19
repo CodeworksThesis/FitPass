@@ -9,6 +9,7 @@ import {FavoritesType} from '../hooks/useGymClass'
 import { useNavigate } from 'react-router-dom';
 import { sortByDate, removeExpiredClasses } from '../utils/sortAndFilter';
 import PageTitle from '../components/PageTitle';
+import GymClassItemSmall from '../components/GymClassItemSmall';
 
 // copy this
 export default function Favorites() {

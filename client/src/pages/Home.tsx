@@ -9,18 +9,19 @@ import { Loading } from '../components/Loading';
 import PageTitle from '../components/PageTitle';
 import { sortByDate, removeExpiredClasses } from '../utils/sortAndFilter';
 import { Post } from '../../../globalTypes/Post';
+import { useLocation } from '../hooks/useLocation';
+
 
 export default function Landing() {
-
+  const { location } = useLocation();
+  const { latitude, longitude } = location;
   const { isAuthenticated, isLoading } = useAuth0();
-
   const [classes, setClasses] = useState<Post[]>([])
 
   useEffect(() => {
-    getGymClasses()
+    getGymClasses(latitude, longitude)
       .then(data => setClasses(removeExpiredClasses(sortByDate(data))))
       .catch(error => console.log(error))
-
   }, [])
 
   if (isLoading) {

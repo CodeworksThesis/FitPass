@@ -4,80 +4,41 @@ import { Post } from '../../../globalTypes/Post.d';
 import { formatDate, formatTime } from '../utils/time';
 import { isDisplayInfoWindow } from '../utils/location';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from '../hooks/useLocation';
 
-interface locationProps {
-  longitude: number,
-  latitude: number,
-  countryName: string,
-  countryCode: string,
-  postcode: string,
-  city: string
-}
-const defaultLocation = {
-  longitude: 41.4,
-  latitude: 2.2,
-  countryName: '',
-  countryCode: '',
-  postcode: '',
-  city: ''
-}
-
-const initialMarker = {
-  id: '',
-  studioName: '',
-  exerciseName: '',
-  desc: '',
-  duration: 0, // minutes
-  longitude: defaultLocation.longitude,
-  latitude: defaultLocation.latitude,
-  classDate: new Date(Date.now()),
-  exerciseType: '',
-  price: 0,
-  postPic: '',
-  location: ''
-}
 
 interface IMapProps {
   gymClassList: Post[]
   isHome: boolean
-}
+} 
 
 export default function Map({ gymClassList, isHome }: IMapProps) {
-  const [location, setLocation] = useState<locationProps>(defaultLocation)
-  const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
+  const {location} = useLocation()
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_APIKEY as string
   })
   const navigate = useNavigate()
-
+  const initialMarker = {
+    id: '',
+    studioName: '',
+    exerciseName: '',
+    desc: '',
+    duration: 0, // minutes
+    longitude: location.longitude,
+    latitude: location.latitude,
+    classDate: new Date(Date.now()),
+    exerciseType: '',
+    price: 0,
+    postPic: '',
+    location: ''
+  }
   // useMemo to prevent the map from re-centering on every re-render
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const latitude = position.coords.latitude
-      const longitude = position.coords.longitude
-      const locationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-
-      try {
-        const response = await fetch(locationUrl)
-        const { countryName, countryCode, postcode, city } = await response.json();
-        setLocation({
-          longitude,
-          latitude,
-          countryName,
-          countryCode,
-          postcode,
-          city
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    })
-  }, [])
+  const [selectedMarker, setSelectedMarker] = useState<Post>(initialMarker)
+  
 
   const center = isHome
-    ? useMemo(() => ({ lat: location.latitude, lng: location.longitude }), [location])
-    : { lat: gymClassList[0].latitude, lng: gymClassList[0].longitude }
+    ? useMemo(() => ({ lat: location.latitude as number, lng: location.longitude as number}), [location])
+    : { lat: gymClassList[0].latitude as number, lng: gymClassList[0].longitude as number}
 
   const handleClick = (post: Post) => {
     setSelectedMarker(post)
