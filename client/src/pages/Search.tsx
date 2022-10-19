@@ -5,7 +5,7 @@ import ButtonSearch from '../components/ButtonSearch';
 import ButtonSearchCategories from '../components/ButtonSearchCategories';
 import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
-import { getGymClasses } from '../utils/api.service'
+import { getGymClasses, getSearchGymClassResults } from '../utils/api.service'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -29,8 +29,8 @@ export default function Search() {
   const [location, setLocation] = useState<string>();
   const [search, setSearch] = useState<string>()
   
-  const handleRange = (event: any) => {
-    setMaxPrice(event.target.value)
+  const handleRange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMaxPrice(Number(event.target.value))
   }
 
   const handleDay = (newButton: string) => {
@@ -43,7 +43,7 @@ export default function Search() {
       setCategoryButtons(oldButtons => oldButtons.filter(el => { return el !== newButton })) : setCategoryButtons([...categoryButtons, newButton])
   }
 
-  const handleLocation = (event: any) => {
+  const handleLocation = (event:React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value)
   }
 
@@ -56,8 +56,7 @@ export default function Search() {
       }
     const dayString = dayButtons.join();
     try {
-      const response = await fetch( 'http://localhost:3001/search?general=' + search + '&exerciseType=' + categoryString + '&location=' + location + '&price=' + maxPrice + '&day=' + dayString);
-      const json = await response.json()
+      const json = await getSearchGymClassResults(search as string, categoryString, location as string,maxPrice,dayString)
       navigate('/searchresults', {state: {
         data: json
       }} )
@@ -75,7 +74,7 @@ export default function Search() {
             <input onChange={(event) => setSearch(event.target.value)} className='font-normal p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 placeholder-gray-400 w-[80%] drop-shadow-md' 
             type="search" 
             placeholder='Insert exercise name' />
-            <div className='flex justify-center items-stretch bg-[#6F87F5] rounded-lg w-10'>
+            <div className='flex justify-center items-stretch bg-[#6F87F5] rounded-lg w-10 cursor-pointer'>
               <AiOutlineSearch  className={`text-2xl self-center text-white`} onClick={handleSearch}/>
             </div>
           </div>
