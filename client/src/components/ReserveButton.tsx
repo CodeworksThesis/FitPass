@@ -14,7 +14,6 @@ export default function ReserveButton({ buttonText, backgroundColor, textColor, 
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseEnter = () => {
-        console.log(isReserved)
         if(isReserved) {
             setIsHover(false)
             return

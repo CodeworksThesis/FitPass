@@ -8,8 +8,6 @@ const Profile = () => {
 
     const { user, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
-    // console.log(user)
-
 
     return (
         <>
