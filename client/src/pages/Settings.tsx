@@ -23,7 +23,7 @@ export const Settings = () => {
 
         const changeUsername = async (id: string) => {
             try {
-                const response = await fetch(`${baseURL}change/username/${id}`, {
+                const response = await fetch(`http://localhost:3001/change/username/${id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'

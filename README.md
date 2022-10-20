@@ -17,7 +17,7 @@ Click to watch the app demo youtube video:
 
 
 ## WHERE IS THE APP HOSTED?
-* Frontend: https://stupendous-melomakarona-01f511.netlify.app/
+* Frontend: https://fitpass.netlify.app/
 * Backend: https://fitpass-server.herokuapp.com/
 ### How to update the client build using Netlify-CLI?
 1. From the *client root folder*, run the two commands below
