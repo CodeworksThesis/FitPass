@@ -3,7 +3,10 @@ import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
 import { useProfileUpdate } from '../hooks/useProfileUpdate';
-import { baseURL } from '../utils/api.service'
+// heroku endpoint does not work with Auth0 management API
+// import { baseURL } from '../utils/api.service'
+
+const BASE_URL = 'http://localhost:3001/';
 
 export const Settings = () => {
 
@@ -23,13 +26,14 @@ export const Settings = () => {
 
         const changeUsername = async (id: string) => {
             try {
-                const response = await fetch(`http://localhost:3001/change/username/${id}`, {
+                const response = await fetch(`${BASE_URL}change/username/${id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
+                    }, 
                     body: JSON.stringify({ nickname: nicknameValue })
                 })
+                console.log(response)
                 const data = await response.json()
 
                 if (response.ok) {
@@ -74,7 +78,7 @@ export const Settings = () => {
     const uploadImage = async (base64EncodedImage: any) => {
         //submits to cloudinary
         try {
-            const response = await fetch(`${baseURL}api/upload`, {
+            const response = await fetch(`${BASE_URL}api/upload`, {
                 method: 'POST',
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-type': 'application/json' },
@@ -86,7 +90,7 @@ export const Settings = () => {
             //updates auth0 database
             const changeProfilePic = async (id: string) => {
                 try {
-                    const responseAuth = await fetch(`${baseURL}change/pic/${id}`, {
+                    const responseAuth = await fetch(`${BASE_URL}change/pic/${id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
