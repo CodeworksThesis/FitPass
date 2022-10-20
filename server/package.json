@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start":"node dist/index.js",
+    "dev":"npx nodemon index.ts",
     "test": "jest --runInBand --resetMocks --watch",
     "ts-test": "ts-jest Tests"
   },
