@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start":"npx ts-node index.ts",
+    "start":"npx nodemon index.ts",
     "test": "jest --runInBand --resetMocks --watch",
     "ts-test": "ts-jest Tests"
   },
