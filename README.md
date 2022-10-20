@@ -13,13 +13,13 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 ## WHERE IS THE APP HOSTED?
 * Frontend: https://stupendous-melomakarona-01f511.netlify.app/
 * Backend: https://fitpass-server.herokuapp.com/
-### How to update the client build using Netlify-CLI
+### How to update the client build using Netlify-CLI?
 1. From the *client root folder*, run the two commands below
 ```
 netlify build
 netlify deploy
 ```
-### How to update the server build using Heroku-CLI
+### How to update the server build using Heroku-CLI?
 1. Go to *server root folder*, delete the ``dist`` folder and run ``tsc`` so that Typescript will re-compile the JS files
 2. Commit the changes and push to the remote ``main`` branch
 ```
@@ -34,7 +34,7 @@ git subtree push --prefix server heroku master
 ```
 This will restart the server hosted on Heroku.
 
-## HOW TO START THE APP IN LOCAL ENVIRONMENT
+## HOW TO START THE APP IN LOCAL ENVIRONMENT?
 ### Client
 1. Go to the ``client`` folder 
 2. Run ``npm install`` from the *client root folder* to install all the necessary dependencies
