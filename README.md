@@ -11,6 +11,7 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * track exercise progress over time
 
 ## APP DEMO
+Click to watch the Youtube video:
 [![FitPass app demo](https://img.youtube.com/vi/SOhZ_NkHBcU/0.jpg)](https://www.youtube.com/watch?v=SOhZ_NkHBcU)
 
 
