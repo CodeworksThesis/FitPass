@@ -3,9 +3,9 @@ import PageTitle from '../components/PageTitle';
 import locationIcon from '../icons/location.svg';
 import ButtonSearch from '../components/ButtonSearch';
 import ButtonSearchCategories from '../components/ButtonSearchCategories';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
-import { getGymClasses, getSearchGymClassResults } from '../utils/api.service'
+import { getSearchGymClassResults } from '../utils/api.service'
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react'
 
