@@ -29,6 +29,10 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * **Database** - MongoDB with Mongoose ORM
 * **Authentication** - Auth0
 * **Payment** - Stripe
+* **Styling** - TailwindCSS
+* **Testing** - Jest and Cypress
+* **Typescript** for everything
+
 
 ## TEAM MEMBERS
 * [Milita Buzaite](https://github.com/militabu)
