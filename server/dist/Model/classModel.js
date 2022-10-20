@@ -14,9 +14,9 @@ const PostSchema = new Schema({
     location: { type: String, required: true },
     longitude: { type: Number, required: true },
     latitude: { type: Number, required: true },
-    classDate: { type: Date, required: true },
+    classDate: { type: Date, required: false },
     exerciseType: { type: String, required: true },
-    price: { type: String, required: true },
+    price: { type: Number, required: true },
     postPic: { type: String, required: true }
 });
 const Post = mongoose_1.default.model('Post', PostSchema);

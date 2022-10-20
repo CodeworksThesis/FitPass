@@ -3,50 +3,268 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.postUser = exports.getUser = void 0;
-const userModel_1 = __importDefault(require("../Model/userModel"));
-const getUser = async (req, res) => {
+exports.uploadToCloudinary = exports.changePic = exports.changeUsername = exports.makePayment = exports.addBookings = exports.getBookingsDetails = exports.getBookings = exports.deleteFavorite = exports.addFavorites = exports.getFavoritesDetails = exports.getFavorites = void 0;
+// @ts-nocheck
+const favoritesModel_1 = __importDefault(require("../Model/favoritesModel"));
+const bookingModel_1 = __importDefault(require("../Model/bookingModel"));
+const classModel_1 = __importDefault(require("../Model/classModel"));
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const axios = require('axios');
+const { cloudinary } = require('../utils/cloudinary');
+require('dotenv').config();
+const getFavorites = async (req, res) => {
     try {
-        const user = await userModel_1.default.find();
-        res.status(200);
-        res.send(user);
+        const { id } = req.params;
+        if (!id)
+            throw new Error('no user id provided');
+        const updates = await favoritesModel_1.default.findOne({ "favorited.userId": id });
+        res.status(201);
+        res.send({ error: null, data: updates });
     }
     catch (e) {
         console.log(e);
-        res.status(400);
+        res.status(400).send({ error: e.message, data: null });
     }
 };
-exports.getUser = getUser;
-const postUser = async (req, res) => {
+exports.getFavorites = getFavorites;
+const getFavoritesDetails = async (req, res) => {
     try {
-        const user = await req.body;
-        console.log(user);
-        if (!user || Object.keys(user).length === 0) {
-            throw new Error('Details not provided');
+        const { id } = req.params;
+        if (!id)
+            throw new Error('no user id provided');
+        const updates = await favoritesModel_1.default.findOne({ "favorited.userId": id });
+        const gymClassDetails = [];
+        // loop through and update gymClassDetails
+        for (let i = 0; i < updates.favorited[0].gymClassId.length; i++) {
+            const details = await classModel_1.default.findOne({ id: updates.favorited[0].gymClassId[i] });
+            gymClassDetails.push(details);
         }
-        const users = await userModel_1.default.create(req.body);
         res.status(201);
-        res.send(users);
+        res.send(gymClassDetails);
     }
     catch (e) {
         console.log(e);
-        res.status(400);
     }
 };
-exports.postUser = postUser;
-const updateUser = async (req, res) => {
+exports.getFavoritesDetails = getFavoritesDetails;
+const addFavorites = async (req, res) => {
     try {
-        const updates = await userModel_1.default.findOneAndUpdate({ id: req.body.id }, {
-            favorites: req.body.favorites,
-            booked: req.body.booked,
-            profilePic: req.body.profilePic,
-        }, { new: true });
-        res.status(201);
-        res.send(updates);
+        const { id } = req.params;
+        const { gymClassId } = req.body;
+        if (!id || !gymClassId)
+            throw new Error('no user id or gymclass id provided');
+        const updates = await favoritesModel_1.default.findOne({ "favorited.userId": id });
+        if (!updates || Object.keys(updates).length === 0) {
+            const updateCreated = await favoritesModel_1.default.create({
+                favorited: {
+                    userId: id,
+                    gymClassId: [gymClassId]
+                }
+            });
+            res.status(201);
+            res.send(updateCreated);
+        }
+        else {
+            updates.favorited.map(item => {
+                if (item.userId === id) {
+                    if (item.gymClassId.some(element => element === gymClassId)) {
+                        return;
+                    }
+                    else {
+                        return item.gymClassId = [...item.gymClassId, gymClassId];
+                    }
+                }
+                return item;
+            });
+            updates.markModified('favorited');
+            updates.save();
+            res.send(updates);
+            res.status(201);
+        }
     }
     catch (e) {
         console.log(e);
-        res.status(400);
+        res.status(400).end();
     }
 };
-exports.updateUser = updateUser;
+exports.addFavorites = addFavorites;
+const deleteFavorite = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { gymClassId } = req.body;
+        if (!id || !gymClassId)
+            throw new Error('no userId or gymClassId provided');
+        const update = await favoritesModel_1.default.findOne({ "favorited.userId": id });
+        const favoritedItem = update.favorited.find((item) => {
+            return item.userId === id;
+        });
+        const updatedGymClassIds = favoritedItem.gymClassId.filter((classId) => {
+            return classId !== gymClassId;
+        });
+        favoritedItem.gymClassId = updatedGymClassIds;
+        update.markModified('favorited');
+        await update.save();
+        res.send(update);
+        res.status(201);
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).end();
+    }
+};
+exports.deleteFavorite = deleteFavorite;
+const getBookings = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id)
+            throw new Error('no user id provided');
+        const updates = await bookingModel_1.default.findOne({ "booked.userId": id });
+        res.status(201);
+        res.send({ error: null, data: updates });
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).send({ error: e.message, data: null });
+    }
+};
+exports.getBookings = getBookings;
+const getBookingsDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id)
+            throw new Error('no user id provided');
+        const updates = await bookingModel_1.default.findOne({ "booked.userId": id });
+        const gymClassDetails = [];
+        // loop through and update gymClassDetails
+        for (let i = 0; i < updates.booked[0].gymClassId.length; i++) {
+            const details = await classModel_1.default.findOne({ id: updates.booked[0].gymClassId[i] });
+            gymClassDetails.push(details);
+        }
+        res.status(201);
+        res.send(gymClassDetails);
+    }
+    catch (e) {
+        console.log(e);
+    }
+};
+exports.getBookingsDetails = getBookingsDetails;
+const addBookings = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { gymClassId } = req.body;
+        const updates = await bookingModel_1.default.findOne({ "booked.userId": id });
+        if (!updates || Object.keys(updates).length === 0) {
+            const updateCreated = await bookingModel_1.default.create({
+                booked: {
+                    userId: id,
+                    gymClassId: [gymClassId]
+                }
+            });
+            res.status(201);
+            res.send(updateCreated);
+        }
+        else {
+            updates.booked.map(item => {
+                if (item.userId === id) {
+                    return item.gymClassId = [...item.gymClassId, gymClassId];
+                }
+                return item;
+            });
+            updates.markModified('booked');
+            await updates.save();
+            res.send(updates);
+            res.status(201);
+        }
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).end();
+    }
+};
+exports.addBookings = addBookings;
+const makePayment = async (req, res) => {
+    const { token, amount } = await req.body;
+    if (!token || !amount)
+        throw new Error("Missing payment details");
+    try {
+        await stripe.charges.create({
+            source: token.id,
+            amount,
+            currency: "eur",
+        });
+        res.send({
+            status: "success",
+            error: null,
+        });
+    }
+    catch (err) {
+        if (err instanceof Error) {
+            console.log(err);
+            res.send({
+                status: "failure",
+                error: err.message,
+            });
+        }
+    }
+};
+exports.makePayment = makePayment;
+//change username in auth0 database
+const mgmt_api_token = process.env.MANANAGEMENT_API_KEY;
+const changeUsername = async (req, res) => {
+    const { id } = req.params;
+    const { nickname } = req.body;
+    var options = {
+        method: 'PATCH',
+        url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+        headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${mgmt_api_token}`,
+            'cache-control': 'no-cache'
+        },
+        data: JSON.stringify({ nickname })
+    };
+    axios.request(options).then(function (response) {
+        res.send(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
+};
+exports.changeUsername = changeUsername;
+//change profile pic in auth0 database
+const changePic = async (req, res) => {
+    const { id } = req.params;
+    const { picture } = req.body;
+    var options = {
+        method: 'PATCH',
+        url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
+        headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${mgmt_api_token}`,
+            'cache-control': 'no-cache'
+        },
+        data: JSON.stringify({ picture: picture })
+    };
+    axios.request(options).then(function (response) {
+        res.send(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
+};
+exports.changePic = changePic;
+//upload image to cloudinary
+const uploadToCloudinary = async (req, res) => {
+    try {
+        const fileStr = req.body.data;
+        const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+            upload_preset: 'fitpass'
+        });
+        // res.json({msg: "yay"})
+        res.send(uploadedResponse);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ err: "Something went wrong" });
+    }
+};
+exports.uploadToCloudinary = uploadToCloudinary;

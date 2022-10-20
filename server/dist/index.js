@@ -9,10 +9,14 @@ const cors_1 = __importDefault(require("cors"));
 const router_1 = __importDefault(require("./router"));
 const PORT = process.env.PORT || 3001;
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
+app.use(express_1.default.json({ limit: '40mb' }));
 app.use((0, cors_1.default)());
 app.use(router_1.default);
-mongoose_1.default.connect('mongodb+srv://siclari98:block@cluster0.ggbkn4d.mongodb.net/?retryWrites=true&w=majority');
+require('dotenv').config();
+const atlasUri = process.env.ATLAS_URI || '';
+mongoose_1.default.connect(atlasUri);
+const connection = mongoose_1.default.connection;
+connection.once('open', () => console.log('Database connection successful🍃'));
 app.listen(PORT, () => {
     console.log(`server started at http://localhost:${PORT}`);
 });
