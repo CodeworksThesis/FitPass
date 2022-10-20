@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { addBookings, getBookingsDetails } from '../utils/api.service';
 import { useGymClass } from '../hooks/useGymClass'
 import { useAuth0 } from '@auth0/auth0-react'
+import { baseURL } from '../utils/api.service';
 
 // modified from youtube tutorial - https://www.youtube.com/watch?v=W-9uV_OQtV8
 // https://github.com/aliseena/react-stripe-integration-master/blob/master/client/src/App.js
@@ -49,7 +50,7 @@ export default function Payment() {
     };
     const getPaymentToken = async (token: unknown) => {
         try {
-            const response = await fetch('http://localhost:3001/payment', {
+            const response = await fetch(`${baseURL}payment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
