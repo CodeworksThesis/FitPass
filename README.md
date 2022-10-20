@@ -11,8 +11,8 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * track exercise progress over time
 
 ## WHERE IS THE APP HOSTED?
-Frontend: https://stupendous-melomakarona-01f511.netlify.app/
-Backend: https://fitpass-server.herokuapp.com/
+* Frontend: https://stupendous-melomakarona-01f511.netlify.app/
+* Backend: https://fitpass-server.herokuapp.com/
 ### How to update the client build using Netlify-CLI
 1. From the *client root folder*, run the two commands below
 ```
