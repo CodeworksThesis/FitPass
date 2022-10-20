@@ -12,16 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 export default function Search() {
 
   const navigate = useNavigate();
-  const [classes, setClasses] = useState([])
   const { isAuthenticated } = useAuth0()
-
-
-  useEffect(() => {
-    getGymClasses()
-      .then(data => setClasses(data))
-      .catch(error => console.log(error))
-
-  }, [])
 
   const categories = ['Yoga', 'Pilates', 'Boxing', 'Running', 'Cycling', 'Swimming', 'Dance', 'Hiking', 'Other']
   const [maxPrice, setMaxPrice] = useState<number>(50);
@@ -65,14 +56,14 @@ export default function Search() {
       console.log(error)
     }
   }
-
+  console.log(isAuthenticated)
   return (
     <>
     {isAuthenticated ? 
     <main className='mt-20'>
       <PageTitle title='SEARCH YOUR CLASS' />
       <section className='ml-8 mt-6'>
-        <form action="">
+        <form onSubmit={handleSearch}>
           <div className='flex'>
             <input onChange={(event) => setSearch(event.target.value)} className='font-normal p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 placeholder-gray-400 w-[80%] drop-shadow-md' 
             type="search" 
@@ -83,7 +74,7 @@ export default function Search() {
           </div>
         </form>
         <h2 className='mb-3 location-h2 mt-10'>Location</h2>
-        <form>
+        <form onSubmit={handleSearch}>
           <div className="relative">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 ">
               <img className='h-10 w-7 mr-5 z-10' src={locationIcon} />
@@ -99,7 +90,7 @@ export default function Search() {
         </section>
         <section className='mt-6'>
           <h2>Price</h2>
-          <form>
+          <form onSubmit={handleSearch}>
             <input type="range" id="price" min={0} max={50} onChange={(event) => handleRange(event)} className="w-[90%] max-w-sm" />
             <p>{maxPrice}</p>
           </form>

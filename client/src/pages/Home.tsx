@@ -22,7 +22,7 @@ export default function Landing() {
     getGymClasses(latitude, longitude)
       .then(data => setClasses(removeExpiredClasses(sortByDate(data))))
       .catch(error => console.log(error))
-  }, [])
+  }, [latitude, longitude])
 
   if (isLoading) {
     return <Loading />
