@@ -1,1 +1,20 @@
-{}
+{
+  "name": "fitpass",
+  "description": "## ABOUT FitPass is a pay-as-you-go gym class app. The app allows a user to  * sign up * create a profile * select a gym class based on user location * search for a gym class by various criteria * add a gym class to Favorite list * reserve a gym class and make payment by credit card * track exercise progress over time",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeworksThesis/FitPass.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeworksThesis/FitPass/issues"
+  },
+  "homepage": "https://github.com/CodeworksThesis/FitPass#readme"
+}
