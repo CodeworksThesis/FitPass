@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,12 @@ export const Settings = () => {
     const [openMessage, setOpenMessage] = useState<boolean>(false)
     const [popupText, setPopupText] = useState('')
     const [nicknameValue, setNicknameValue] = useState('')
-    const [previewSource, setPreviewSource] = useState<any | null>(null);
+    const [previewSource, setPreviewSource] = useState<string | ArrayBuffer | null>(null);
     const { user, isAuthenticated } = useAuth0()
     const navigate = useNavigate();
     const userId = user?.sub
 
-    const handleUsernameChange = (e: any) => {
+    const handleUsernameChange = (e: React.FormEvent) => {
         e.preventDefault();
         setNickname(nicknameValue)
 
@@ -36,7 +36,7 @@ export const Settings = () => {
                     setPopupText('Your username has been changed!')
                 }
 
-            } catch (err: any) {
+            } catch (err) {
                 setOpenMessage(true);
                 setPopupText('Something went wrong. Try again later.')
             }
@@ -155,7 +155,7 @@ export const Settings = () => {
                                 >CONFIRM</button>
                             </form >
                             {previewSource && (
-                                <img className='h-3/6 w-6/12 rounded-full mt-[20px]' src={previewSource} />
+                                <img className='h-3/6 w-6/12 rounded-full mt-[20px]' src={previewSource.toString()} />
                             )}
                         </section>
                     </div>
