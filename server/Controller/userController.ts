@@ -209,7 +209,11 @@ const mgmt_api_token = process.env.MANANAGEMENT_API_KEY
 export const changeUsername = async (req: Request, res) => {
   const { id } = req.params
   const { nickname } = req.body
-
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  )
   var options = {
     method: 'PATCH',
     url: `https://fitpass.eu.auth0.com/api/v2/users/${id}`,
@@ -221,6 +225,7 @@ export const changeUsername = async (req: Request, res) => {
     data: JSON.stringify({ nickname })
   };
   axios.request(options).then(function (response: any) {
+    console.log(response)
     res.send(response.data)
   }).catch(function (error: any) {
     console.error(error);
