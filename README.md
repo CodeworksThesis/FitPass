@@ -10,6 +10,10 @@ FitPass is a pay-as-you-go gym class app. The app allows a user to
 * reserve a gym class and make payment by credit card
 * track exercise progress over time
 
+## APP DEMO
+[![FitPass app demo](https://img.youtube.com/vi/SOhZ_NkHBcU/0.jpg)](https://www.youtube.com/watch?v=SOhZ_NkHBcU)
+
+
 ## WHERE IS THE APP HOSTED?
 * Frontend: https://stupendous-melomakarona-01f511.netlify.app/
 * Backend: https://fitpass-server.herokuapp.com/
