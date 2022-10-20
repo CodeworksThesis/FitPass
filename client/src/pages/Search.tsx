@@ -76,7 +76,7 @@ export default function Search() {
           </div>
         </form>
         <h2 className='mb-3 location-h2 mt-10'>Location</h2>
-        <form>
+        <form onSubmit={e => handleSearch(e)}>
           <div className="relative">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 ">
               <img className='h-10 w-7 mr-5 z-10' src={locationIcon} />
