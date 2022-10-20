@@ -56,7 +56,7 @@ export default function Search() {
       console.log(error)
     }
   }
-  console.log(isAuthenticated)
+
   return (
     <>
     {isAuthenticated ? 
