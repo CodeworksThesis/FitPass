@@ -2,4 +2,7 @@
 
     base = "client/"
 
-    publish = "client/build"
+    publish = "build/"
+
+[context.production]
+  publish = "build/"
