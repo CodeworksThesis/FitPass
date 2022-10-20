@@ -21,10 +21,11 @@ netlify deploy
 ```
 ### How to update the server build using Heroku-CLI
 1. Go to *server root folder*, delete the ``dist`` folder and run ``tsc`` so that Typescript will re-compile the JS files
-2. Commit the changes
+2. Commit the changes and push to the remote ``main`` branch
 ```
 git add .
 git commit -m "re-compile TS to JS"
+git push
 ```
 3. Run ``cd ..`` to go to the *project root folder*
 4. From the *project root folder*, run 
