@@ -23,7 +23,7 @@ Click to watch the app demo youtube video:
 1. From the *client root folder*, run the two commands below
 ```
 netlify build
-netlify deploy
+netlify deploy --prod
 ```
 ### How to update the server build using Heroku-CLI?
 1. Go to *server root folder*, delete the ``dist`` folder and run ``tsc`` so that Typescript will re-compile the JS files
