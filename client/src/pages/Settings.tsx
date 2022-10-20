@@ -3,6 +3,7 @@ import { Popup } from '../components/Popup'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router-dom';
 import { useProfileUpdate } from '../hooks/useProfileUpdate';
+import { baseURL } from '../utils/api.service'
 
 export const Settings = () => {
 
@@ -22,7 +23,7 @@ export const Settings = () => {
 
         const changeUsername = async (id: string) => {
             try {
-                const response = await fetch(`http://localhost:3001/change/username/${id}`, {
+                const response = await fetch(`${baseURL}change/username/${id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -73,7 +74,7 @@ export const Settings = () => {
     const uploadImage = async (base64EncodedImage: any) => {
         //submits to cloudinary
         try {
-            const response = await fetch('http://localhost:3001/api/upload', {
+            const response = await fetch(`${baseURL}api/upload`, {
                 method: 'POST',
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-type': 'application/json' },
@@ -85,7 +86,7 @@ export const Settings = () => {
             //updates auth0 database
             const changeProfilePic = async (id: string) => {
                 try {
-                    const responseAuth = await fetch(`http://localhost:3001/change/pic/${id}`, {
+                    const responseAuth = await fetch(`${baseURL}change/pic/${id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'

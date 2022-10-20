@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3001/'
+export const baseURL = 'https://fitpass-server.herokuapp.com/'
 
 export const getFavorites = async (userId: string) => {
   if (!userId) return;
