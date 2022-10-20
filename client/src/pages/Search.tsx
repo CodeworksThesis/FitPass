@@ -39,7 +39,8 @@ export default function Search() {
     setLocation(event.target.value)
   }
 
-  const handleSearch = async () => {
+  const handleSearch = async (e:React.FormEvent) => {
+    e.preventDefault();
     let categoryString = '';
     if(categoryButtons.length === 0) {
       categoryString = categories.join()
@@ -63,18 +64,19 @@ export default function Search() {
     <main className='mt-20'>
       <PageTitle title='SEARCH YOUR CLASS' />
       <section className='ml-8 mt-6'>
-        <form onSubmit={handleSearch}>
+        <form onSubmit={e => handleSearch(e)}>
           <div className='flex'>
             <input onChange={(event) => setSearch(event.target.value)} className='font-normal p-4 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 placeholder-gray-400 w-[80%] drop-shadow-md' 
-            type="search" 
-            placeholder='Insert exercise name' />
+              type="search" 
+              placeholder='Insert exercise name' 
+            />
             <div className='flex justify-center items-stretch bg-[#6F87F5] rounded-lg w-10 cursor-pointer'>
               <AiOutlineSearch  className={`text-2xl self-center text-white`} onClick={handleSearch}/>
             </div>
           </div>
         </form>
         <h2 className='mb-3 location-h2 mt-10'>Location</h2>
-        <form onSubmit={handleSearch}>
+        <form>
           <div className="relative">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 ">
               <img className='h-10 w-7 mr-5 z-10' src={locationIcon} />
@@ -90,7 +92,7 @@ export default function Search() {
         </section>
         <section className='mt-6'>
           <h2>Price</h2>
-          <form onSubmit={handleSearch}>
+          <form>
             <input type="range" id="price" min={0} max={50} onChange={(event) => handleRange(event)} className="w-[90%] max-w-sm" />
             <p>{maxPrice}</p>
           </form>
@@ -101,7 +103,7 @@ export default function Search() {
         </section>
       </section>
     </main>
-            : (navigate('/'))}
-            </>
+    : (navigate('/'))}
+    </>
   )
 }
