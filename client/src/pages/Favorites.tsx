@@ -2,21 +2,18 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useGymClass } from '../hooks/useGymClass'
 import { getFavorites } from '../utils/api.service';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import GymClassItem from '../components/GymClassItem'
 import {Post} from '../../../globalTypes/Post'
-import {FavoritesType} from '../hooks/useGymClass'
 import { useNavigate } from 'react-router-dom';
 import { sortByDate, removeExpiredClasses } from '../utils/sortAndFilter';
 import PageTitle from '../components/PageTitle';
-import GymClassItemSmall from '../components/GymClassItemSmall';
 
 // copy this
 export default function Favorites() {
 
-  const { favoriteGymClassDetails, userId, noFavorites} = useGymClass();
-  const { isAuthenticated, isLoading } = useAuth0();
-  const [favorites, setFavorites] = useState<FavoritesType>()
+  const { favoriteGymClassDetails, userId, noFavorites, setFavorites} = useGymClass();
+  const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
   useEffect(()=>{

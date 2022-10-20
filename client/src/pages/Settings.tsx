@@ -147,7 +147,7 @@ export const Settings = () => {
                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
                                         </div>
-                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' accept='image/png, image/jpg' name='image' onChange={handlePicChange} />
+                                        <input className='border border-zinc-400 py-4 text-[11px] rounded w-72 hidden' id="dropzone-file" type='file' accept='image/png, image/jpg' name='image' onChange={e => handlePicChange(e)} />
                                     </label>
                                 </div>
                                 <button type='submit'

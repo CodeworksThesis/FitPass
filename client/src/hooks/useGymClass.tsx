@@ -11,12 +11,12 @@ export interface Favorited {
 
 export interface FavoritesType {
   favorited: Favorited[],
-  _id: any
+  _id: unknown
 }
 
 export interface BookingsType {
   booked: Favorited[],
-  _id: any
+  _id: unknown
 }
 
 export interface Props {

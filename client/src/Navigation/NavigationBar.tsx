@@ -6,7 +6,7 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
 } from "react-icons/ai";
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LogoutButton } from "../components/buttons/LogoutButton";
 import { useNavigate } from "react-router-dom";
 
