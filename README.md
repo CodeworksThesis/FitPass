@@ -44,7 +44,7 @@ This will restart the server hosted on Heroku.
 1. Go to the ``server`` folder 
 2. Run ``npm install`` from the *server root folder* to install all the necessary dependencies
 3. Fill in the ``.env`` file with the environmental variables, as per the ``.env.example`` file in the ``server`` folder
-4. Run ``npm run dev` from the *server root folder* to start the server app at ``http://localhost:3001/``
+4. Run ``npm run dev`` from the *server root folder* to start the server app at ``http://localhost:3001/``
 
 ## TECH STACKS
 * **Frontend** - React
