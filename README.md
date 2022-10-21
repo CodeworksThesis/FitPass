@@ -45,7 +45,8 @@ This will restart the server hosted on Heroku.
 1. Go to the ``client`` folder 
 2. Run ``npm install`` from the *client root folder* to install all the necessary dependencies
 3. Fill in the ``.env`` file with the environmental variables, as per the ``.env.example`` file in the ``client`` folder
-4. Run ``npm start`` from the *client root folder* to start the client app at ``http://localhost:3000/``
+4. You will need to change the ``baseURL`` in ``client/utils/api.service`` file to ``http://localhost:3001/``. It is pointing to ``https://fitpass-server.herokuapp.com/`` by default
+5. Run ``npm start`` from the *client root folder* to start the client app at ``http://localhost:3000/``
 
 ### Server
 1. Go to the ``server`` folder 
