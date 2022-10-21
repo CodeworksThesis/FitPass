@@ -1,5 +1,7 @@
 # FITPASS 
 
+<img src="/master/FitPass/client/public/fitpass.png" alt="fitpass"/>
+
 ## ABOUT
 FitPass is a pay-as-you-go gym class app. The app allows a user to 
 * sign up
