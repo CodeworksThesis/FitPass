@@ -1,4 +1,4 @@
-export const baseURL = 'https://fitpass-server.herokuapp.com/'
+export const baseURL = process.env.REACT_APP_HEROKU_BASE_URL
 
 export const getFavorites = async (userId: string) => {
   if (!userId) return;

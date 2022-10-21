@@ -6,7 +6,7 @@ import { useProfileUpdate } from '../hooks/useProfileUpdate';
 // heroku endpoint does not work with Auth0 management API
 // import { baseURL } from '../utils/api.service'
 
-const BASE_URL = 'http://localhost:3001/';
+const BASE_URL = process.env.REACT_APP_LOCAL_SERVER
 
 export const Settings = () => {
 
