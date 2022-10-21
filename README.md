@@ -55,11 +55,13 @@ This will restart the server hosted on Heroku.
 4. Run ``npm run dev`` from the *server root folder* to start the server app at ``http://localhost:3001/``
 
 ## TECH STACKS
-* **Frontend** - React
+* **Frontend** - React, Context API and Custom Hooks
 * **Server** - Node & Express
 * **Database** - MongoDB with Mongoose ORM
 * **Authentication** - Auth0
 * **Payment** - Stripe
+* **Map** - Google Map
+* **Photo storage** - Cloudinary
 * **Styling** - TailwindCSS
 * **Testing** - Jest and Cypress
 * **Typescript** for everything
