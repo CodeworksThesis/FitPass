@@ -21,7 +21,11 @@ describe('Login Page ', () => {
     cy.contains('Sign Up')
 
     cy.contains('Login').click()
+    
 
+    cy.findByRole('textbox',{
+
+    })
   })
 
   it('contains the singleGymClass item which redirects you to the gymclassDetails',()=>{
@@ -39,12 +43,10 @@ describe('Login Page ', () => {
     cy.contains('Pay With Card').click()
   })
 
-  // To test the payment and the form you shall ask for a help request;
-  
+  it('should redirect you to a payment form with the following details ',()=>{
+    cy.get('.stripe_checkout_app');
+  })
 
-  // it('Purchase Form should diplay the form ', () => {
-  //   cy.get('body > iframe').eq(0).invoke('attr','name').should('contain', 'Email')
-  // })
-  //cy.get('#imageForm > input').eq(0).invoke('attr','name').should('contain','title')
+
 
 })

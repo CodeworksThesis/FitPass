@@ -41,12 +41,14 @@ describe('Login Page ', () => {
     cy.contains('NEXT WEEK')
   })
   it('should show the classes you booked today', ()=>{
+    cy.get('#root > div > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div')
     cy.contains('TODAY').click()
   })
   it('should show the classes you booked tomorrow', ()=>{
     cy.contains('TOMORROW').click()
   })
   it('should show the classed you booked next week', ()=>{
+    cy.get('#root > div > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div')
     cy.contains('NEXT WEEK').click()
   })
 

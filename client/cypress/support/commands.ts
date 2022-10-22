@@ -12,7 +12,63 @@ import '@testing-library/cypress/add-commands'
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('loginByAuth0Api', (email:string, password:string) => {
+  cy.log(`Logging in as ${email}`)
+    const client_id = Cypress.env('auth0_client_id')
+    const audience = Cypress.env('auth0_audience')
+    const client_Email = Cypress.env('auth0_email')
+    const client_Password = Cypress.env('auth0_password');
+
+    cy.request({
+      method: 'POST',
+      url: `https://${Cypress.env('auth0_domain')}/oauth/token`,
+      body: {
+        grant_type: 'password',
+        email,
+        password,
+        audience,
+        client_id,
+      },
+    }).then(({ body }) => {
+      const claims = jwt.decode(body.id_token)
+      const {
+        nickname,
+        name,
+        picture,
+        updated_at,
+        email,
+        email_verified,
+        sub,
+        exp,
+      } = claims
+
+      const item = {
+        body: {
+          ...body,
+          decodedToken: {
+            claims,
+            user: {
+              nickname,
+              name,
+              picture,
+              updated_at,
+              email,
+              email_verified,
+              sub,
+            },
+            audience,
+            client_id,
+          },
+        },
+        expiresAt: exp,
+      }
+
+      window.localStorage.setItem('auth0Cypress', JSON.stringify(item))
+
+      cy.visit('/')
+    })
+
+ })
 //
 //
 // -- This is a child command --

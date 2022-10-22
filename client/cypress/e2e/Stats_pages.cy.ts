@@ -43,7 +43,7 @@ describe('Login Page ', () => {
   })
 
   it('should render all of the classes you attended', ()=>{
-    // need to figure out what to put here
+    cy.get('#root > div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) > div')
   })
 
   it('should show the navigation menu log you out if the user logs out',()=>{

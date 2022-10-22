@@ -13,7 +13,7 @@ interface GymClassItemProps {
 
 export default function GymClassItemSmall({ exerciseName, studioName, classDate, postPic, exerciseType, duration, desc }: GymClassItemProps) {
   return (
-    <div className="rounded-2xl flex w-[95%] overflow-hidden mt-[3%] h-[8rem] max-w-4xl">
+    <div data-testid={`gymClassItem-Small`} className="rounded-2xl flex w-[95%] overflow-hidden mt-[3%] h-[8rem] max-w-4xl">
       <div className="w-52 overflow-hidden ">
         <img src={postPic} alt={exerciseName} className="object-cover h-32 w-screen" />
       </div>
@@ -28,4 +28,4 @@ export default function GymClassItemSmall({ exerciseName, studioName, classDate,
       </div>
     </div>
   );
-} 
+}

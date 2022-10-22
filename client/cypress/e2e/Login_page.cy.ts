@@ -13,6 +13,21 @@ describe('The Login Page', () => {
   })
 })
 
+// describe('Auth0', () => {
+//   beforeEach(()=>{
+//     //cy.task('db:seed')
+//     cy.loginByAuth0Api(
+//       Cypress.env('auth0_email'),
+//       Cypress.env('auth0_password')
+//       )
+//   })
+
+//   it('should login',()=>{
+//     cy.visit('/')
+//   })
+
+//  })
+
 describe('Login Page ', () => {
   it('finds the content "FitPass"', () => {
     cy.visit('/')

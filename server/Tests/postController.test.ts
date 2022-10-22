@@ -47,9 +47,6 @@ describe('GET /gymclass endpoint with user details', ()=>{
     .set('Accept', 'application/json');
 
     expect(response.statusCode).toBe(200);
-    // expect(request.body.favorites).toMatchObject(['test1', 'test2']);
-    // expect(response.body.booked).toMatchObject(['test1', 'test2', 'test3', 'test4'])
-    // expect(response.body.profilePic).toBe('localhost//testUser.png');
   })
 })
 
