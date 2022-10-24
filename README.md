@@ -3,7 +3,10 @@
 <img src="/client/public/fitpass.png" alt="fitpass"/>
 
 ## ABOUT
-FitPass is a pay-as-you-go gym class app. The app allows a user to 
+FitPass is a pay-as-you-go gym class app.
+
+## DESCRIPTION
+The app allow users to reserve individual classes without long term commitment to a gym membership. Other features include: 
 * sign up
 * create a profile
 * select a gym class based on user location
